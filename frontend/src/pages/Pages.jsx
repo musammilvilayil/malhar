@@ -136,10 +136,10 @@ export const MediaPage = () => {
 
   return (
     <>
-      <section className="relative h-[56vh] min-h-[360px] overflow-hidden">
+      <section className="relative min-h-[56vh] pt-24 md:pt-32 overflow-hidden">
         <img src="/assets/DSC_2363-1-1-1.jpg" alt="Malhar campus" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-emerald/65 backdrop-blur-sm" />
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[56vh] flex items-center">
           <div className="text-cream max-w-2xl">
             <span className="inline-flex items-center gap-3 text-xs md:text-sm font-medium tracking-[0.22em] uppercase text-cream"><span className="h-px w-8 bg-cream/50" />Media & Social</span>
             <h1 className="mt-4 font-serif text-4xl md:text-5xl">Malhar Media — videos, updates and social highlights</h1>
