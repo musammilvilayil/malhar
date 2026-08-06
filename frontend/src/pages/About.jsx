@@ -7,7 +7,7 @@ export default function About() {
   const { about, founder } = siteData;
   return (
     <main>
-      <section className="relative min-h-[48vh] flex items-center pt-20 pb-12 overflow-hidden">
+      <section className="relative min-h-[48vh] flex items-center pt-24 md:pt-32 pb-12 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Parallax src="/assets/about-imgs.jpg" alt="About background" className="w-full h-full" />
         </div>
