@@ -1,0 +1,157 @@
+{
+  "global_vision": {
+    "theme": "Editorial Luxury & Earthy Trust",
+    "tone": "Warm, dignified, aspirational, calm.",
+    "positioning": "A high-end educational foundation (Malhar) that seamlessly blends Islamic tradition with modern secular education. Rejects typical 'mosque flyer' or generic template aesthetics in favor of an Awwwards-level, type-led editorial layout.",
+    "core_principles": [
+      "Content is King: Treat typography like art. Text isn't just information; it's the primary visual element.",
+      "Controlled Contrast: Expressive serif headlines paired with highly readable sans-serif body text.",
+      "Intentional Asymmetry: Break out of generic centered containers. Use overlapping modules and split-screen layouts.",
+      "Premium Motion: Scroll-triggered parallax, silky smooth Lenis scrolling, and line-by-line staggered reveals."
+    ]
+  },
+  "colors": {
+    "background": {
+      "default": "#F9F8F6",
+      "description": "Warm Off-White/Cream. Never use pure white. Gives a physical, paper-like editorial feel.",
+      "css_variable": "--bg-cream"
+    },
+    "text": {
+      "primary": "#1A1A1A",
+      "secondary": "#4A4A4A",
+      "description": "Deep Charcoal for high legibility and refined contrast.",
+      "css_variable": "--text-charcoal"
+    },
+    "brand": {
+      "emerald": "#0A4D3C",
+      "teal_accent": "#135B4A",
+      "gold": "#C5A059",
+      "brass": "#B38C45",
+      "description": "Deep Emerald/Teal acts as the dramatic structural color (dark sections, hero overlays). Warm Gold/Brass acts as the delicate accent (thin borders, active states, numbered chapters).",
+      "css_variables": {
+        "--brand-emerald": "#0A4D3C",
+        "--brand-gold": "#C5A059"
+      }
+    }
+  },
+  "typography": {
+    "font_families": {
+      "headings": "'Newsreader', serif",
+      "body": "'Work Sans', sans-serif",
+      "arabic": "'Amiri', serif"
+    },
+    "scales": {
+      "h1": "text-5xl md:text-6xl lg:text-[5vw] font-light tracking-tight leading-[1.05]",
+      "h2": "text-4xl md:text-5xl font-light tracking-tight leading-tight",
+      "h3": "text-2xl md:text-3xl font-normal leading-snug",
+      "body_large": "text-lg md:text-xl font-light leading-relaxed",
+      "body": "text-base leading-relaxed tracking-wide",
+      "overline": "text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-[#C5A059]"
+    },
+    "rules": [
+      "Never center-align paragraphs. Default to left alignment for a strong editorial edge.",
+      "Use 'Amiri' exclusively for decorative Arabic calligraphy, set in large sizes with low opacity, or small elegant bismillah/salam openers.",
+      "Headings should use extreme tracking contrast: tight for Serifs, loose for Sans-serif overlines."
+    ]
+  },
+  "visual_enhancers": {
+    "geometric_patterns": "Use SVG Islamic geometric patterns (8-point stars) as section dividers or background textures at extremely low opacity (3% to 5%) over Cream or Emerald backgrounds.",
+    "borders": "1px solid #1A1A1A/10 (light mode) or #C5A059/20 (dark sections). Used to create 'magazine grid' lines.",
+    "glassmorphism": "Used for the sticky nav. High blur (backdrop-blur-xl), high opacity (bg-[#F9F8F6]/80), crisp 1px bottom border.",
+    "photography": "Spotlighted subjects. Use 'clipped frames' (images that don't stretch full width but sit inside a 1px border container with padding). Black and white or desaturated tones with a warm color grade.",
+    "shadows": "Minimal to none. Rely on 1px borders for structure (The 'Technical Grid' look) to keep it modern and flat."
+  },
+  "motion_language": {
+    "scrolling": "MANDATORY: Lenis smooth scroll for weight and premium momentum.",
+    "reveals": "Hero H1 must be wrapped in `overflow-hidden` blocks and revealed line-by-line using Framer Motion (`y: 100%` -> `y: 0`, ease: [0.76, 0, 0.24, 1]).",
+    "parallax": "Use GSAP ScrollTrigger or Framer Motion `useScroll`. Images inside clipped frames should move slightly slower than the page scroll.",
+    "marquee": "Use `react-fast-marquee`. Low contrast, extremely slow drift. Content: 'Malhar Educational Trust • Empowering Generations • Tradition meets Tomorrow • '",
+    "micro_interactions": "Hover states on cards scale the image slightly (1.05) while keeping the container fixed. Buttons use a 'swipe' fill effect."
+  },
+  "layout_strategy": {
+    "spacing": "Exaggerated. Use `py-24` to `py-32` for standard sections. Allow text to breathe.",
+    "grid": "Bento Grid protocol Mode A (Tetris Grid) for Marketing. Create asymmetry. 12-column foundation.",
+    "containers": "Max width `max-w-7xl` centered, but let imagery break out to the edges occasionally."
+  },
+  "components": {
+    "navigation": "Sticky glassmorphism nav. Top ultra-thin utility bar (Deep Emerald bg, white text, phone/email). Main nav (Cream glass, charcoal text, Logo left, links center, 'Donate' button right).",
+    "buttons": "Primary: Solid Deep Emerald (`bg-[#0A4D3C] text-white hover:bg-[#135B4A]`), sharp corners or slight rounding (`rounded-md`). Secondary: Outline with Gold/Brass (`border-[#C5A059] text-[#1A1A1A] hover:bg-[#C5A059] hover:text-white`).",
+    "cards": "Flat, bento-style. 1px border (`border-black/5`). Generous internal padding (`p-8`). Image on top/side with crisp edges.",
+    "stats": "Large numerals using a counting animation (react-countup). Placed in a 4-column border-separated grid."
+  },
+  "page_structures": {
+    "homepage": [
+      {
+        "section": "Kinetic Hero",
+        "layout": "Min-height 90vh. Split layout. Left: Large H1, staggered reveal. Right: Parallax image inside an elegant arched or rectangular frame. Two CTAs ('Explore Institutions', 'Admission'). Background: Cream with subtle Islamic geometric texture."
+      },
+      {
+        "section": "Editorial Marquee",
+        "layout": "Full width, slow-moving text strip. Gold background, Emerald text."
+      },
+      {
+        "section": "Impact Stats",
+        "layout": "4-column grid. Large Serif numbers ('150+', '4200'). Subtitles in Sans-serif."
+      },
+      {
+        "section": "Numbered Manifesto / About block",
+        "layout": "Split section. Left: Sticky founder portrait (Sheikh Sayyid Umarul Farooq Al Bukhari) in B&W. Right: Numbered chapters detailing the vision, using Gold numerals (01, 02, 03) and Serif headings."
+      },
+      {
+        "section": "Our Institutions (Staggered Grid)",
+        "layout": "Bento grid displaying the 7 institutions. High-density photography with dark overlay gradients."
+      },
+      {
+        "section": "Campus Life (Video)",
+        "layout": "Large 16:9 container, perfectly centered, with a custom 'Play' button overlay triggering the YouTube embed in a cinematic modal."
+      },
+      {
+        "section": "Key Personalities",
+        "layout": "Grid of faculty. Elegant, desaturated portraits. Name in Serif, Role in Sans-serif overline."
+      },
+      {
+        "section": "News & Events",
+        "layout": "List-view for events (date on left, title on right with bottom borders). Card-view for News."
+      },
+      {
+        "section": "Facilities",
+        "layout": "3-column minimalist icon block. Use elegant, thin-line icons (Phosphor)."
+      },
+      {
+        "section": "Gallery Masonry",
+        "layout": "Horizontal scroll preview or classic masonry grid. Hover reveals zoom effect."
+      },
+      {
+        "section": "Admission Parallax Banner",
+        "layout": "Deep Emerald background, gold typography. Large CTA."
+      },
+      {
+        "section": "Footer",
+        "layout": "Massive typography. 'Malhar' taking up 80% width. Grid of links. Deep Emerald background, Cream text."
+      }
+    ]
+  },
+  "media_assets": {
+    "hero_architecture": "https://images.unsplash.com/photo-1592526074440-36fd2c83ec08?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHxpc2xhbWljJTIwYXJjaGl0ZWN0dXJlJTIwbW9kZXJuJTIwZWxlZ2FudHxlbnwwfHx8fDE3ODYwMDg0MTR8MA&ixlib=rb-4.1.0&q=85",
+    "founder_portrait": "https://images.unsplash.com/photo-1444069069008-83a57aac43ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwzfHxlbGRlcmx5JTIwZGlzdGluZ3Vpc2hlZCUyMHNjaG9sYXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODYwMDg0MTR8MA&ixlib=rb-4.1.0&q=85",
+    "students_campus": "https://images.unsplash.com/photo-1758270705317-3ef6142d306f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwzfHxzdHVkZW50cyUyMHVuaXZlcnNpdHklMjBjYW1wdXMlMjBsZWFybmluZ3xlbnwwfHx8fDE3ODYwMDg0MTR8MA&ixlib=rb-4.1.0&q=85",
+    "institution_building": "https://images.unsplash.com/photo-1662202999685-1a6ca73ef526?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwyfHxpc2xhbWljJTIwYXJjaGl0ZWN0dXJlJTIwbW9kZXJuJTIwZWxlZ2FudHxlbnwwfHx8fDE3ODYwMDg0MTR8MA&ixlib=rb-4.1.0&q=85"
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: `framer-motion`, `gsap`, `lenis`, `react-fast-marquee`, `lucide-react` or `@phosphor-icons/react`.",
+    "For the custom fonts, import 'Newsreader', 'Work Sans', and 'Amiri' from Google Fonts in the index.html or global CSS.",
+    "Configure tailwind.config.js with the custom color palette (emerald, gold, cream, charcoal) and custom fonts.",
+    "Do NOT use typical Shadcn 'Card' components for the main marketing grid unless heavily customized to remove standard Vercel shadows/radii. Rely on raw HTML/Tailwind for bento and editorial layouts.",
+    "All interactive elements MUST have `data-testid` attributes (e.g., `data-testid=\"hero-cta-button\"`).",
+    "Avoid arbitrary centering. Keep text blocks left-aligned for an authoritative, editorial feel.",
+    "Set up pages structure (hybrid fullstack) with basic React Router or Next.js app router depending on environment.",
+    "Ensure the hero text reveal is executed via an `overflow-hidden` wrapper around each text line, animating the child element's Y transform."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid 'AI slop' aesthetics. Do NOT center align app containers.",
+    "Do not use dark colors as standard gradients. Use solid colors with texture.",
+    "NEVER use generic placeholder images or emoji icons. Only use the provided Unsplash URLs.",
+    "Ensure WCAG AA contrast ratios, especially for Gold text on Cream, and Cream text on Emerald.",
+    "Create depth through staggered motion and overlapping components, NOT through heavy drop-shadows."
+  ]
+}

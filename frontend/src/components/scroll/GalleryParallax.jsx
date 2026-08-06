@@ -1,0 +1,72 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const galleryImages = [
+  "/assets/DSC_2363-1-1-1.jpg",
+  "/assets/about-imgs.jpg",
+  "/assets/web-hifl.png",
+  "/assets/Untitled-1.png",
+  "/assets/web-slide-1-scaled.png",
+  "/assets/GAIJpIRvuPg-maxresdefault.jpg",
+];
+
+export default function GalleryParallax() {
+  const containerRef = useRef(null);
+  const itemsRef = useRef([]);
+  const ctxRef = useRef(null);
+  const tweenRefs = useRef([]);
+
+  useEffect(() => {
+    ctxRef.current = gsap.context(() => {
+      itemsRef.current.forEach((item, i) => {
+        const speed = 0.1 + (i % 3) * 0.05;
+
+        const tween = gsap.to(item, {
+          y: -100 * speed,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        tweenRefs.current.push(tween);
+      });
+    });
+
+    return () => {
+      tweenRefs.current.forEach((tween) => tween.scrollTrigger?.kill?.());
+      tweenRefs.current.forEach((tween) => tween.kill?.());
+      ctxRef.current?.revert();
+    };
+  }, []);
+
+  return (
+    <section ref={containerRef} className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">Campus Life</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {galleryImages.map((img, i) => (
+            <div
+              key={i}
+              ref={(el) => (itemsRef.current[i] = el)}
+              className={`relative overflow-hidden rounded-2xl shadow-lg ${i % 2 === 0 ? "translate-y-12" : ""}`}
+            >
+              <img
+                src={img}
+                alt={`Gallery ${i + 1}`}
+                className="w-full h-80 object-cover hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

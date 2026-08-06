@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opt@0,200..800;1,200..800&family=Work+Sans:wght@300;400;500;600&family=Amiri:ital@0;1&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 40 20% 97%;
+        --foreground: 0 0% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 10%;
+        --primary: 162 76% 17%;
+        --primary-foreground: 40 20% 97%;
+        --secondary: 40 20% 92%;
+        --secondary-foreground: 0 0% 10%;
+        --muted: 40 15% 90%;
+        --muted-foreground: 0 0% 35%;
+        --accent: 38 47% 56%;
+        --accent-foreground: 0 0% 10%;
+        --destructive: 0 72% 45%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 88%;
+        --input: 0 0% 88%;
+        --ring: 162 76% 17%;
+        --radius: 0.375rem;
+    }
+}
+
+@layer base {
+    * { @apply border-border; }
+    html { scrollbar-width: thin; scrollbar-color: #C5A059 #F9F8F6; }
+    body {
+        margin: 0;
+        background-color: #F9F8F6;
+        color: #1A1A1A;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection { background: #0A4D3C; color: #F9F8F6; }
+    
+    /* Ensure root has a non-static position so scroll offsets calculate correctly */
+    #root { position: relative; }
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+.line-mask { overflow: hidden; display: block; }
+
+.btn-swipe {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+.btn-swipe::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    transform: translateY(101%);
+    transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: -1;
+}
+.btn-swipe:hover::after { transform: translateY(0); }
+
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.img-zoom:hover img { transform: scale(1.06); }
+
+.link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    padding-bottom: 2px;
+}
+.link-underline:hover { background-size: 100% 1px; }
+
+/* Fallback helper for gradient text (non-Tailwind-aware browsers) */
+.gradient-text-fallback {
+    background-image: linear-gradient(90deg, #C5A059, #0A4D3C);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
