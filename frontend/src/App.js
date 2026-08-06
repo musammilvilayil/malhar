@@ -9,7 +9,18 @@ import { Footer } from "@/components/site/Footer";
 
 const Home = lazy(() => import("@/pages/Home"));
 const Admin = lazy(() => import("@/pages/Admin"));
-const Pages = lazy(() => import("@/pages/Pages"));
+const loadPage = (name) => lazy(() => import("@/pages/Pages").then((module) => ({ default: module[name] })));
+const AboutPage = loadPage("AboutPage");
+const InstitutionsPage = loadPage("InstitutionsPage");
+const VenturesPage = loadPage("VenturesPage");
+const MediaPage = loadPage("MediaPage");
+const GalleryPage = loadPage("GalleryPage");
+const NewsPage = loadPage("NewsPage");
+const ContactPage = loadPage("ContactPage");
+const DonatePage = loadPage("DonatePage");
+const AdmissionPage = loadPage("AdmissionPage");
+const InstitutionPage = loadPage("InstitutionPage");
+const InstructorPage = loadPage("InstructorPage");
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +31,6 @@ function useLenis() {
 
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
     lenis.on("scroll", ScrollTrigger.update);
-
     const raf = (time) => lenis.raf(time * 1000);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
@@ -34,12 +44,10 @@ function useLenis() {
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     ScrollTrigger.refresh();
   }, [pathname]);
-
   return null;
 }
 
@@ -56,17 +64,12 @@ function RouteFallback() {
 
 const Site = ({ children }) => (
   <>
+    <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-cream focus:text-emerald focus:px-4 focus:py-2">Skip to content</a>
     <Nav />
     <main id="main-content" className="relative">{children}</main>
     <Footer />
   </>
 );
-
-function PageRoutes() {
-  return (
-    <Pages />
-  );
-}
 
 function NotFound() {
   return (
@@ -85,7 +88,6 @@ function NotFound() {
 
 function App() {
   useLenis();
-
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -93,17 +95,17 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route path="/" element={<Site><Home /></Site>} />
-          <Route path="/about-us" element={<Site><PageRoutes page="about" /></Site>} />
-          <Route path="/our-institutions" element={<Site><PageRoutes page="institutions" /></Site>} />
-          <Route path="/our-ventures" element={<Site><PageRoutes page="ventures" /></Site>} />
-          <Route path="/media" element={<Site><PageRoutes page="media" /></Site>} />
-          <Route path="/gallery" element={<Site><PageRoutes page="gallery" /></Site>} />
-          <Route path="/news" element={<Site><PageRoutes page="news" /></Site>} />
-          <Route path="/contact" element={<Site><PageRoutes page="contact" /></Site>} />
-          <Route path="/donate-us" element={<Site><PageRoutes page="donate" /></Site>} />
-          <Route path="/admission" element={<Site><PageRoutes page="admission" /></Site>} />
-          <Route path="/institution/:slug" element={<Site><PageRoutes page="institution" /></Site>} />
-          <Route path="/instructor/:slug" element={<Site><PageRoutes page="instructor" /></Site>} />
+          <Route path="/about-us" element={<Site><AboutPage /></Site>} />
+          <Route path="/our-institutions" element={<Site><InstitutionsPage /></Site>} />
+          <Route path="/our-ventures" element={<Site><VenturesPage /></Site>} />
+          <Route path="/media" element={<Site><MediaPage /></Site>} />
+          <Route path="/gallery" element={<Site><GalleryPage /></Site>} />
+          <Route path="/news" element={<Site><NewsPage /></Site>} />
+          <Route path="/contact" element={<Site><ContactPage /></Site>} />
+          <Route path="/donate-us" element={<Site><DonatePage /></Site>} />
+          <Route path="/admission" element={<Site><AdmissionPage /></Site>} />
+          <Route path="/institution/:slug" element={<Site><InstitutionPage /></Site>} />
+          <Route path="/instructor/:slug" element={<Site><InstructorPage /></Site>} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
