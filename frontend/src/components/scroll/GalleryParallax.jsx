@@ -20,10 +20,13 @@ export default function GalleryParallax() {
   const tweenRefs = useRef([]);
 
   useEffect(() => {
+    const tweens = tweenRefs.current;
+
     ctxRef.current = gsap.context(() => {
       itemsRef.current.forEach((item, i) => {
-        const speed = 0.1 + (i % 3) * 0.05;
+        if (!item) return;
 
+        const speed = 0.1 + (i % 3) * 0.05;
         const tween = gsap.to(item, {
           y: -100 * speed,
           ease: "none",
@@ -35,13 +38,14 @@ export default function GalleryParallax() {
           },
         });
 
-        tweenRefs.current.push(tween);
+        tweens.push(tween);
       });
-    });
+    }, containerRef);
 
     return () => {
-      tweenRefs.current.forEach((tween) => tween.scrollTrigger?.kill?.());
-      tweenRefs.current.forEach((tween) => tween.kill?.());
+      tweens.forEach((tween) => tween.scrollTrigger?.kill?.());
+      tweens.forEach((tween) => tween.kill?.());
+      tweens.length = 0;
       ctxRef.current?.revert();
     };
   }, []);
