@@ -44,7 +44,7 @@ export const siteData = {
       name: 'Malhar She Garden',
       slug: 'she-garden',
       description: "Women's education combining Sharee'a and Da'wa studies with academic subjects including literature, history, culture and home sciences.",
-      image: '/assets/web-p.png',
+      image: '/assets/web-sh.png',
       imageReference: 'https://in.pinterest.com/pin/18929260940768729/',
       programs: ['Plus One', 'Plus Two', "Sharee'a Studies", "Da'wa Studies", 'Literature', 'Home Sciences'],
       features: ["Women's Education", 'Islamic Studies', 'Academic Learning'],
