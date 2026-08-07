@@ -1,14 +1,22 @@
 import axios from "axios";
 
-const configuredUrl = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || "";
-const normalizedConfiguredUrl = typeof configuredUrl === "string" ? configuredUrl.replace(/\/+$/, "") : "";
+const rawConfiguredUrl = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || "";
+const configuredUrl = typeof rawConfiguredUrl === "string" ? rawConfiguredUrl.trim() : "";
+
+const trimTrailingSlashes = (value) => {
+  let result = value;
+  while (result.endsWith("/")) result = result.slice(0, -1);
+  return result;
+};
+
+const normalizedConfiguredUrl = trimTrailingSlashes(configuredUrl);
 
 // REACT_APP_API_URL may be configured as either the backend root or the full /api URL.
 export const API = normalizedConfiguredUrl
   ? (normalizedConfiguredUrl.endsWith("/api") ? normalizedConfiguredUrl : `${normalizedConfiguredUrl}/api`)
   : "http://localhost:4000/api";
 
-export const BACKEND_URL = API.replace(/\/api$/, "");
+export const BACKEND_URL = API.endsWith("/api") ? API.slice(0, -4) : API;
 export const api = axios.create({ baseURL: API, timeout: 15000 });
 
 api.interceptors.request.use((config) => {
