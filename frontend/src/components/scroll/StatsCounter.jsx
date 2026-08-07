@@ -18,10 +18,13 @@ export default function StatsCounter() {
   const ctxRef = useRef(null);
 
   useEffect(() => {
+    const triggers = triggerRefs.current;
+
     ctxRef.current = gsap.context(() => {
       countersRef.current.forEach((counter, i) => {
-        const target = stats[i].number;
+        if (!counter) return;
 
+        const target = stats[i].number;
         const trigger = ScrollTrigger.create({
           trigger: counter,
           start: "top 85%",
@@ -35,20 +38,18 @@ export default function StatsCounter() {
               onUpdate: () => {
                 counter.textContent = Math.round(obj.val).toLocaleString();
               },
-                onComplete: () => {
-                  // no-op: keep animations local; do not set state that would trigger effect cleanup
-                },
             });
           },
           once: true,
         });
 
-        triggerRefs.current.push(trigger);
+        triggers.push(trigger);
       });
-    });
+    }, containerRef);
 
     return () => {
-      triggerRefs.current.forEach((trigger) => trigger.kill?.());
+      triggers.forEach((trigger) => trigger.kill?.());
+      triggers.length = 0;
       ctxRef.current?.revert();
     };
   }, []);
