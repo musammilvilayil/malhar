@@ -7,9 +7,10 @@ import { Toaster } from "sonner";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import Home from "@/pages/Home";
+import DonatePage from "@/pages/Donate";
 import {
   AboutPage, InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
-  ContactPage, DonatePage, AdmissionPage, InstructorPage, InstitutionPage,
+  ContactPage, AdmissionPage, InstructorPage, InstitutionPage,
 } from "@/pages/Pages";
 import Admin from "@/pages/Admin";
 
