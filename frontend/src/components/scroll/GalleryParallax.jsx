@@ -16,13 +16,11 @@ const galleryImages = [
 export default function GalleryParallax() {
   const containerRef = useRef(null);
   const itemsRef = useRef([]);
-  const ctxRef = useRef(null);
-  const tweenRefs = useRef([]);
 
   useEffect(() => {
-    const tweens = tweenRefs.current;
+    const tweens = [];
 
-    ctxRef.current = gsap.context(() => {
+    const ctx = gsap.context(() => {
       itemsRef.current.forEach((item, i) => {
         if (!item) return;
 
@@ -45,8 +43,7 @@ export default function GalleryParallax() {
     return () => {
       tweens.forEach((tween) => tween.scrollTrigger?.kill?.());
       tweens.forEach((tween) => tween.kill?.());
-      tweens.length = 0;
-      ctxRef.current?.revert();
+      ctx.revert();
     };
   }, []);
 
@@ -57,16 +54,20 @@ export default function GalleryParallax() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((img, i) => (
             <div
-              key={i}
-              ref={(el) => (itemsRef.current[i] = el)}
+              key={img}
+              ref={(el) => {
+                itemsRef.current[i] = el;
+              }}
               className={`relative overflow-hidden rounded-2xl shadow-lg ${i % 2 === 0 ? "translate-y-12" : ""}`}
             >
               <img
                 src={img}
-                alt={`Gallery ${i + 1}`}
+                alt={`Campus life ${i + 1}`}
                 className="w-full h-80 object-cover hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" aria-hidden="true" />
             </div>
           ))}
         </div>
