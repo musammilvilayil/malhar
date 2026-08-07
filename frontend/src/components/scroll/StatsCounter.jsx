@@ -14,13 +14,12 @@ const stats = [
 export default function StatsCounter() {
   const containerRef = useRef(null);
   const countersRef = useRef([]);
-  const triggerRefs = useRef([]);
-  const ctxRef = useRef(null);
 
   useEffect(() => {
-    const triggers = triggerRefs.current;
+    const triggers = [];
+    const animations = [];
 
-    ctxRef.current = gsap.context(() => {
+    const ctx = gsap.context(() => {
       countersRef.current.forEach((counter, i) => {
         if (!counter) return;
 
@@ -30,7 +29,7 @@ export default function StatsCounter() {
           start: "top 85%",
           onEnter: () => {
             const obj = { val: 0 };
-            gsap.to(obj, {
+            const animation = gsap.to(obj, {
               val: target,
               duration: 2,
               ease: "power2.out",
@@ -39,6 +38,7 @@ export default function StatsCounter() {
                 counter.textContent = Math.round(obj.val).toLocaleString();
               },
             });
+            animations.push(animation);
           },
           once: true,
         });
@@ -48,9 +48,9 @@ export default function StatsCounter() {
     }, containerRef);
 
     return () => {
+      animations.forEach((animation) => animation.kill?.());
       triggers.forEach((trigger) => trigger.kill?.());
-      triggers.length = 0;
-      ctxRef.current?.revert();
+      ctx.revert();
     };
   }, []);
 
@@ -59,8 +59,8 @@ export default function StatsCounter() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <div key={i} className="text-center text-charcoal">
-              <div ref={(el) => (countersRef.current[i] = el)} className="text-4xl md:text-5xl font-bold mb-2 text-emerald">
+            <div key={stat.label} className="text-center text-charcoal">
+              <div ref={(el) => { countersRef.current[i] = el; }} className="text-4xl md:text-5xl font-bold mb-2 text-emerald">
                 0
               </div>
               <div className="text-xl font-light text-emerald/80">{stat.suffix}</div>
