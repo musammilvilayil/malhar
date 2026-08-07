@@ -67,19 +67,16 @@ export const Nav = () => {
           </Link>
 
           <nav className={`hidden lg:flex items-center gap-7 text-sm ${linkColorClass}`}>
-            {safeLinks.map((l) => {
-              const testId = `nav-${l.to.replace(/^\/+/, "").replace(/[^a-zA-Z0-9-]/g, "-") || "home"}`;
-              return (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  className={`link-underline hover:text-gold ${isActiveLink(l.to) ? "text-gold font-semibold" : linkColorClass}`}
-                  data-testid={testId}
-                >
-                  {l.label}
-                </Link>
-              );
-            })}
+            {safeLinks.map((l, index) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className={`link-underline hover:text-gold ${isActiveLink(l.to) ? "text-gold font-semibold" : linkColorClass}`}
+                data-testid={`nav-link-${index}`}
+              >
+                {l.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="relative z-[110] flex items-center gap-3">
