@@ -9,6 +9,7 @@ import { Footer } from "@/components/site/Footer";
 
 const Home = lazy(() => import("@/pages/Home"));
 const Admin = lazy(() => import("@/pages/Admin"));
+const DonatePage = lazy(() => import("@/pages/Donate"));
 const loadPage = (name) => lazy(() => import("@/pages/Pages").then((module) => ({ default: module[name] })));
 const AboutPage = loadPage("AboutPage");
 const InstitutionsPage = loadPage("InstitutionsPage");
@@ -17,7 +18,6 @@ const MediaPage = loadPage("MediaPage");
 const GalleryPage = loadPage("GalleryPage");
 const NewsPage = loadPage("NewsPage");
 const ContactPage = loadPage("ContactPage");
-const DonatePage = loadPage("DonatePage");
 const AdmissionPage = loadPage("AdmissionPage");
 const InstitutionPage = loadPage("InstitutionPage");
 const InstructorPage = loadPage("InstructorPage");
