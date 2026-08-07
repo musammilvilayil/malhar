@@ -38,7 +38,20 @@ export const Nav = () => {
     return pathname.startsWith(to);
   };
 
-  const linkColorClass = scrolled ? "text-charcoal/80" : "text-cream";
+  // Only the homepage has a dark photographic hero underneath the initial nav.
+  // Interior pages start on light/cream surfaces, so they need a solid light header
+  // and dark links even before the user scrolls.
+  const useOverlayNav = pathname === "/" && !scrolled;
+  const linkColorClass = useOverlayNav ? "text-cream" : "text-charcoal/80";
+  const navSurfaceClass = useOverlayNav
+    ? "bg-transparent"
+    : "bg-cream/95 backdrop-blur-xl border-b border-charcoal/10 shadow-[0_1px_0_rgba(26,26,26,0.04)]";
+  const donateActive = pathname.startsWith("/donate");
+  const donateClass = donateActive
+    ? "border-gold bg-gold text-emerald"
+    : useOverlayNav
+      ? "border-gold/90 text-cream hover:bg-gold hover:text-emerald"
+      : "border-gold text-charcoal hover:bg-gold hover:text-emerald";
 
   return (
     <header className="fixed inset-x-0 top-0 z-[100]" data-testid="site-header">
@@ -60,7 +73,7 @@ export const Nav = () => {
         </div>
       </div>
 
-      <div className={`transition-all duration-500 ${scrolled ? "bg-cream/90 backdrop-blur-xl border-b border-charcoal/10" : "bg-transparent"}`}>
+      <div className={`transition-all duration-500 ${navSurfaceClass}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
           <Link to="/" className="flex items-center relative z-10" data-testid="nav-logo">
             <img src="/assets/logo.png" alt="Malhar logo" className="h-10 object-contain" />
@@ -71,7 +84,7 @@ export const Nav = () => {
               <Link
                 key={l.to}
                 to={l.to}
-                className={`link-underline hover:text-gold ${isActiveLink(l.to) ? "text-gold font-semibold" : linkColorClass}`}
+                className={`link-underline transition-colors hover:text-gold ${isActiveLink(l.to) ? "text-gold font-semibold" : linkColorClass}`}
                 data-testid={`nav-link-${index}`}
               >
                 {l.label}
@@ -80,8 +93,13 @@ export const Nav = () => {
           </nav>
 
           <div className="relative z-[110] flex items-center gap-3">
-            <Link to="/donate-us" className={`hidden sm:inline-flex text-sm px-5 py-2.5 border border-gold btn-swipe hover:text-cream transition-colors duration-300 ${linkColorClass}`} data-testid="nav-donate">
-              <span className={linkColorClass}>Donate</span>
+            <Link
+              to="/donate-us"
+              className={`hidden sm:inline-flex items-center text-sm px-5 py-2.5 border transition-all duration-300 ${donateClass}`}
+              data-testid="nav-donate"
+              aria-current={donateActive ? "page" : undefined}
+            >
+              <span>Donate</span>
             </Link>
             <Link to="/admission" className="hidden sm:inline-flex text-sm px-5 py-2.5 bg-emerald text-cream hover:bg-emerald-light transition-colors" data-testid="nav-admission">
               Admission
@@ -131,7 +149,7 @@ export const Nav = () => {
 
             <div className="mt-auto flex flex-col gap-3 pt-10">
               <Link to="/admission" onClick={() => setOpen(false)} className="px-5 py-3 bg-gold text-emerald text-center font-medium" data-testid="mobile-admission">Apply for Admission</Link>
-              <Link to="/donate-us" onClick={() => setOpen(false)} className="px-5 py-3 border border-gold text-gold text-center" data-testid="mobile-donate">Donate</Link>
+              <Link to="/donate-us" onClick={() => setOpen(false)} className={`px-5 py-3 border text-center ${donateActive ? "border-gold bg-gold text-emerald" : "border-gold text-gold"}`} data-testid="mobile-donate">Donate</Link>
             </div>
           </motion.div>
         )}
