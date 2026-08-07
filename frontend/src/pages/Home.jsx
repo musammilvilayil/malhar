@@ -16,76 +16,123 @@ const { institutions, about, gallery, news, events, youtubeChannel, instructors 
 const Hero = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.03, 1.11]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -52]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 0.92, 0.2]);
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.1]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -58]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 0.94, 0.32]);
+  const goldLine = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section ref={ref} className="relative min-h-[78vh] overflow-hidden bg-cream" data-testid="hero">
-      <div className="grid min-h-[78vh] lg:grid-cols-2">
-        <div className="relative min-h-[44vh] overflow-hidden lg:min-h-[78vh]">
-          <motion.img
-            style={{ y: imageY, scale: imageScale }}
-            src="/assets/DSC_2363-1-1-1.jpg"
-            alt="Malhar campus in Manjeshwar, Kasaragod"
-            className="absolute -top-[6%] left-0 h-[115%] w-full object-cover object-center will-change-transform"
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-emerald/10 to-emerald/55" aria-hidden="true" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" aria-hidden="true" />
-          <div className="absolute inset-0 opacity-20 pointer-events-none"><GeoPattern color="#F5E9CF" opacity={0.12} /></div>
-          <div className="absolute bottom-5 left-5 rounded-full border border-white/25 bg-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-white backdrop-blur-md sm:left-7 sm:bottom-7">
-            Malhar · Manjeshwar
-          </div>
-        </div>
+    <section ref={ref} className="relative min-h-[92svh] overflow-hidden bg-emerald text-cream md:min-h-screen" data-testid="hero">
+      <motion.img
+        style={{ y: imageY, scale: imageScale }}
+        src="/assets/DSC_2363-1-1-1.jpg"
+        alt="Malhar campus in Manjeshwar, Kasaragod"
+        className="absolute -top-[4%] left-0 h-[110%] w-full object-cover object-[55%_48%] will-change-transform sm:object-center lg:object-[60%_50%]"
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+      />
 
-        <div className="relative flex items-center overflow-hidden bg-gradient-to-br from-emerald via-emerald to-[#0b6a55] px-5 py-16 text-cream sm:px-8 lg:px-12 xl:px-16">
-          <div className="absolute inset-0 opacity-30 pointer-events-none"><GeoPattern color="#F5E9CF" opacity={0.08} /></div>
-          <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-gold/10 blur-3xl" aria-hidden="true" />
-          <div className="absolute -bottom-36 -left-28 h-80 w-80 rounded-full bg-teal-200/10 blur-3xl" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,20,16,.2)_0%,rgba(3,38,30,.42)_32%,rgba(3,47,37,.82)_72%,rgba(3,47,37,.98)_100%)] lg:bg-[linear-gradient(90deg,rgba(3,35,28,.96)_0%,rgba(3,45,35,.83)_38%,rgba(3,48,38,.36)_68%,rgba(3,48,38,.18)_100%)]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20" aria-hidden="true" />
+      <div className="absolute inset-0 opacity-[0.16] pointer-events-none"><GeoPattern color="#F5E9CF" opacity={0.11} /></div>
 
-          <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10 mx-auto w-full max-w-xl will-change-transform">
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.08 }} className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-white/[0.08] px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-cream backdrop-blur-xl">
+      <div className="absolute left-4 top-[30%] hidden h-48 w-px bg-gradient-to-b from-transparent via-gold to-transparent lg:block" aria-hidden="true" />
+      <div className="absolute -left-28 bottom-10 h-72 w-72 rounded-full bg-gold/10 blur-3xl" aria-hidden="true" />
+      <div className="absolute -right-32 top-20 h-80 w-80 rounded-full bg-emerald-200/10 blur-3xl" aria-hidden="true" />
+
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative z-10 mx-auto flex min-h-[92svh] w-full max-w-7xl items-end px-5 pb-10 pt-28 sm:px-8 sm:pb-14 md:min-h-screen md:items-center md:pb-16 lg:px-10 xl:px-12 will-change-transform">
+        <div className="grid w-full gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="max-w-3xl lg:col-span-8 lg:pb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.08 }}
+              className="flex flex-wrap items-center gap-x-4 gap-y-3"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-black/10 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-cream/90 backdrop-blur-md sm:text-[11px]">
                 <span className="h-1.5 w-1.5 rounded-full bg-gold" /> Est. 2000
               </span>
-              <span className="text-[11px] uppercase tracking-[0.18em] text-cream/55">Kasaragod · Kerala</span>
+              <span className="text-[10px] uppercase tracking-[0.22em] text-cream/65 sm:text-[11px]">Manjeshwar · Kasaragod · Kerala</span>
             </motion.div>
 
-            <motion.h1 initial={{ opacity: 0, y: 38 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.82, delay: 0.16, ease: [0.22, 1, 0.36, 1] }} className="mt-7 font-serif font-semibold leading-[0.96] tracking-[-0.03em] text-white" style={{ fontSize: "clamp(2.8rem, 5.6vw, 5.8rem)" }}>
-              Qur&apos;anic heritage.
-              <span className="mt-2 block text-gold">Education for tomorrow.</span>
-            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 44 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6"
+            >
+              <p className="mb-2 text-[10px] uppercase tracking-[0.32em] text-gold/90 sm:text-xs">Malhar Educational Trust</p>
+              <h1 className="max-w-5xl font-serif font-semibold leading-[0.9] tracking-[-0.045em] text-white" style={{ fontSize: "clamp(3.35rem, 10vw, 7.8rem)" }}>
+                Qur&apos;anic
+                <span className="block">heritage.</span>
+                <span className="mt-2 block font-light italic text-gold">Education for tomorrow.</span>
+              </h1>
+            </motion.div>
 
-            <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.34 }} className="mt-7 max-w-lg text-base font-light leading-relaxed text-cream/78 sm:text-lg">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.72, delay: 0.38 }}
+              className="mt-6 max-w-2xl text-[15px] font-light leading-7 text-cream/78 sm:text-lg sm:leading-8"
+            >
               Islamic and modern learning across Malhar&apos;s educational institutions in Manjeshwar, Kerala.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.48 }} className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link to="/our-institutions" className="group inline-flex min-h-14 items-center justify-center gap-3 bg-cream px-7 py-4 text-sm font-semibold text-emerald transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl hover:shadow-black/15" data-testid="hero-cta-institutions">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.72, delay: 0.5 }}
+              className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row"
+            >
+              <Link
+                to="/our-institutions"
+                className="group inline-flex min-h-14 items-center justify-center gap-3 bg-gold px-7 py-4 text-sm font-semibold text-emerald transition-all duration-300 hover:-translate-y-1 hover:bg-cream hover:shadow-2xl hover:shadow-black/20"
+                data-testid="hero-cta-institutions"
+              >
                 Explore Institutions <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link to="/admission" className="group inline-flex min-h-14 items-center justify-center gap-3 border border-cream/35 bg-white/[0.06] px-7 py-4 text-sm font-medium text-cream backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/12" data-testid="hero-cta-admission">
+              <Link
+                to="/admission"
+                className="group inline-flex min-h-14 items-center justify-center gap-3 border border-cream/30 bg-black/10 px-7 py-4 text-sm font-medium text-cream backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cream/50 hover:bg-white/10"
+                data-testid="hero-cta-admission"
+              >
                 Admission Information <ArrowUpRight size={17} className="transition-transform group-hover:rotate-45" />
               </Link>
             </motion.div>
+          </div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.66, duration: 0.65 }} className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-cream/15 bg-cream/15 sm:grid-cols-3">
-              <div className="bg-emerald/85 p-4"><p className="text-[10px] uppercase tracking-[0.18em] text-gold">Institutions</p><p className="mt-1 font-serif text-2xl text-cream">07</p></div>
-              <div className="bg-emerald/85 p-4"><p className="text-[10px] uppercase tracking-[0.18em] text-gold">Approach</p><p className="mt-1 text-sm text-cream">Faith + learning</p></div>
-              <div className="col-span-2 bg-emerald/85 p-4 sm:col-span-1"><p className="text-[10px] uppercase tracking-[0.18em] text-gold">Location</p><p className="mt-1 text-sm text-cream">Manjeshwar</p></div>
-            </motion.div>
-          </motion.div>
+          <motion.aside
+            initial={{ opacity: 0, x: 26 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.56 }}
+            className="hidden lg:col-span-4 lg:block"
+          >
+            <div className="ml-auto max-w-sm border-l border-gold/55 pl-6 pb-8">
+              <p className="text-[10px] uppercase tracking-[0.28em] text-gold">A place for</p>
+              <p className="mt-4 font-serif text-3xl leading-tight text-cream">Faith, knowledge and character.</p>
+              <p className="mt-4 max-w-xs text-sm font-light leading-6 text-cream/62">Seven educational institutions connected by one purpose: thoughtful learning rooted in Islamic values.</p>
+              <Link to="/about-us" className="mt-6 inline-flex items-center gap-2 text-sm text-gold transition-colors hover:text-cream">Discover Malhar <ArrowRight size={15} /></Link>
+            </div>
+          </motion.aside>
         </div>
+      </motion.div>
+
+      <div className="absolute bottom-0 left-0 right-0 z-20 h-px bg-white/10" aria-hidden="true">
+        <motion.div style={{ scaleX: goldLine, transformOrigin: "0% 50%" }} className="h-full w-full bg-gold" />
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-20 h-px bg-charcoal/10" aria-hidden="true">
-        <motion.div style={{ scaleX: lineScale, transformOrigin: "0% 50%" }} className="h-full w-full bg-gold" />
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="absolute bottom-5 right-5 z-20 hidden items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-cream/55 md:flex"
+        aria-hidden="true"
+      >
+        <span>Scroll</span><span className="h-px w-10 bg-gold/70" />
+      </motion.div>
     </section>
   );
 };
@@ -140,7 +187,7 @@ const GalleryStrip = () => {
 const AdmissionBanner = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]) ;
   return <section ref={ref} className="relative py-32 overflow-hidden bg-emerald" data-testid="admission-banner"><motion.div style={{ y }} className="absolute inset-0"><img src="/assets/about-imgs.jpg" alt="Campus background" className="w-full h-full object-cover opacity-25" loading="lazy" decoding="async" /></motion.div><div className="absolute inset-0 bg-emerald/60" /><div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><Reveal><h2 className="font-serif font-light text-4xl md:text-6xl text-cream leading-tight">Begin your journey with Malhar.</h2></Reveal><Reveal delay={0.2}><p className="mt-6 text-cream/70 font-light text-lg max-w-xl mx-auto">For current admission dates, eligibility and programme details, contact the relevant Malhar institution.</p></Reveal><Reveal delay={0.3}><Link to="/admission" className="mt-10 inline-flex items-center gap-2 px-8 py-4 bg-gold text-emerald font-medium hover:bg-brass transition-colors" data-testid="banner-admission-cta">Admission Information <ArrowRight size={18} /></Link></Reveal></div></section>;
 };
 
