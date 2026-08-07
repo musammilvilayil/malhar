@@ -1,9 +1,15 @@
 import axios from "axios";
 
-export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL?.replace(/\/+$/, "") || "http://localhost:4000";
-export const API = `${BACKEND_URL}/api`;
+const configuredUrl = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || "";
+const normalizedConfiguredUrl = typeof configuredUrl === "string" ? configuredUrl.replace(/\/+$/, "") : "";
 
-export const api = axios.create({ baseURL: API });
+// REACT_APP_API_URL may be configured as either the backend root or the full /api URL.
+export const API = normalizedConfiguredUrl
+  ? (normalizedConfiguredUrl.endsWith("/api") ? normalizedConfiguredUrl : `${normalizedConfiguredUrl}/api`)
+  : "http://localhost:4000/api";
+
+export const BACKEND_URL = API.replace(/\/api$/, "");
+export const api = axios.create({ baseURL: API, timeout: 15000 });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("malhar_admin_token");
