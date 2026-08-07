@@ -21,7 +21,7 @@ export const INSTITUTIONS = [
     slug: "she-garden",
     name: "Malhar She Garden",
     desc: "Women's education combining Sharee'a and Da'wa studies with academic learning.",
-    image: "/assets/web-p.png",
+    image: "/assets/web-sh.png",
     imageReference: "https://in.pinterest.com/pin/18929260940768729/",
   },
   {
@@ -88,7 +88,7 @@ export const YOUTUBE_CHANNEL = {
 export const INSTITUTION_DETAILS = [];
 
 export const GALLERY_IMAGES = [
-  { src: "/assets/121.jpg", caption: "Campus assembly and student life", cols: 2, rows: 2 },
+  { src: "/assets/DSC_2363-1-1-1.jpg", caption: "Campus assembly and student life", cols: 2, rows: 2 },
   { src: "/assets/11a.jpg", caption: "Learning spaces and classrooms", cols: 1, rows: 1 },
   { src: "/assets/1-2.jpg", caption: "Community engagement", cols: 1, rows: 1 },
   { src: "/assets/2.jpg", caption: "Campus grounds", cols: 1, rows: 1 },
