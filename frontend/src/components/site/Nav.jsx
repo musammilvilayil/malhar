@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
-import { NAV_LINKS, CONTACT, INSTITUTIONS } from "../../data";
-import { api } from "../../lib/api";
+import { NAV_LINKS, CONTACT } from "../../data";
 
 export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [institutions, setInstitutions] = useState(INSTITUTIONS || []);
   const { pathname } = useLocation();
+
+  const safeLinks = (NAV_LINKS || []).filter((link) => link && typeof link.to === "string" && link.to.length > 0);
+  const primaryPhone = Array.isArray(CONTACT?.phones) && CONTACT.phones.length ? CONTACT.phones[0] : "";
+  const email = CONTACT?.email || "";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -24,38 +26,35 @@ export const Nav = () => {
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = open ? "hidden" : previousOverflow;
+    if (open) document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = previousOverflow;
     };
   }, [open]);
 
-  useEffect(() => {
-    api.get("/institutions").then((r) => {
-      if (Array.isArray(r.data) && r.data.length > 0) setInstitutions(r.data);
-    }).catch(() => {
-      // Keep local institution data as a fallback.
-    });
-  }, []);
-
   const isActiveLink = (to) => {
+    if (typeof to !== "string") return false;
     if (to === "/") return pathname === "/";
     return pathname.startsWith(to);
   };
 
-  const linkColorClass = scrolled ? "text-charcoal/80" : "text-black";
+  const linkColorClass = scrolled ? "text-charcoal/80" : "text-cream";
 
   return (
     <header className="fixed inset-x-0 top-0 z-[100]" data-testid="site-header">
       <div className="bg-emerald text-cream/80 text-xs tracking-wide hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <a href={`tel:${CONTACT.phones[0]}`} className="flex items-center gap-2 hover:text-gold transition-colors" data-testid="utility-phone">
-              <Phone size={13} /> {CONTACT.phones[0]}
-            </a>
-            <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-2 hover:text-gold transition-colors" data-testid="utility-email">
-              <Mail size={13} /> {CONTACT.email}
-            </a>
+            {primaryPhone && (
+              <a href={`tel:${primaryPhone}`} className="flex items-center gap-2 hover:text-gold transition-colors" data-testid="utility-phone">
+                <Phone size={13} /> {primaryPhone}
+              </a>
+            )}
+            {email && (
+              <a href={`mailto:${email}`} className="flex items-center gap-2 hover:text-gold transition-colors" data-testid="utility-email">
+                <Mail size={13} /> {email}
+              </a>
+            )}
           </div>
           <span className="font-arabic text-sm text-gold">بسم الله الرحمن الرحيم</span>
         </div>
@@ -68,20 +67,23 @@ export const Nav = () => {
           </Link>
 
           <nav className={`hidden lg:flex items-center gap-7 text-sm ${linkColorClass}`}>
-            {NAV_LINKS.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className={`link-underline hover:text-cream ${isActiveLink(l.to) ? "text-cream font-semibold" : linkColorClass}`}
-                data-testid={`nav-${l.to.replace("/", "").replace(/-/g, "-")}`}
-              >
-                {l.label}
-              </Link>
-            ))}
+            {safeLinks.map((l) => {
+              const testId = `nav-${l.to.replace(/^\/+/, "").replace(/[^a-zA-Z0-9-]/g, "-") || "home"}`;
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className={`link-underline hover:text-gold ${isActiveLink(l.to) ? "text-gold font-semibold" : linkColorClass}`}
+                  data-testid={testId}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="relative z-[110] flex items-center gap-3">
-            <Link to="/donate-us" className={`hidden sm:inline-flex text-sm px-5 py-2.5 border border-gold btn-swipe text-gold-brass hover:text-cream transition-colors duration-300 ${linkColorClass}`} data-testid="nav-donate">
+            <Link to="/donate-us" className={`hidden sm:inline-flex text-sm px-5 py-2.5 border border-gold btn-swipe hover:text-cream transition-colors duration-300 ${linkColorClass}`} data-testid="nav-donate">
               <span className={linkColorClass}>Donate</span>
             </Link>
             <Link to="/admission" className="hidden sm:inline-flex text-sm px-5 py-2.5 bg-emerald text-cream hover:bg-emerald-light transition-colors" data-testid="nav-admission">
@@ -118,7 +120,7 @@ export const Nav = () => {
             aria-label="Mobile navigation"
           >
             <nav className="flex flex-col gap-5 text-2xl font-serif">
-              {NAV_LINKS.map((l) => (
+              {safeLinks.map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
