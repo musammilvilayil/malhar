@@ -41,8 +41,6 @@
         -moz-osx-font-smoothing: grayscale;
     }
     ::selection { background: #0A4D3C; color: #F9F8F6; }
-    
-    /* Ensure root has a non-static position so scroll offsets calculate correctly */
     #root { position: relative; }
 }
 
@@ -82,10 +80,93 @@ html.lenis, html.lenis body { height: auto; }
 }
 .link-underline:hover { background-size: 100% 1px; }
 
-/* Fallback helper for gradient text (non-Tailwind-aware browsers) */
 .gradient-text-fallback {
     background-image: linear-gradient(90deg, #C5A059, #0A4D3C);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Homepage hero: full-viewport cinematic treatment, matching the media page language. */
+[data-testid="hero"] {
+    min-height: 100svh !important;
+    padding-top: 7rem !important;
+    padding-bottom: 4rem !important;
+    background: #0A4D3C;
+    isolation: isolate;
+}
+
+[data-testid="hero"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(6, 49, 38, 0.88) 0%, rgba(10, 77, 60, 0.68) 45%, rgba(10, 77, 60, 0.38) 100%);
+}
+
+[data-testid="hero"] > .max-w-7xl {
+    position: relative;
+    z-index: 2;
+    display: flex !important;
+    min-height: calc(100svh - 11rem);
+    align-items: center;
+}
+
+[data-testid="hero"] > .max-w-7xl > div:first-child {
+    position: relative;
+    z-index: 3;
+    max-width: 48rem;
+}
+
+[data-testid="hero"] > .max-w-7xl > div:last-child {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+[data-testid="hero"] > .max-w-7xl > div:last-child > div,
+[data-testid="hero"] > .max-w-7xl > div:last-child > div > div {
+    width: 100%;
+    height: 100%;
+    border: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    aspect-ratio: auto !important;
+}
+
+[data-testid="hero"] > .max-w-7xl > div:last-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.36;
+    filter: saturate(0.85) contrast(1.04);
+}
+
+[data-testid="hero"] h1 {
+    background-image: linear-gradient(90deg, #E7C979, #F9F8F6) !important;
+}
+
+[data-testid="hero"] p {
+    color: rgba(249, 248, 246, 0.82) !important;
+}
+
+[data-testid="hero"] [data-testid="hero-cta-admission"] {
+    color: #F9F8F6 !important;
+    border-color: rgba(249, 248, 246, 0.45) !important;
+}
+
+@media (max-width: 767px) {
+    [data-testid="hero"] {
+        padding-top: 6rem !important;
+        padding-bottom: 3rem !important;
+    }
+    [data-testid="hero"]::after {
+        background: linear-gradient(180deg, rgba(6, 49, 38, 0.72) 0%, rgba(6, 49, 38, 0.9) 72%, rgba(6, 49, 38, 0.96) 100%);
+    }
+    [data-testid="hero"] > .max-w-7xl {
+        min-height: calc(100svh - 9rem);
+        align-items: flex-end;
+    }
 }
