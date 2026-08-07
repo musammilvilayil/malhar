@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { createPortal } from "react-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { NAV_LINKS, CONTACT, INSTITUTIONS } from "../../data";
 import { api } from "../../lib/api";
@@ -24,9 +23,10 @@ export const Nav = () => {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = open ? "hidden" : previousOverflow;
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [open]);
 
@@ -46,8 +46,8 @@ export const Nav = () => {
   const linkColorClass = scrolled ? "text-charcoal/80" : "text-black";
 
   return (
-    <header className="fixed inset-x-0 top-0 z-[100] pointer-events-none" data-testid="site-header">
-      <div className="pointer-events-auto bg-emerald text-cream/80 text-xs tracking-wide hidden md:block">
+    <header className="fixed inset-x-0 top-0 z-[100]" data-testid="site-header">
+      <div className="bg-emerald text-cream/80 text-xs tracking-wide hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <a href={`tel:${CONTACT.phones[0]}`} className="flex items-center gap-2 hover:text-gold transition-colors" data-testid="utility-phone">
@@ -61,7 +61,7 @@ export const Nav = () => {
         </div>
       </div>
 
-      <div className={`pointer-events-auto transition-all duration-500 ${scrolled ? "bg-cream/90 backdrop-blur-xl border-b border-charcoal/10" : "bg-transparent"}`}>
+      <div className={`transition-all duration-500 ${scrolled ? "bg-cream/90 backdrop-blur-xl border-b border-charcoal/10" : "bg-transparent"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
           <Link to="/" className="flex items-center relative z-10" data-testid="nav-logo">
             <img src="/assets/logo.png" alt="Malhar logo" className="h-10 object-contain" />
@@ -80,7 +80,7 @@ export const Nav = () => {
             ))}
           </nav>
 
-          <div className="relative z-10 flex items-center gap-3">
+          <div className="relative z-[110] flex items-center gap-3">
             <Link to="/donate-us" className={`hidden sm:inline-flex text-sm px-5 py-2.5 border border-gold btn-swipe text-gold-brass hover:text-cream transition-colors duration-300 ${linkColorClass}`} data-testid="nav-donate">
               <span className={linkColorClass}>Donate</span>
             </Link>
@@ -89,60 +89,41 @@ export const Nav = () => {
             </Link>
             <button
               type="button"
-              className="relative z-20 inline-flex h-11 w-11 touch-manipulation items-center justify-center rounded-lg text-charcoal lg:hidden pointer-events-auto"
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                setOpen(true);
-              }}
+              className="relative z-[120] inline-flex h-12 w-12 shrink-0 cursor-pointer touch-manipulation items-center justify-center rounded-xl bg-cream/95 text-charcoal shadow-sm ring-1 ring-charcoal/10 lg:hidden"
+              onClick={() => setOpen((value) => !value)}
               data-testid="nav-menu-open"
-              aria-label="Open navigation menu"
+              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={open}
               aria-controls="mobile-navigation"
             >
-              <Menu size={26} pointerEvents="none" />
+              {open ? <X size={27} aria-hidden="true" /> : <Menu size={27} aria-hidden="true" />}
             </button>
           </div>
         </div>
       </div>
 
-      <AnimatePresence initial={false} mode="wait">
-        {open && createPortal(
+      <AnimatePresence>
+        {open && (
           <motion.div
             id="mobile-navigation"
             key="mobile-menu"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[9999] flex flex-col overflow-y-auto bg-emerald p-6 text-cream pointer-events-auto lg:hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.28, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-[105] flex min-h-[100dvh] flex-col overflow-y-auto bg-emerald p-6 pt-24 text-cream lg:hidden"
             data-testid="mobile-menu"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
           >
-            <div className="flex justify-between items-center mb-10">
-              <Link to="/" onClick={() => setOpen(false)}>
-                <img src="/assets/logo.png" alt="Malhar logo" className="h-10 object-contain" />
-              </Link>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-11 w-11 touch-manipulation items-center justify-center rounded-lg"
-                data-testid="nav-menu-close"
-                aria-label="Close navigation menu"
-              >
-                <X size={28} pointerEvents="none" />
-              </button>
-            </div>
-
             <nav className="flex flex-col gap-5 text-2xl font-serif">
               {NAV_LINKS.map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
                   onClick={() => setOpen(false)}
-                  className={`py-1 ${isActiveLink(l.to) ? "text-gold" : "text-cream"}`}
+                  className={`py-2 ${isActiveLink(l.to) ? "text-gold" : "text-cream"}`}
                 >
                   {l.label}
                 </Link>
@@ -153,8 +134,7 @@ export const Nav = () => {
               <Link to="/admission" onClick={() => setOpen(false)} className="px-5 py-3 bg-gold text-emerald text-center font-medium" data-testid="mobile-admission">Apply for Admission</Link>
               <Link to="/donate-us" onClick={() => setOpen(false)} className="px-5 py-3 border border-gold text-gold text-center" data-testid="mobile-donate">Donate</Link>
             </div>
-          </motion.div>,
-          document.body
+          </motion.div>
         )}
       </AnimatePresence>
     </header>
