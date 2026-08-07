@@ -62,6 +62,21 @@ html.lenis, html.lenis body { height: auto; }
 /* Current full-bleed homepage hero polish. */
 [data-testid="hero"] { isolation: isolate; }
 [data-testid="hero"] h1 { text-wrap: balance; text-shadow: 0 8px 30px rgba(0,0,0,.2); }
+[data-testid="hero"] p:has(+ h1) {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: .7rem !important;
+    padding: .42rem .7rem .42rem .75rem;
+    border-left: 2px solid #D3AE59;
+    background: rgba(2, 31, 24, .52);
+    color: #F9F8F6 !important;
+    font-weight: 600 !important;
+    letter-spacing: .24em !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
 [data-testid="hero"] [data-testid="hero-cta-institutions"],
 [data-testid="hero"] [data-testid="hero-cta-admission"] { border-radius: 999px; }
 
@@ -73,6 +88,12 @@ html.lenis, html.lenis body { height: auto; }
     [data-testid="hero"] > div:nth-of-type(3) { opacity: .1 !important; }
     [data-testid="hero"] > div:nth-of-type(6) { min-height: 88svh !important; padding-top: 7.25rem !important; padding-bottom: 1.65rem !important; }
     [data-testid="hero"] > div:nth-of-type(6) > div { gap: 1rem !important; }
+    [data-testid="hero"] p:has(+ h1) {
+        font-size: .68rem !important;
+        line-height: 1.2 !important;
+        letter-spacing: .21em !important;
+        background: rgba(2, 31, 24, .6);
+    }
     [data-testid="hero"] h1 { max-width: 8.7ch; font-size: clamp(3rem, 12.2vw, 4.25rem) !important; line-height: .88 !important; letter-spacing: -.042em !important; }
     [data-testid="hero"] h1 > span:last-child { margin-top: .35rem !important; font-size: .9em; line-height: .94; }
     [data-testid="hero"] h1 + p { margin-top: 1.15rem !important; max-width: 31rem; font-size: .98rem !important; line-height: 1.55 !important; color: rgba(245,233,207,.86) !important; }
@@ -84,6 +105,10 @@ html.lenis, html.lenis body { height: auto; }
     [data-testid="hero"] { min-height: 86svh !important; }
     [data-testid="hero"] > img { object-position: 57% 53% !important; }
     [data-testid="hero"] > div:nth-of-type(6) { min-height: 86svh !important; padding-left: 1.25rem !important; padding-right: 1.25rem !important; padding-top: 6.75rem !important; padding-bottom: 1.35rem !important; }
+    [data-testid="hero"] p:has(+ h1) {
+        font-size: .64rem !important;
+        padding: .4rem .62rem .4rem .68rem;
+    }
     [data-testid="hero"] h1 { font-size: clamp(2.85rem, 11.7vw, 3.75rem) !important; max-width: 8.9ch; }
     [data-testid="hero"] h1 + p { font-size: .94rem !important; line-height: 1.5 !important; }
     [data-testid="hero"] [data-testid="hero-cta-institutions"],
