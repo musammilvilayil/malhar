@@ -14,90 +14,141 @@ const { institutions, about, gallery, news, events, youtubeChannel, instructors 
 
 /* ---------------- Hero ---------------- */
 const Hero = () => {
-  const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 700], [0, 180]);
-  const imageScale = useTransform(scrollY, [0, 700], [1.06, 1.18]);
-  const contentY = useTransform(scrollY, [0, 520], [0, -105]);
-  const contentOpacity = useTransform(scrollY, [0, 360], [1, 0.16]);
-  const overlayOpacity = useTransform(scrollY, [0, 520], [1, 0.72]);
-  const indicatorOpacity = useTransform(scrollY, [0, 160], [1, 0]);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.17]);
+  const contentY = useTransform(scrollYProgress, [0, 0.8], [0, -90]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.58, 0.92], [1, 0.82, 0]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.96, 0.68]);
+  const glassY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const progressX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
-    <section className="relative min-h-[60vh] md:min-h-[72vh] overflow-hidden flex items-center" data-testid="hero">
-      <motion.img
-        style={{ y: imageY, scale: imageScale }}
-        src="/assets/DSC_2363-1-1-1.jpg"
-        alt="Malhar campus in Manjeshwar, Kasaragod"
-        className="absolute -top-[8%] left-0 h-[125%] w-full object-cover object-center will-change-transform"
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-      />
-      <motion.div style={{ opacity: overlayOpacity }} className="absolute inset-0 bg-gradient-to-br from-black/75 via-emerald/60 to-emerald/80 backdrop-blur-[1px]" aria-hidden="true" />
-      <div className="absolute -top-40 -right-32 h-96 w-96 rounded-full bg-emerald-300/15 blur-3xl" aria-hidden="true" />
-      <div className="absolute -bottom-44 -left-32 h-96 w-96 rounded-full bg-gold/15 blur-3xl" aria-hidden="true" />
-      <div className="absolute inset-0 opacity-20 pointer-events-none"><GeoPattern color="#F5E9CF" opacity={0.12} /></div>
+    <section ref={ref} className="relative h-[118vh]" data-testid="hero">
+      <div className="sticky top-0 h-screen min-h-[680px] overflow-hidden bg-emerald">
+        <motion.img
+          style={{ y: imageY, scale: imageScale }}
+          src="/assets/DSC_2363-1-1-1.jpg"
+          alt="Malhar campus in Manjeshwar, Kasaragod"
+          className="absolute -top-[10%] left-0 h-[125%] w-full object-cover object-center will-change-transform"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
 
-      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-36 will-change-transform">
-        <div className="max-w-5xl mx-auto text-center text-cream">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}>
-            <span className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs sm:text-sm tracking-[0.18em] uppercase backdrop-blur-xl">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" /> Est. 2000 · Kasaragod, Kerala
-            </span>
-          </motion.div>
+        <motion.div
+          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 bg-[linear-gradient(115deg,rgba(4,18,15,.88)_0%,rgba(5,53,42,.72)_46%,rgba(9,77,60,.48)_100%)]"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20" aria-hidden="true" />
+        <div className="absolute inset-0 opacity-20 pointer-events-none"><GeoPattern color="#F5E9CF" opacity={0.13} /></div>
+        <motion.div style={{ y: glassY }} className="absolute -right-28 top-20 h-[30rem] w-[30rem] rounded-full border border-white/10 bg-emerald-300/10 blur-3xl" aria-hidden="true" />
+        <div className="absolute -left-40 bottom-0 h-96 w-96 rounded-full bg-gold/15 blur-3xl" aria-hidden="true" />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 44 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-7 font-serif font-semibold leading-[0.98] tracking-tight text-white"
-            style={{ fontSize: "clamp(2.65rem, 7vw, 6.4rem)" }}
-          >
-            Qur&apos;anic heritage with
-            <span className="block mt-2 bg-gradient-to-r from-gold via-cream to-emerald-200 bg-clip-text text-transparent">
-              modern educational excellence
-            </span>
-          </motion.h1>
+        <motion.div
+          style={{ y: contentY, opacity: contentOpacity }}
+          className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8 will-change-transform"
+        >
+          <div className="grid w-full gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.08 }}
+                className="flex flex-wrap items-center gap-3"
+              >
+                <span className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-cream backdrop-blur-xl sm:text-xs">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" /> Est. 2000
+                </span>
+                <span className="text-xs uppercase tracking-[0.18em] text-cream/65">Manjeshwar · Kasaragod · Kerala</span>
+              </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.42 }}
-            className="mt-7 mx-auto max-w-3xl text-base sm:text-lg md:text-xl leading-relaxed text-cream/85 font-light"
-          >
-            {about.mission}
-          </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 54 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.17, ease: [0.22, 1, 0.36, 1] }}
+                className="mt-7 max-w-6xl font-serif font-semibold leading-[0.94] tracking-[-0.035em] text-white"
+                style={{ fontSize: "clamp(3rem, 7.6vw, 7.3rem)" }}
+              >
+                Qur&apos;anic heritage,
+                <span className="block bg-gradient-to-r from-gold via-cream to-emerald-100 bg-clip-text text-transparent">
+                  built for tomorrow.
+                </span>
+              </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.58 }}
-            className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link to="/our-institutions" className="group relative inline-flex min-h-14 items-center justify-center gap-3 overflow-hidden rounded-full border border-white/25 bg-white/10 px-8 py-4 text-base font-medium text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-2xl hover:shadow-black/20" data-testid="hero-cta-institutions">
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
-              <span className="relative">Explore Institutions</span>
-              <ArrowRight size={18} className="relative transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link to="/admission" className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-gold/35 bg-gold/90 px-8 py-4 text-base font-semibold text-emerald backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:shadow-2xl hover:shadow-gold/20" data-testid="hero-cta-admission">
-              Admission Information <ArrowUpRight size={18} className="transition-transform group-hover:rotate-45" />
-            </Link>
-          </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.78, delay: 0.38 }}
+                className="mt-7 max-w-2xl text-base font-light leading-relaxed text-cream/80 sm:text-lg md:text-xl"
+              >
+                {about.mission}
+              </motion.p>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.78 }} className="mt-9 flex flex-wrap justify-center gap-3 text-xs sm:text-sm text-cream/75">
-            <span className="rounded-full border border-white/15 bg-black/10 px-4 py-2 backdrop-blur-md">Seven educational institutions</span>
-            <span className="rounded-full border border-white/15 bg-black/10 px-4 py-2 backdrop-blur-md">Islamic &amp; modern learning</span>
-            <span className="rounded-full border border-white/15 bg-black/10 px-4 py-2 backdrop-blur-md">Manjeshwar, Kerala</span>
-          </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, delay: 0.54 }}
+                className="mt-9 flex flex-col gap-4 sm:flex-row"
+              >
+                <Link
+                  to="/our-institutions"
+                  className="group relative inline-flex min-h-14 items-center justify-center gap-3 overflow-hidden rounded-full border border-white/20 bg-white/10 px-8 py-4 text-base font-medium text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:bg-white/20 hover:shadow-2xl hover:shadow-black/25"
+                  data-testid="hero-cta-institutions"
+                >
+                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" aria-hidden="true" />
+                  <span className="relative">Explore Institutions</span>
+                  <ArrowRight size={18} className="relative transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  to="/admission"
+                  className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-gold/30 bg-gold px-8 py-4 text-base font-semibold text-emerald transition-all duration-300 hover:-translate-y-1 hover:bg-brass hover:shadow-2xl hover:shadow-gold/20"
+                  data-testid="hero-cta-admission"
+                >
+                  Admission Information <ArrowUpRight size={18} className="transition-transform group-hover:rotate-45" />
+                </Link>
+              </motion.div>
+            </div>
+
+            <motion.aside
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.62 }}
+              className="hidden lg:col-span-4 lg:block"
+            >
+              <div className="ml-auto max-w-sm rounded-[2rem] border border-white/15 bg-white/[0.08] p-6 text-cream shadow-2xl shadow-black/15 backdrop-blur-2xl">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-gold">Malhar at a glance</p>
+                <div className="mt-5 divide-y divide-white/10">
+                  <div className="flex items-center justify-between py-4"><span className="text-cream/60">Institutions</span><span className="font-serif text-2xl">07</span></div>
+                  <div className="flex items-center justify-between py-4"><span className="text-cream/60">Learning</span><span className="text-sm text-right">Islamic + modern</span></div>
+                  <div className="flex items-center justify-between py-4"><span className="text-cream/60">Location</span><span className="text-sm text-right">Manjeshwar</span></div>
+                </div>
+                <Link to="/about-us" className="mt-4 inline-flex items-center gap-2 text-sm text-gold transition-colors hover:text-cream">
+                  Discover our story <ArrowRight size={15} />
+                </Link>
+              </div>
+            </motion.aside>
+          </div>
+        </motion.div>
+
+        <motion.div style={{ opacity: indicatorOpacity }} className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 text-cream/55 md:flex" aria-hidden="true">
+          <span className="text-[10px] uppercase tracking-[0.24em]">Scroll to reveal</span>
+          <div className="h-10 w-6 rounded-full border border-white/30 p-1.5">
+            <motion.div animate={{ y: [0, 14, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} className="mx-auto h-1.5 w-1.5 rounded-full bg-gold" />
+          </div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 z-20 h-px bg-white/10" aria-hidden="true">
+          <motion.div style={{ scaleX: progressX, transformOrigin: "0% 50%" }} className="h-full w-full bg-gold" />
         </div>
-      </motion.div>
-
-      <motion.div style={{ opacity: indicatorOpacity }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-cream/60" aria-hidden="true">
-        <span className="text-[11px] uppercase tracking-[0.2em]">Scroll to explore</span>
-        <div className="h-9 w-6 rounded-full border border-white/30 p-1.5">
-          <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }} className="mx-auto h-1.5 w-1.5 rounded-full bg-white/80" />
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
