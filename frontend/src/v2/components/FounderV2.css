@@ -562,3 +562,24 @@
     text-shadow: 0 2px 14px rgba(0,0,0,.7);
   }
 }
+
+
+/* Close the mobile gap before Institutions while preserving the overlay. */
+@media (max-width: 760px) {
+  .v2-founder,
+  .v2-founder__frame {
+    min-height: 82svh;
+  }
+
+  .v2-founder__portrait {
+    height: 88%;
+  }
+
+  .v2-founder__content {
+    bottom: 6%;
+  }
+
+  .v2-founder::after {
+    height: 72px;
+  }
+}
