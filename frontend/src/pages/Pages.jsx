@@ -52,7 +52,7 @@ export const InstitutionsPage = () => (
                     <h2 className="mt-3 font-serif font-light text-3xl md:text-4xl text-charcoal">{it.name}</h2>
                     <p className="mt-4 text-charcoal/60 font-light leading-relaxed">{detail.headline || it.description}</p>
                     <div className="mt-6">
-                      <Link to={`/institution/${it.slug}`} className="inline-flex items-center gap-2 text-charcoal/70 hover:text-emerald">Explore {it.name} <ArrowUpRight size={16} /></Link>
+                      <Link to={`/institutions/${it.slug}`} className="inline-flex items-center gap-2 text-charcoal/70 hover:text-emerald">Explore {it.name} <ArrowUpRight size={16} /></Link>
                     </div>
                   </div>
                 </div>
@@ -106,14 +106,16 @@ export const InstitutionPage = () => {
 
   return (
     <>
-      <PageHero overline="Institution" title={institution.name} sub={detail.headline || institution.description} backgroundImage={institution.image} />
+      <PageHero overline="Institution" title={institution.name} sub={detail.headline || institution.description} backgroundImage={institution.image || undefined} />
       <section className="py-24 bg-cream">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
             <div>
-              <div className="rounded-3xl overflow-hidden border border-charcoal/10">
-                <img src={institution.image} alt={institution.name} className="w-full h-full object-cover" />
-              </div>
+              {institution.image && (
+                <div className="rounded-3xl overflow-hidden border border-charcoal/10">
+                  <img src={institution.image} alt={institution.name} className="w-full h-full object-cover" />
+                </div>
+              )}
               <p className="mt-4 text-charcoal/70 font-light leading-relaxed">{detail.overview}</p>
             </div>
             <aside className="space-y-8">

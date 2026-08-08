@@ -83,6 +83,7 @@ function App() {
         <Route path="/donation" element={<DonationV2 />} />
         <Route path="/admission" element={<Navigate to="/admissions" replace />} />
         <Route path="/admissions" element={<AdmissionsV2 />} />
+        <Route path="/institutions/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
         <Route path="/institution/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
         <Route path="/instructor/:slug" element={<LegacySite><InstructorPage /></LegacySite>} />
         <Route path="/admin" element={<Admin />} />

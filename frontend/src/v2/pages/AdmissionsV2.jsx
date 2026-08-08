@@ -112,7 +112,7 @@ export default function AdmissionsV2() {
                 <strong>{institution.name}</strong>
                 <p>{institution.desc}</p>
               </div>
-              <Link to={`/institution/${institution.slug}`} aria-label={`Explore ${institution.name}`}>
+              <Link to={`/institutions/${institution.slug}`} aria-label={`Explore ${institution.name}`}>
                 Explore <i aria-hidden="true">↗</i>
               </Link>
             </motion.li>

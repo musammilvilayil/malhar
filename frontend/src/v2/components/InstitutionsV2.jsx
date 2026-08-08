@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { INSTITUTIONS } from "../../data";
@@ -10,16 +11,19 @@ const padNumber = (index) => String(index + 1).padStart(2, "0");
 const mediaMatches = (query) => typeof window !== "undefined" && window.matchMedia(query).matches;
 
 function InstitutionPanel({ institution, index, mobile = false }) {
+  const panelClass = mobile ? "v2-institutions__mobile-panel" : "v2-institutions__panel";
+
   return (
-    <article className={mobile ? "v2-institutions__mobile-panel" : "v2-institutions__panel"}>
-      <img
-        src={institution.image}
-        alt={institution.name}
-        className="v2-institutions__image"
-        loading={index === 0 || mobile ? "eager" : "lazy"}
-        decoding="async"
-        referrerPolicy="no-referrer"
-      />
+    <article className={`${panelClass}${institution.image ? "" : " is-text-only"}`}>
+      {institution.image && (
+        <img
+          src={institution.image}
+          alt={institution.name}
+          className="v2-institutions__image"
+          loading={index === 0 || mobile ? "eager" : "lazy"}
+          decoding="async"
+        />
+      )}
       <div className="v2-institutions__wash" aria-hidden="true" />
       <div className="v2-institutions__grain" aria-hidden="true" />
 
@@ -31,6 +35,9 @@ function InstitutionPanel({ institution, index, mobile = false }) {
           </p>
           <h3>{institution.name}</h3>
           <p className="v2-institutions__description">{institution.desc}</p>
+          <Link className="v2-institutions__explore" to={`/institutions/${institution.slug}`}>
+            Explore institution <span aria-hidden="true">↗</span>
+          </Link>
         </div>
       </div>
     </article>
