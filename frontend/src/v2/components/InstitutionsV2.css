@@ -186,19 +186,41 @@
 
   .v2-institutions__hint { display: none; }
   .v2-institutions__desktop { display: none; }
-  .v2-institutions__mobile { display: block; }
 
-  .v2-institutions__mobile-panel {
+  .v2-institutions__mobile {
     position: relative;
-    min-height: 88svh;
+    display: block;
+    height: 88svh;
+    min-height: 620px;
     overflow: hidden;
     border-top: 1px solid rgba(242, 234, 215, .12);
+  }
+
+  .v2-institutions__mobile-panel {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 1s ease, visibility 1s step-end;
+  }
+
+  .v2-institutions__mobile-panel.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 1s ease, visibility 0s;
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__image {
+    transform: scale(1.035);
   }
 
   .v2-institutions__panel-content {
     grid-template-columns: 1fr;
     gap: 1.4rem;
-    bottom: 2rem;
+    bottom: 5rem;
     padding-top: 18px;
   }
 
@@ -216,10 +238,71 @@
     max-width: 34rem;
     font-size: .98rem;
   }
+
+  .v2-institutions__dots {
+    position: absolute;
+    z-index: 8;
+    right: 1.25rem;
+    bottom: 1.55rem;
+    left: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+  }
+
+  .v2-institutions__dots button {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .v2-institutions__dots button span {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(242, 234, 215, .45);
+    transition: width .35s ease, background-color .35s ease;
+  }
+
+  .v2-institutions__dots button.is-active span {
+    width: 26px;
+    background: var(--v2-gold);
+  }
+
+  .v2-institutions__dots button:focus-visible {
+    outline: 1px solid var(--v2-gold);
+    outline-offset: -4px;
+    border-radius: 999px;
+  }
 }
 
 @media (max-width: 480px) {
-  .v2-institutions__mobile-panel { min-height: 82svh; }
-  .v2-institutions__panel-content { left: 1rem; right: 1rem; }
-  .v2-institutions__chapter { padding-left: 1rem; padding-right: 1rem; }
+  .v2-institutions__mobile {
+    height: 82svh;
+    min-height: 600px;
+  }
+
+  .v2-institutions__panel-content {
+    left: 1rem;
+    right: 1rem;
+  }
+
+  .v2-institutions__chapter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-institutions__mobile-panel,
+  .v2-institutions__dots button span {
+    transition: none;
+  }
 }
