@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Toaster } from "sonner";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import AdaptiveAtmosphere from "@/components/site/AdaptiveAtmosphere";
 import Home from "@/pages/HomeCinematic";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
@@ -48,6 +49,7 @@ function ScrollToTop() {
 
 const Site = ({ children }) => (
   <>
+    <AdaptiveAtmosphere />
     <Nav />
     <main className="relative">{children}</main>
     <Footer />
