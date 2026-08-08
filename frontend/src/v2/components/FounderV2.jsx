@@ -65,39 +65,60 @@ export default function FounderV2() {
           <p>Chapter 01</p><span>The Vision</span>
         </motion.header>
 
-        <motion.div
-          className="v2-founder__identity"
-          initial={reveal}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.08 }}
-        >
-          <p>The founder</p>
-          <h2 id="v2-founder-title">{founder.name}</h2>
-          <strong>{founder.knownAs}</strong>
-        </motion.div>
+        <div className="v2-founder__content">
+          <motion.p
+            className="v2-founder__tagline"
+            initial={reveal}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.04 }}
+          >
+            Life between the lessons
+          </motion.p>
 
-        <motion.div
-          className="v2-founder__brand"
-          initial={reveal}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.16 }}
-        >
-          <p>Malharu Nooril Islami Tha&apos;aleemi</p>
-          <span>Faith · Learning · Service</span>
-        </motion.div>
+          <motion.div
+            className="v2-founder__identity"
+            initial={reveal}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, delay: 0.1 }}
+          >
+            <p>The founder</p>
+            <h2 id="v2-founder-title">{founder.name}</h2>
+            <strong>{founder.knownAs}</strong>
+          </motion.div>
 
-        <motion.blockquote
-          className="v2-founder__quote"
-          initial={reveal}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.85, delay: 0.22 }}
-        >
-          <p>“To bring light into the lives of thousands.”</p>
-          <footer><span>2000</span><i /><span>Present</span></footer>
-        </motion.blockquote>
+          <motion.div
+            className="v2-founder__brand"
+            initial={reveal}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, delay: 0.16 }}
+          >
+            <p>Malharu Nooril Islami Tha&apos;aleemi</p>
+            <span>Faith · Learning · Service</span>
+          </motion.div>
+
+          <motion.blockquote
+            className="v2-founder__quote"
+            initial={reveal}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, delay: 0.22 }}
+          >
+            <p>“Bring light into the lives of thousands.”</p>
+          </motion.blockquote>
+
+          <motion.footer
+            className="v2-founder__timeline"
+            initial={reveal}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, delay: 0.28 }}
+          >
+            <span>2000</span><i /><span>Present</span>
+          </motion.footer>
+        </div>
       </div>
     </section>
   );
