@@ -5,18 +5,6 @@ import "./QuranVersesV2.css";
 const verses = [
   {
     number: "01",
-    arabic: "ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ",
-    english: "Read, O Prophet, in the Name of your Lord Who created.",
-    reference: "Al-‘Alaq · 96:1",
-  },
-  {
-    number: "02",
-    arabic: "قُلْ هَلْ يَسْتَوِى ٱلَّذِينَ يَعْلَمُونَ وَٱلَّذِينَ لَا يَعْلَمُونَ",
-    english: "Are those who know equal to those who do not know?",
-    reference: "Az-Zumar · 39:9",
-  },
-  {
-    number: "03",
     arabic: "يَرْفَعِ ٱللَّهُ ٱلَّذِينَ ءَامَنُوا۟ مِنكُمْ وَٱلَّذِينَ أُوتُوا۟ ٱلْعِلْمَ دَرَجَـٰتٍۢ",
     english: "Allah will elevate those of you who are faithful, and raise those gifted with knowledge in rank.",
     reference: "Al-Mujādilah · 58:11",
@@ -107,7 +95,7 @@ export default function QuranVersesV2() {
         </div>
 
         <footer className="v2-quran__footer">
-          <span>Qur’anic passages on knowledge</span>
+          <span>A Qur’anic passage on knowledge</span>
           <span>Arabic text + English meaning</span>
         </footer>
       </div>
