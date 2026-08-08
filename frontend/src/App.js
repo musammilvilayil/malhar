@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Toaster } from "sonner";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import Home from "@/pages/Home";
+import Home from "@/pages/HomeStory";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
 import {
