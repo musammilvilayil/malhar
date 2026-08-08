@@ -53,17 +53,17 @@ export default function FounderV2() {
       <div className="v2-founder__shade" aria-hidden="true" />
       <div className="v2-founder__grain" aria-hidden="true" />
       <div className="v2-founder__frame">
-        <motion.header
-          className="v2-founder__chapter"
-          initial={reveal}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.75 }}
-        >
-          <p>The Vision</p>
-        </motion.header>
-
         <div className="v2-founder__content">
+          <motion.header
+            className="v2-founder__chapter"
+            initial={reveal}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75 }}
+          >
+            <p>The Vision</p>
+          </motion.header>
+
           <motion.p
             className="v2-founder__tagline"
             initial={reveal}
