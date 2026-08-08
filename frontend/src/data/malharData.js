@@ -44,7 +44,7 @@ export const siteData = {
       name: 'Malhar She Garden',
       slug: 'she-garden',
       description: "Women's education combining Sharee'a and Da'wa studies with academic subjects including literature, history, culture and home sciences.",
-      image: null,
+      image: '/assets/girls highschooll.jpg',
       programs: ['Plus One', 'Plus Two', "Sharee'a Studies", "Da'wa Studies", 'Literature', 'Home Sciences'],
       features: ["Women's Education", 'Islamic Studies', 'Academic Learning'],
       contact: { email: 'info@malharshegarden.com', phone: '7907009373' },

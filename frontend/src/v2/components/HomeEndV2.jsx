@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "./BrandLogoV2";
 import "./HomeEndV2.css";
 
 export default function HomeEndV2() {
@@ -23,7 +24,7 @@ export default function HomeEndV2() {
 
       <footer className="v2-footer">
         <div className="v2-footer__brand">
-          <Link to="/" aria-label="Malhar home"><span>M</span><strong>Malhar</strong></Link>
+          <Link to="/" aria-label="Malhar home"><BrandLogoV2 className="v2-brand-logo--footer" /></Link>
           <p>
             Malhar Nooril Islami Tha&apos;aleemi<br />
             Manjeshwar, Kasaragod, Kerala

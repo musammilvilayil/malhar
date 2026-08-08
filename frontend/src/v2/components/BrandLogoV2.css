@@ -1,0 +1,15 @@
+.v2-brand-logo {
+  display: block;
+  width: clamp(148px, 14vw, 210px);
+  height: auto;
+  object-fit: contain;
+}
+
+.v2-brand-logo--footer {
+  width: clamp(170px, 17vw, 245px);
+}
+
+@media (max-width: 560px) {
+  .v2-brand-logo { width: 132px; }
+  .v2-brand-logo--footer { width: 180px; }
+}

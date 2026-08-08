@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "../components/BrandLogoV2";
 import { INSTITUTIONS } from "../../data";
 import "../v2.css";
 import "./AboutV2.css";
@@ -43,11 +44,10 @@ export default function AboutV2() {
 
         <nav className="v2-about__nav" aria-label="About page navigation">
           <Link to="/" className="v2-about__wordmark">
-            <span>M</span>
-            <strong>Malhar</strong>
+            <BrandLogoV2 />
           </Link>
           <div>
-            <Link to="/admission">Admissions</Link>
+            <Link to="/admissions">Admissions</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </nav>
@@ -176,7 +176,7 @@ export default function AboutV2() {
         <p>Continue the journey</p>
         <h2 id="v2-about-cta-title">Find your place at Malhar.</h2>
         <div>
-          <Link to="/admission">Admission information <span aria-hidden="true">↗</span></Link>
+          <Link to="/admissions">Admission information <span aria-hidden="true">↗</span></Link>
           <Link to="/contact">Contact Malhar <span aria-hidden="true">↗</span></Link>
         </div>
       </section>

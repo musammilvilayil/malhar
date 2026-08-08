@@ -1,5 +1,6 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "./BrandLogoV2";
 
 export default function HeroV2() {
   const scrollNext = () => {
@@ -21,18 +22,11 @@ export default function HeroV2() {
 
       <header className="v2-hero__topline">
         <Link to="/" className="v2-wordmark" aria-label="Malhar home">
-          <span className="v2-wordmark__mark">M</span>
-          <span>
-            <strong>MALHAR</strong>
-            <small>Educational Trust</small>
-          </span>
+          <BrandLogoV2 />
         </Link>
 
         <div className="v2-hero__meta">
           <span>Manjeshwar · Kasaragod · Kerala</span>
-          <Link to="/our-institutions" className="v2-text-link">
-            Explore <ArrowUpRight size={14} />
-          </Link>
         </div>
       </header>
 
@@ -58,7 +52,7 @@ export default function HeroV2() {
             <button type="button" className="v2-primary-action" onClick={scrollNext}>
               Enter the story <ArrowDown size={16} />
             </button>
-            <Link to="/admission" className="v2-secondary-action">
+            <Link to="/admissions" className="v2-secondary-action">
               Admission information <ArrowUpRight size={15} />
             </Link>
           </div>

@@ -459,7 +459,7 @@ const INSTITUTIONS = [
     slug: 'she-garden',
     name: 'Malhar She Garden',
     desc: 'Providing high-quality undergraduate and graduate education for women — promoting research, scholarship and creativity through a spiritual platform.',
-    image: '',
+    image: '/assets/girls highschooll.jpg',
   },
   {
     slug: 'sharia',

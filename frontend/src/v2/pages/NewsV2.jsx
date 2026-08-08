@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "../components/BrandLogoV2";
 import "./NewsV2.css";
 
 const reveal = {
@@ -22,7 +23,7 @@ export default function NewsV2() {
 
         <nav className="v2-news__nav" aria-label="News page navigation">
           <Link className="v2-news__wordmark" to="/">
-            <span>M</span><strong>Malhar</strong>
+            <BrandLogoV2 />
           </Link>
           <div>
             <Link to="/about">About</Link>

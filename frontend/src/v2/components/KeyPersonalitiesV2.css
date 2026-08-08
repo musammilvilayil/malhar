@@ -1,5 +1,6 @@
 .v2-personalities {
   position: relative;
+  isolation: isolate;
   padding: clamp(6rem, 10vw, 10rem) 0;
   overflow: hidden;
   background: #142019;
@@ -9,10 +10,10 @@
 .v2-personalities::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 150px;
-  background: linear-gradient(180deg, #f0e6d3, rgba(240, 230, 211, 0));
-  opacity: .16;
+  z-index: -1;
+  inset: -1px 0 auto;
+  height: clamp(110px, 14vw, 190px);
+  background: linear-gradient(180deg, #0e2118 0%, rgba(14, 33, 24, .62) 38%, rgba(20, 32, 25, 0) 100%);
   pointer-events: none;
 }
 

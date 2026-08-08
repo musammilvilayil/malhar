@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "../components/BrandLogoV2";
 import { api } from "@/lib/api";
 import "./ContactV2.css";
 
@@ -62,7 +63,7 @@ export default function ContactV2() {
 
         <nav className="v2-contact__nav" aria-label="Contact page navigation">
           <Link className="v2-contact__wordmark" to="/">
-            <span>M</span><strong>Malhar</strong>
+            <BrandLogoV2 />
           </Link>
           <div>
             <Link to="/about">About</Link>
