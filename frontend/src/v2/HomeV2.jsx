@@ -4,6 +4,7 @@ import InstitutionsV2 from "./components/InstitutionsV2";
 import CampusLifeV2 from "./components/CampusLifeV2";
 import GalleryV2 from "./components/GalleryV2";
 import StatsV2 from "./components/StatsV2";
+import HomeEndV2 from "./components/HomeEndV2";
 import "./v2.css";
 
 export default function HomeV2() {
@@ -15,6 +16,7 @@ export default function HomeV2() {
       <CampusLifeV2 />
       <GalleryV2 />
       <StatsV2 />
+      <HomeEndV2 />
     </div>
   );
 }

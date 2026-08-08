@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,9 +14,10 @@ import HomeV2 from "@/v2/HomeV2";
 import AboutV2 from "@/v2/pages/AboutV2";
 import AdmissionsV2 from "@/v2/pages/AdmissionsV2";
 import DonationV2 from "@/v2/pages/DonationV2";
-import ContactPage from "@/pages/Contact";
+import ContactV2 from "@/v2/pages/ContactV2";
+import NewsV2 from "@/v2/pages/NewsV2";
 import {
-  InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
+  InstitutionsPage, VenturesPage, MediaPage, GalleryPage,
   InstructorPage, InstitutionPage,
 } from "@/pages/Pages";
 import Admin from "@/pages/Admin";
@@ -71,16 +72,16 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeV2 />} />
         <Route path="/about" element={<AboutV2 />} />
-        <Route path="/about-us" element={<AboutV2 />} />
+        <Route path="/about-us" element={<Navigate to="/about" replace />} />
         <Route path="/our-institutions" element={<LegacySite><InstitutionsPage /></LegacySite>} />
         <Route path="/our-ventures" element={<LegacySite><VenturesPage /></LegacySite>} />
         <Route path="/media" element={<LegacySite><MediaPage /></LegacySite>} />
         <Route path="/gallery" element={<LegacySite><GalleryPage /></LegacySite>} />
-        <Route path="/news" element={<LegacySite><NewsPage /></LegacySite>} />
-        <Route path="/contact" element={<LegacySite><ContactPage /></LegacySite>} />
-        <Route path="/donate-us" element={<DonationV2 />} />
+        <Route path="/news" element={<NewsV2 />} />
+        <Route path="/contact" element={<ContactV2 />} />
+        <Route path="/donate-us" element={<Navigate to="/donation" replace />} />
         <Route path="/donation" element={<DonationV2 />} />
-        <Route path="/admission" element={<AdmissionsV2 />} />
+        <Route path="/admission" element={<Navigate to="/admissions" replace />} />
         <Route path="/admissions" element={<AdmissionsV2 />} />
         <Route path="/institution/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
         <Route path="/instructor/:slug" element={<LegacySite><InstructorPage /></LegacySite>} />

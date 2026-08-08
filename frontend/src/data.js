@@ -34,7 +34,7 @@ export const INSTITUTIONS = [
     slug: "miid",
     name: "Malhar Institute of Islamic Da'awa",
     desc: "Islamic scholarship and secular education with practical learning facilities.",
-    image: "https://i.pinimg.com/736x/d1/e1/ff/d1e1ff00ee3675b9491657c396f5fd63.jpg",
+    image: "/assets/web-hifl.png",
   },
   {
     slug: "english-medium",
