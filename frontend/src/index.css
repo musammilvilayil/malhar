@@ -80,6 +80,66 @@ html.lenis, html.lenis body { height: auto; }
 [data-testid="hero"] [data-testid="hero-cta-institutions"],
 [data-testid="hero"] [data-testid="hero-cta-admission"] { border-radius: 999px; }
 
+/* Editorial institution mosaic — intentionally avoids a repeated square/card grid. */
+[data-testid="institutions"] { padding-top: 7.5rem; padding-bottom: 7.5rem; }
+[data-testid="institutions"] .grid.bg-cream\/10 {
+    gap: 14px !important;
+    background: transparent !important;
+    align-items: stretch;
+}
+[data-testid="institutions"] .grid.bg-cream\/10 > * {
+    overflow: hidden;
+    border: 1px solid rgba(245,233,207,.12);
+    border-radius: 26px;
+    background: rgba(5,61,48,.92) !important;
+    box-shadow: 0 24px 70px rgba(0,0,0,.14);
+}
+[data-testid="institutions"] .grid.bg-cream\/10 > * > a {
+    min-height: 360px;
+    isolation: isolate;
+}
+[data-testid="institutions"] .grid.bg-cream\/10 > * img {
+    opacity: .68 !important;
+    filter: saturate(.88) contrast(1.04);
+    transform: scale(1.015);
+}
+[data-testid="institutions"] .grid.bg-cream\/10 > *:hover img {
+    transform: scale(1.075);
+    filter: saturate(1) contrast(1.05);
+}
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(1) > a { min-height: 540px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(2) > a { min-height: 410px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(3) > a { min-height: 485px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(4) > a { min-height: 390px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(5) > a { min-height: 470px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(6) > a { min-height: 410px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(7) > a { min-height: 500px; }
+[data-testid="institutions"] .grid.bg-cream\/10 > * > a > div:last-child {
+    padding: clamp(1.6rem, 3vw, 2.5rem) !important;
+}
+[data-testid="institutions"] .grid.bg-cream\/10 h3 {
+    max-width: 16ch;
+    font-size: clamp(1.65rem, 2.1vw, 2.35rem);
+    line-height: 1.03;
+    text-wrap: balance;
+}
+[data-testid="institutions"] .grid.bg-cream\/10 p {
+    max-width: 36ch;
+    margin-top: .75rem;
+    line-height: 1.65;
+}
+
+@media (min-width: 1024px) {
+    [data-testid="institutions"] .grid.bg-cream\/10 { grid-template-columns: repeat(12, minmax(0,1fr)) !important; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(1) { grid-column: span 7 / span 7 !important; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(2) { grid-column: span 5 / span 5 !important; align-self: end; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(3) { grid-column: span 5 / span 5 !important; margin-top: -72px; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(4) { grid-column: span 7 / span 7 !important; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(5) { grid-column: span 7 / span 7 !important; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(6) { grid-column: span 5 / span 5 !important; margin-top: -48px; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(7) { grid-column: 3 / span 8 !important; margin-top: 8px; }
+}
+
 @media (max-width: 767px) {
     [data-testid="hero"] { min-height: 88svh !important; }
     [data-testid="hero"] > img { object-position: 55% 55% !important; filter: saturate(.94) contrast(1.04) brightness(1.04); }
@@ -99,6 +159,14 @@ html.lenis, html.lenis body { height: auto; }
     [data-testid="hero"] h1 + p { margin-top: 1.15rem !important; max-width: 31rem; font-size: .98rem !important; line-height: 1.55 !important; color: rgba(245,233,207,.86) !important; }
     [data-testid="hero"] [data-testid="hero-cta-institutions"],
     [data-testid="hero"] [data-testid="hero-cta-admission"] { min-height: 3.25rem !important; padding-top: .78rem !important; padding-bottom: .78rem !important; }
+
+    [data-testid="institutions"] { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+    [data-testid="institutions"] .grid.bg-cream\/10 { gap: 12px !important; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > * { border-radius: 20px; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(odd) > a { min-height: 405px; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:nth-child(even) > a { min-height: 330px; }
+    [data-testid="institutions"] .grid.bg-cream\/10 > *:first-child > a { min-height: 445px; }
+    [data-testid="institutions"] .grid.bg-cream\/10 h3 { font-size: 1.85rem; }
 }
 
 @media (max-width: 430px) {
@@ -116,5 +184,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    [data-testid="hero"] *, [data-testid="hero"] *::before, [data-testid="hero"] *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    [data-testid="hero"] *, [data-testid="hero"] *::before, [data-testid="hero"] *::after,
+    [data-testid="institutions"] *, [data-testid="institutions"] *::before, [data-testid="institutions"] *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
