@@ -379,3 +379,17 @@
     transition: none;
   }
 }
+
+
+.v2-accordion__panel.is-active img {
+  animation: v2-accordion-image-in .7s ease both;
+}
+
+@keyframes v2-accordion-image-in {
+  from { opacity: .28; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-accordion__panel.is-active img { animation: none; }
+}
