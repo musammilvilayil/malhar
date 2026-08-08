@@ -338,3 +338,25 @@
   .v2-founder__brand > p { font-size: clamp(1.05rem, 5vw, 1.55rem); }
   .v2-founder__quote > p { font-size: clamp(1rem, 4.35vw, 1.35rem); }
 }
+
+
+/* Keep the label and story in one visual stack—no empty split on mobile. */
+.v2-founder__content .v2-founder__chapter {
+  position: static;
+  margin-bottom: clamp(1rem, 2vh, 1.4rem);
+}
+
+@media (max-width: 760px) {
+  .v2-founder__content {
+    justify-content: center;
+    padding: 4.5rem 0 2rem;
+  }
+
+  .v2-founder__content .v2-founder__chapter {
+    margin-bottom: .8rem;
+  }
+
+  .v2-founder__tagline {
+    margin-bottom: .85rem;
+  }
+}
