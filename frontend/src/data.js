@@ -86,20 +86,6 @@ export const YOUTUBE_CHANNEL = {
 
 export const INSTITUTION_DETAILS = [];
 
-export const GALLERY_IMAGES = [
-  { src: "/assets/DSC_2363-1-1-1.jpg", caption: "Campus assembly and student life", cols: 2, rows: 2 },
-  { src: "/assets/11a.jpg", caption: "Learning spaces and classrooms", cols: 1, rows: 1 },
-  { src: "/assets/1-2.jpg", caption: "Community engagement", cols: 1, rows: 1 },
-  { src: "/assets/2.jpg", caption: "Campus grounds", cols: 1, rows: 1 },
-  { src: "/assets/3.jpg", caption: "Student studies", cols: 1, rows: 1 },
-  { src: "/assets/4-1.jpg", caption: "Campus event", cols: 1, rows: 1 },
-  { src: "/assets/5-2.jpg", caption: "Classroom learning", cols: 1, rows: 1 },
-  { src: "/assets/6.jpg", caption: "Trust activities", cols: 1, rows: 1 },
-  { src: "/assets/7-2.jpg", caption: "Campus life", cols: 2, rows: 1 },
-  { src: "/assets/Posoat-Thangal.jpg", caption: "Founder Sheikh Sayyid Umarul Farooq Al Bukhari", cols: 1, rows: 1 },
-  { src: "/assets/Hassan-Kunhi.jpg", caption: "Faculty leadership", cols: 1, rows: 1 },
-];
-
 export const KEY_PERSONALITIES = [
   {
     slug: "marhoom-qasi-sayyid-muhammad-umarul-farook-al-bukhari",
