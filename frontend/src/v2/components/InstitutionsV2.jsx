@@ -43,7 +43,9 @@ export default function InstitutionsV2() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileSlider, setMobileSlider] = useState(() => mediaMatches("(max-width: 900px)"));
   const [reduceMotion, setReduceMotion] = useState(() => mediaMatches("(prefers-reduced-motion: reduce)"));
+  const [isPaused, setIsPaused] = useState(false);
   const [timerKey, setTimerKey] = useState(0);
+  const pauseTimeoutRef = useRef(null);
   const compactLayout = mobileSlider || reduceMotion;
 
   useEffect(() => {
@@ -66,16 +68,18 @@ export default function InstitutionsV2() {
   }, []);
 
   useEffect(() => {
-    if (!mobileSlider || reduceMotion) return undefined;
+    if (!mobileSlider || reduceMotion || isPaused) return undefined;
 
     const interval = window.setInterval(() => {
       if (!document.hidden) {
         setCurrentSlide((previous) => (previous + 1) % INSTITUTIONS.length);
       }
-    }, 3000);
+    }, 4000);
 
     return () => window.clearInterval(interval);
-  }, [mobileSlider, reduceMotion, timerKey]);
+  }, [mobileSlider, reduceMotion, isPaused, timerKey]);
+
+  useEffect(() => () => window.clearTimeout(pauseTimeoutRef.current), []);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -108,8 +112,15 @@ export default function InstitutionsV2() {
   }, [compactLayout]);
 
   const selectSlide = (index) => {
+    window.clearTimeout(pauseTimeoutRef.current);
     setCurrentSlide(index);
+    setIsPaused(true);
     setTimerKey((key) => key + 1);
+
+    pauseTimeoutRef.current = window.setTimeout(() => {
+      setIsPaused(false);
+      setTimerKey((key) => key + 1);
+    }, 5000);
   };
 
   const activeInstitution = INSTITUTIONS[currentSlide];
@@ -148,6 +159,10 @@ export default function InstitutionsV2() {
             mobile
           />
 
+          <p className="v2-institutions__autoplay-note">
+            {isPaused ? "Paused · Resuming shortly" : "Auto-playing · Tap to explore"}
+          </p>
+
           <div className="v2-institutions__dots" role="group" aria-label="Choose an institution">
             {INSTITUTIONS.map((institution, index) => (
               <button
@@ -161,6 +176,14 @@ export default function InstitutionsV2() {
                 <span />
               </button>
             ))}
+          </div>
+
+          <div className="v2-institutions__progress" aria-hidden="true">
+            <span
+              key={`${activeInstitution.slug}-${timerKey}`}
+              className={isPaused ? "is-paused" : ""}
+              style={{ "--slide-progress": `${((currentSlide + 1) / INSTITUTIONS.length) * 100}%` }}
+            />
           </div>
         </div>
       )}
