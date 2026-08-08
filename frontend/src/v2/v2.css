@@ -409,3 +409,14 @@
     scroll-behavior: auto;
   }
 }
+
+
+@media (max-width: 600px) {
+  .v2-hero__grain { display: none; }
+  .v2-hero__content { padding: 8vh 0 4.5vh; }
+  .v2-hero__year { font-size: clamp(7rem, 42vw, 11rem); }
+  .v2-hero__title { font-size: clamp(2.8rem, 12.5vw, 4.5rem); line-height: .92; }
+  .v2-hero__eyebrow { margin-bottom: 12px; font-size: 9px; }
+  .v2-hero__footer-copy > p { font-size: .88rem; line-height: 1.6; }
+  .v2-secondary-action { backdrop-filter: none; }
+}
