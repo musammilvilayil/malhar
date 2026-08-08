@@ -1,0 +1,225 @@
+.v2-stats {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(8rem, 13vw, 13rem) 0 clamp(6rem, 10vw, 10rem);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(217,173,86,.13), transparent 28%),
+    linear-gradient(180deg, #07100d, #0b1c15);
+  color: var(--v2-paper);
+}
+
+.v2-stats::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: clamp(110px, 18vh, 190px);
+  pointer-events: none;
+  background: linear-gradient(180deg, #f0e6d3 0%, rgba(240,230,211,.34) 26%, transparent 100%);
+}
+
+.v2-stats__grain {
+  position: absolute;
+  inset: 0;
+  opacity: .1;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.12) 0 .55px, transparent .75px),
+    radial-gradient(circle at 75% 70%, rgba(255,255,255,.08) 0 .5px, transparent .7px);
+  background-size: 8px 8px, 11px 11px;
+}
+
+.v2-stats__header,
+.v2-stats__grid {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 64px, 1380px);
+  margin-inline: auto;
+}
+
+.v2-stats__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: clamp(4rem, 7vw, 7rem);
+}
+
+.v2-stats__header > p {
+  grid-column: 1 / -1;
+  margin: 0 0 .4rem;
+  font-size: 9px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.v2-stats__header h2 {
+  max-width: 10ch;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 7.4vw, 8rem);
+  line-height: .88;
+  letter-spacing: -.052em;
+  font-weight: 400;
+}
+
+.v2-stats__header h2 em {
+  display: block;
+  color: var(--v2-gold);
+  font-weight: 400;
+}
+
+.v2-stats__header > span {
+  padding-bottom: .65rem;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(242,234,215,.46);
+}
+
+.v2-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(242,234,215,.2);
+  border-bottom: 1px solid rgba(242,234,215,.2);
+}
+
+.v2-stats__item {
+  position: relative;
+  min-height: clamp(240px, 27vw, 390px);
+  padding: clamp(2rem, 4vw, 3.8rem) clamp(1.25rem, 2.8vw, 2.6rem);
+}
+
+.v2-stats__item + .v2-stats__item {
+  border-left: 1px solid rgba(242,234,215,.16);
+}
+
+.v2-stats__item strong {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.7rem, 6.5vw, 7rem);
+  line-height: .9;
+  letter-spacing: -.06em;
+  font-weight: 400;
+  color: #f7edda;
+}
+
+.v2-stats__item p {
+  max-width: 16ch;
+  margin: 1.4rem 0 0;
+  font-size: clamp(.78rem, 1vw, .95rem);
+  line-height: 1.55;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(242,234,215,.62);
+}
+
+.v2-stats__item i {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-style: normal;
+  color: rgba(217,173,86,.5);
+}
+
+@media (max-width: 900px) {
+  .v2-stats {
+    padding: 7rem 0 5rem;
+  }
+
+  .v2-stats__grain {
+    display: none;
+  }
+
+  .v2-stats__header,
+  .v2-stats__grid {
+    width: min(100% - 32px, 760px);
+  }
+
+  .v2-stats__header {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .v2-stats__header h2 {
+    font-size: clamp(3.2rem, 12vw, 5.5rem);
+  }
+
+  .v2-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .v2-stats__item {
+    min-height: 220px;
+  }
+
+  .v2-stats__item:nth-child(3) {
+    border-left: 0;
+  }
+
+  .v2-stats__item:nth-child(n + 3) {
+    border-top: 1px solid rgba(242,234,215,.16);
+  }
+}
+
+@media (max-width: 520px) {
+  .v2-stats {
+    padding: 5.5rem 0 4rem;
+  }
+
+  .v2-stats::before {
+    height: 90px;
+  }
+
+  .v2-stats__header,
+  .v2-stats__grid {
+    width: calc(100% - 24px);
+  }
+
+  .v2-stats__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .v2-stats__header h2 {
+    font-size: clamp(2.85rem, 12.5vw, 4rem);
+  }
+
+  .v2-stats__header > span {
+    font-size: 7px;
+  }
+
+  .v2-stats__item {
+    min-height: 176px;
+    padding: 1.55rem .9rem;
+  }
+
+  .v2-stats__item strong {
+    font-size: clamp(2.75rem, 12.5vw, 4rem);
+  }
+
+  .v2-stats__item p {
+    margin-top: 1rem;
+    font-size: .68rem;
+    letter-spacing: .09em;
+  }
+
+  .v2-stats__item i {
+    right: .75rem;
+    bottom: .65rem;
+    font-size: .8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-stats * {
+    scroll-behavior: auto !important;
+  }
+}
