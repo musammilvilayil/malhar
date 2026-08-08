@@ -1,6 +1,7 @@
 import HeroV2 from "./components/HeroV2";
 import FounderV2 from "./components/FounderV2";
 import QuranVersesV2 from "./components/QuranVersesV2";
+import InstitutionsV2 from "./components/InstitutionsV2";
 import "./v2.css";
 
 export default function HomeV2() {
@@ -9,6 +10,7 @@ export default function HomeV2() {
       <HeroV2 />
       <FounderV2 />
       <QuranVersesV2 />
+      <InstitutionsV2 />
     </div>
   );
 }
