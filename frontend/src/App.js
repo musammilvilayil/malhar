@@ -7,6 +7,7 @@ import { Toaster } from "sonner";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import AdaptiveAtmosphere from "@/components/site/AdaptiveAtmosphere";
+import SiteTour from "@/components/site/SiteTour";
 import ClickSpark from "@/components/reactbits/ClickSpark";
 import FadeContent from "@/components/reactbits/FadeContent";
 import Home from "@/pages/HomeCinematic";
@@ -27,8 +28,6 @@ function useLenis() {
     const narrowScreen = window.matchMedia("(max-width: 767px)").matches;
     const saveData = Boolean(navigator.connection?.saveData);
 
-    // Keep phones cool and responsive: use the browser's native compositor-driven
-    // scrolling on touch-first small screens, reduced-motion, and data-saver modes.
     if (prefersReducedMotion || saveData || (coarsePointer && narrowScreen)) {
       ScrollTrigger.refresh();
       return undefined;
@@ -56,6 +55,7 @@ const Site = ({ children }) => (
     <FadeContent blur duration={0.55} threshold={0.02}>
       <main className="relative">{children}</main>
     </FadeContent>
+    <SiteTour />
     <Footer />
   </ClickSpark>
 );
