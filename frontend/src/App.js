@@ -4,22 +4,13 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Toaster } from "sonner";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
-import AdaptiveAtmosphere from "@/components/site/AdaptiveAtmosphere";
-import SiteTour from "@/components/site/SiteTour";
-import ClickSpark from "@/components/reactbits/ClickSpark";
-import FadeContent from "@/components/reactbits/FadeContent";
 import HomeV2 from "@/v2/HomeV2";
 import AboutV2 from "@/v2/pages/AboutV2";
 import AdmissionsV2 from "@/v2/pages/AdmissionsV2";
 import DonationV2 from "@/v2/pages/DonationV2";
 import ContactV2 from "@/v2/pages/ContactV2";
 import NewsV2 from "@/v2/pages/NewsV2";
-import {
-  InstitutionsPage, VenturesPage, MediaPage, GalleryPage,
-  InstructorPage, InstitutionPage,
-} from "@/pages/Pages";
+import InstitutionV2 from "@/v2/pages/InstitutionV2";
 import Admin from "@/pages/Admin";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,18 +42,6 @@ function ScrollToTop() {
   return null;
 }
 
-const LegacySite = ({ children }) => (
-  <ClickSpark sparkColor="#D4AF37" sparkCount={6} sparkRadius={18} sparkSize={8}>
-    <AdaptiveAtmosphere />
-    <Nav />
-    <FadeContent blur duration={0.55} threshold={0.02}>
-      <main className="relative">{children}</main>
-    </FadeContent>
-    <SiteTour />
-    <Footer />
-  </ClickSpark>
-);
-
 function App() {
   useLenis();
   return (
@@ -73,19 +52,19 @@ function App() {
         <Route path="/" element={<HomeV2 />} />
         <Route path="/about" element={<AboutV2 />} />
         <Route path="/about-us" element={<Navigate to="/about" replace />} />
-        <Route path="/our-institutions" element={<LegacySite><InstitutionsPage /></LegacySite>} />
-        <Route path="/our-ventures" element={<LegacySite><VenturesPage /></LegacySite>} />
-        <Route path="/media" element={<LegacySite><MediaPage /></LegacySite>} />
-        <Route path="/gallery" element={<LegacySite><GalleryPage /></LegacySite>} />
+        <Route path="/our-institutions" element={<Navigate to="/admissions" replace />} />
+        <Route path="/our-ventures" element={<Navigate to="/" replace />} />
+        <Route path="/media" element={<Navigate to="/" replace />} />
+        <Route path="/gallery" element={<Navigate to="/" replace />} />
         <Route path="/news" element={<NewsV2 />} />
         <Route path="/contact" element={<ContactV2 />} />
         <Route path="/donate-us" element={<Navigate to="/donation" replace />} />
         <Route path="/donation" element={<DonationV2 />} />
         <Route path="/admission" element={<Navigate to="/admissions" replace />} />
         <Route path="/admissions" element={<AdmissionsV2 />} />
-        <Route path="/institutions/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
-        <Route path="/institution/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
-        <Route path="/instructor/:slug" element={<LegacySite><InstructorPage /></LegacySite>} />
+        <Route path="/institutions/:slug" element={<InstitutionV2 />} />
+        <Route path="/institution/:slug" element={<InstitutionV2 />} />
+        <Route path="/instructor/:slug" element={<Navigate to="/about" replace />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

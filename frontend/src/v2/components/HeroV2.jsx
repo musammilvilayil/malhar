@@ -52,7 +52,7 @@ export default function HeroV2() {
             <button type="button" className="v2-primary-action" onClick={scrollNext}>
               Enter the story <ArrowDown size={16} />
             </button>
-            <Link to="/admission" className="v2-secondary-action">
+            <Link to="/admissions" className="v2-secondary-action">
               Admission information <ArrowUpRight size={15} />
             </Link>
           </div>

@@ -47,7 +47,7 @@ export default function AboutV2() {
             <BrandLogoV2 />
           </Link>
           <div>
-            <Link to="/admission">Admissions</Link>
+            <Link to="/admissions">Admissions</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </nav>
@@ -176,7 +176,7 @@ export default function AboutV2() {
         <p>Continue the journey</p>
         <h2 id="v2-about-cta-title">Find your place at Malhar.</h2>
         <div>
-          <Link to="/admission">Admission information <span aria-hidden="true">↗</span></Link>
+          <Link to="/admissions">Admission information <span aria-hidden="true">↗</span></Link>
           <Link to="/contact">Contact Malhar <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
