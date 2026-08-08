@@ -76,7 +76,7 @@ export default function CampusLifeV2() {
       <div className="v2-campus__grain" aria-hidden="true" />
 
       <header className="v2-campus__intro">
-        <p><span>Chapter 04</span><i />Campus Life</p>
+        <p><span>Campus Life</span><i /></p>
         <div className="v2-campus__intro-grid">
           <h2 id="v2-campus-title">
             <span>Life between</span>
