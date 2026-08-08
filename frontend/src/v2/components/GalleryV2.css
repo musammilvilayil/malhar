@@ -178,3 +178,13 @@
     height: 135px;
   }
 }
+
+
+/* Pull the next story closer while retaining a soft dark-to-paper dissolve. */
+@media (max-width: 900px) {
+  .v2-gallery { padding-top: 4rem; }
+}
+@media (max-width: 560px) {
+  .v2-gallery { padding-top: 3rem; }
+  .v2-gallery::before { top: -76px; height: 96px; }
+}
