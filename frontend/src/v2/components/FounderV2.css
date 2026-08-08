@@ -326,3 +326,15 @@
     background: rgba(5,16,12,.68);
   }
 }
+
+
+@media (max-width: 760px) {
+  .v2-founder,
+  .v2-founder__frame,
+  .v2-founder__content { min-height: max(100svh, 720px); }
+  .v2-founder__content { padding: 5.5rem 0 1.5rem; }
+  .v2-founder__identity h2 { font-size: clamp(2.35rem, 10.3vw, 4rem); line-height: .96; }
+  .v2-founder__identity strong { font-size: clamp(1.08rem, 4.8vw, 1.55rem); }
+  .v2-founder__brand > p { font-size: clamp(1.05rem, 5vw, 1.55rem); }
+  .v2-founder__quote > p { font-size: clamp(1rem, 4.35vw, 1.35rem); }
+}
