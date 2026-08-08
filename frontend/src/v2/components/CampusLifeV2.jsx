@@ -77,12 +77,23 @@ export default function CampusLifeV2() {
 
       <header className="v2-campus__intro">
         <p><span>Chapter 04</span><i />Campus Life</p>
-        <div>
-          <h2 id="v2-campus-title">Life between<em>the lessons.</em></h2>
-          <p>
-            A quiet visual journal of the spaces, gatherings and everyday moments
-            that shape life at Malhar.
-          </p>
+        <div className="v2-campus__intro-grid">
+          <h2 id="v2-campus-title">
+            <span>Life between</span>
+            <em>the lessons.</em>
+          </h2>
+
+          <div className="v2-campus__intro-copy">
+            <span>Everyday Malhar</span>
+            <p>
+              A quiet visual journal of the spaces, gatherings and everyday moments
+              that shape life at Malhar.
+            </p>
+          </div>
+        </div>
+
+        <div className="v2-campus__intro-footer" aria-hidden="true">
+          <span>Study</span><i /><span>Friendship</span><i /><span>Community</span>
         </div>
       </header>
 
