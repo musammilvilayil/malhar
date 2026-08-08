@@ -599,3 +599,11 @@
     bottom: 17%;
   }
 }
+
+
+/* Fine-tune the approved mobile copy slightly lower. */
+@media (max-width: 760px) {
+  .v2-founder__content {
+    bottom: 12%;
+  }
+}
