@@ -267,3 +267,34 @@
     animation: none;
   }
 }
+
+
+/* Preserve the small founder source image instead of enlarging it to full-screen. */
+@media (max-width: 760px) {
+  .v2-founder__portrait {
+    inset: 2% -7% auto auto;
+    width: 94%;
+    height: 88%;
+    object-fit: contain;
+    object-position: right top;
+    opacity: .74;
+    filter: saturate(.9) contrast(1.12) brightness(.78);
+  }
+
+  .v2-founder__backdrop-wash {
+    background:
+      radial-gradient(circle at 70% 28%, rgba(217,173,86,.1), transparent 42%),
+      linear-gradient(180deg, rgba(6,17,13,.34), rgba(6,17,13,.2) 45%, rgba(6,17,13,.94));
+  }
+
+  .v2-founder__shade {
+    background:
+      linear-gradient(180deg, rgba(4,12,9,.28), rgba(4,12,9,.08) 32%, rgba(4,12,9,.92)),
+      linear-gradient(90deg, rgba(4,12,9,.82), rgba(4,12,9,.08) 72%);
+  }
+}
+
+@keyframes v2-founder-mobile-opacity-in {
+  from { opacity: 0; }
+  to { opacity: .74; }
+}
