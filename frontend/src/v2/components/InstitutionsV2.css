@@ -467,3 +467,25 @@
     min-height: 650px;
   }
 }
+
+
+/* Let Institutions begin where the mobile founder portrait dissolves. */
+@media (max-width: 760px) {
+  .v2-institutions {
+    position: relative;
+    z-index: 7;
+    margin-top: -10svh;
+  }
+
+  .v2-institutions::before {
+    content: "";
+    position: absolute;
+    z-index: 19;
+    top: -1px;
+    right: 0;
+    left: 0;
+    height: 72px;
+    pointer-events: none;
+    background: linear-gradient(180deg, #06110d 0%, rgba(6,17,13,.62) 42%, transparent 100%);
+  }
+}
