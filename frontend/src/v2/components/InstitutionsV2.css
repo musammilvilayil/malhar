@@ -200,21 +200,16 @@
     position: absolute;
     inset: 0;
     overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 1s ease, visibility 1s step-end;
-  }
-
-  .v2-institutions__mobile-panel.is-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 1s ease, visibility 0s;
+    animation: v2-institutions-fade .85s ease both;
   }
 
   .v2-institutions__mobile-panel .v2-institutions__image {
-    transform: scale(1.035);
+    transform: scale(1.02);
+    filter: brightness(.76);
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__grain {
+    display: none;
   }
 
   .v2-institutions__panel-content {
@@ -300,8 +295,16 @@
   }
 }
 
+@keyframes v2-institutions-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .v2-institutions__mobile-panel,
+  .v2-institutions__mobile-panel {
+    animation: none;
+  }
+
   .v2-institutions__dots button span {
     transition: none;
   }
