@@ -59,8 +59,9 @@
   position: relative;
   width: min(100%, 560px);
   margin: 0;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
+  border-radius: 48% 48% 22px 22px;
   background: #0d1a14;
   box-shadow: 0 42px 120px rgba(0, 0, 0, 0.28);
 }
@@ -319,7 +320,7 @@
   }
 
   .v2-founder__portrait-wrap {
-    aspect-ratio: 16 / 17;
+    aspect-ratio: 3 / 4;
   }
 
   .v2-founder__story-column {
@@ -357,7 +358,7 @@
   }
 
   .v2-founder__portrait-wrap {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
   }
 
   .v2-founder__portrait-caption {
