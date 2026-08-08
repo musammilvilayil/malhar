@@ -1,9 +1,6 @@
-import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import "./CampusLifeV2.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const moments = [
   {
@@ -33,95 +30,65 @@ const moments = [
   },
 ];
 
-const number = (index) => String(index + 1).padStart(2, "0");
+function CampusMoment({ moment, index }) {
+  const cardRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? ["0%", "0%"] : ["-3%", "3%"]
+  );
 
-function Moment({ moment, index, mobile = false }) {
   return (
-    <article className={mobile ? "v2-campus__mobile-panel" : "v2-campus__panel"}>
-      <img
-        src={moment.image}
-        alt={moment.title}
-        className="v2-campus__image"
-        loading={index === 0 ? "eager" : "lazy"}
-        decoding="async"
-      />
-      <div className="v2-campus__wash" aria-hidden="true" />
-      <div className="v2-campus__grain" aria-hidden="true" />
-
-      <div className="v2-campus__content">
-        <p className="v2-campus__counter" aria-hidden="true">{number(index)}</p>
-        <div className="v2-campus__copy">
-          <p>Moment {number(index)} · {number(moments.length - 1)}</p>
-          <h3>{moment.title}</h3>
+    <motion.article
+      ref={cardRef}
+      className={`v2-campus__card v2-campus__card--${index + 1}`}
+      initial={reduceMotion ? false : { opacity: 0, y: 54 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.22 }}
+      transition={{ duration: 0.85, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <figure className="v2-campus__media">
+        <motion.img
+          src={moment.image}
+          alt={moment.title}
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
+          style={{ y: imageY }}
+        />
+        <div className="v2-campus__media-wash" aria-hidden="true" />
+        <figcaption>
+          <p>{moment.title}</p>
           <span>{moment.subtitle}</span>
-        </div>
-      </div>
-    </article>
+        </figcaption>
+      </figure>
+    </motion.article>
   );
 }
 
 export default function CampusLifeV2() {
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return undefined;
-
-    const context = gsap.context(() => {
-      ScrollTrigger.matchMedia({
-        "(min-width: 901px) and (prefers-reduced-motion: no-preference)": () => {
-          const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
-          const tween = gsap.to(track, {
-            x: () => -distance(),
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: () => `+=${distance()}`,
-              pin: true,
-              scrub: 0.85,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          return () => {
-            tween.scrollTrigger?.kill();
-            tween.kill();
-          };
-        },
-      });
-    }, section);
-
-    return () => context.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="campus-life"
-      className="v2-campus"
-      aria-labelledby="v2-campus-title"
-    >
-      <header className="v2-campus__chapter">
+    <section id="campus-life" className="v2-campus" aria-labelledby="v2-campus-title">
+      <div className="v2-campus__grain" aria-hidden="true" />
+
+      <header className="v2-campus__intro">
         <p><span>Chapter 04</span><i />Campus Life</p>
-        <h2 id="v2-campus-title">Life between<em>the lessons.</em></h2>
-        <span className="v2-campus__hint">Five moments · Scroll</span>
+        <div>
+          <h2 id="v2-campus-title">Life between<em>the lessons.</em></h2>
+          <p>
+            A quiet visual journal of the spaces, gatherings and everyday moments
+            that shape life at Malhar.
+          </p>
+        </div>
       </header>
 
-      <div className="v2-campus__desktop" aria-label="Five moments from campus life">
-        <div ref={trackRef} className="v2-campus__track">
-          {moments.map((moment, index) => (
-            <Moment key={moment.title} moment={moment} index={index} />
-          ))}
-        </div>
-      </div>
-
-      <div className="v2-campus__mobile" aria-label="Five moments from campus life">
+      <div className="v2-campus__editorial">
         {moments.map((moment, index) => (
-          <Moment key={moment.title} moment={moment} index={index} mobile />
+          <CampusMoment key={moment.title} moment={moment} index={index} />
         ))}
       </div>
     </section>
