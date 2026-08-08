@@ -421,3 +421,49 @@
     animation: none;
   }
 }
+
+
+.v2-institutions__wash {
+  background:
+    linear-gradient(180deg, rgba(7,16,13,.72) 0%, rgba(4,12,9,.08) 36%, #091711 100%),
+    linear-gradient(90deg, rgba(4,12,9,.68) 0%, transparent 66%);
+}
+
+@media (max-width: 900px) {
+  .v2-institutions {
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .v2-institutions__chapter {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: clamp(2rem, 7vh, 4rem) 1rem 2rem;
+    background: linear-gradient(180deg, rgba(7,16,13,.94), rgba(7,16,13,.58) 64%, transparent);
+  }
+
+  .v2-institutions__chapter h2 {
+    max-width: 9ch;
+    text-shadow: 0 12px 40px rgba(0,0,0,.38);
+  }
+
+  .v2-institutions__mobile {
+    height: 100svh;
+    min-height: 680px;
+    border-top: 0;
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__panel-content {
+    top: 58%;
+  }
+}
+
+@media (max-width: 480px) {
+  .v2-institutions__mobile {
+    height: 100svh;
+    min-height: 650px;
+  }
+}
