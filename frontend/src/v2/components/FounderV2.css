@@ -583,3 +583,11 @@
     height: 72px;
   }
 }
+
+
+/* Requested mobile adjustment: lift the founder copy upward over the portrait. */
+@media (max-width: 760px) {
+  .v2-founder__content {
+    bottom: 18%;
+  }
+}
