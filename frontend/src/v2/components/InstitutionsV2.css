@@ -309,3 +309,19 @@
     transition: none;
   }
 }
+
+
+@media (max-width: 900px) {
+  .v2-institutions__chapter { padding: 4rem 1rem 2.5rem; }
+  .v2-institutions__chapter > p { margin-bottom: 18px; }
+  .v2-institutions__chapter h2 { font-size: clamp(3rem, 11vw, 5rem); line-height: .92; }
+  .v2-institutions__mobile { height: 78svh; min-height: 560px; }
+  .v2-institutions__panel-content { gap: 1rem; bottom: 4.5rem; }
+  .v2-institutions__number { font-size: clamp(4rem, 20vw, 6.5rem); }
+  .v2-institutions__panel-content h3 { font-size: clamp(2.2rem, 9.5vw, 3.8rem); }
+  .v2-institutions__description { margin-top: 12px; font-size: .9rem; line-height: 1.55; }
+}
+
+@media (max-width: 480px) {
+  .v2-institutions__mobile { height: 76svh; min-height: 540px; }
+}
