@@ -11,6 +11,7 @@ import SiteTour from "@/components/site/SiteTour";
 import ClickSpark from "@/components/reactbits/ClickSpark";
 import FadeContent from "@/components/reactbits/FadeContent";
 import HomeV2 from "@/v2/HomeV2";
+import AboutV2 from "@/v2/pages/AboutV2";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
 import {
@@ -68,7 +69,8 @@ function App() {
       <Toaster position="top-center" richColors />
       <Routes>
         <Route path="/" element={<HomeV2 />} />
-        <Route path="/about-us" element={<LegacySite><AboutPage /></LegacySite>} />
+        <Route path="/about" element={<AboutV2 />} />
+        <Route path="/about-us" element={<AboutV2 />} />
         <Route path="/our-institutions" element={<LegacySite><InstitutionsPage /></LegacySite>} />
         <Route path="/our-ventures" element={<LegacySite><VenturesPage /></LegacySite>} />
         <Route path="/media" element={<LegacySite><MediaPage /></LegacySite>} />
