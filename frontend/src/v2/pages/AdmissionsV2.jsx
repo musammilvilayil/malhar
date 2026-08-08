@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import BrandLogoV2 from "../components/BrandLogoV2";
+import Navbar from "../components/Navbar";
 import { CONTACT, INSTITUTIONS } from "../../data";
 import "../v2.css";
 import "./AdmissionsV2.css";
@@ -30,6 +30,7 @@ export default function AdmissionsV2() {
 
   return (
     <main className="v2-admissions">
+      <Navbar />
       <section className="v2-admissions__hero" aria-labelledby="v2-admissions-title">
         <img
           src="/assets/web-slide-1-2048x909.webp"
@@ -37,16 +38,6 @@ export default function AdmissionsV2() {
           className="v2-admissions__hero-image"
         />
         <div className="v2-admissions__hero-wash" aria-hidden="true" />
-
-        <nav className="v2-admissions__nav" aria-label="Admissions page navigation">
-          <Link to="/" className="v2-admissions__wordmark">
-            <BrandLogoV2 />
-          </Link>
-          <div>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-        </nav>
 
         <motion.div
           className="v2-admissions__hero-copy"

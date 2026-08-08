@@ -14,20 +14,13 @@ export default function HeroV2() {
         alt="Malhar campus in Manjeshwar, Kasaragod"
         className="v2-hero__media"
         loading="eager"
-        fetchPriority="high"
       />
 
       <div className="v2-hero__wash" />
       <div className="v2-hero__grain" aria-hidden="true" />
 
       <header className="v2-hero__topline">
-        <Link to="/" className="v2-wordmark" aria-label="Malhar home">
-          <BrandLogoV2 />
-        </Link>
-
-        <div className="v2-hero__meta">
-          <span>Manjeshwar · Kasaragod · Kerala</span>
-        </div>
+        {/* Logo is shown in the navbar; remove duplicate from hero header */}
       </header>
 
       <div className="v2-hero__content">

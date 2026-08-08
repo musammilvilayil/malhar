@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import BrandLogoV2 from "../components/BrandLogoV2";
+import Navbar from "../components/Navbar";
+import "../v2.css";
 import "./DonationV2.css";
 
 const supportAreas = [
@@ -31,6 +32,7 @@ const reveal = {
 export default function DonationV2() {
   return (
     <main className="v2-donation">
+      <Navbar />
       <section className="v2-donation__hero">
         <img
           className="v2-donation__hero-image"
@@ -38,16 +40,6 @@ export default function DonationV2() {
           alt="A gathering at Malhar campus"
         />
         <div className="v2-donation__hero-wash" />
-
-        <nav className="v2-donation__nav" aria-label="Donation page navigation">
-          <Link className="v2-donation__wordmark" to="/">
-            <BrandLogoV2 />
-          </Link>
-          <div>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-        </nav>
 
         <motion.div className="v2-donation__hero-copy" {...reveal}>
           <p>Support Malhar</p>

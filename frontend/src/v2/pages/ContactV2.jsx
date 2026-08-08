@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import BrandLogoV2 from "../components/BrandLogoV2";
+import Navbar from "../components/Navbar";
 import { api } from "@/lib/api";
+import "../v2.css";
 import "./ContactV2.css";
 
 const contact = {
@@ -14,11 +15,32 @@ const contact = {
 };
 
 const reveal = {
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.18 },
   transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
 };
+
+const methods = [
+  {
+    label: "Phone",
+    value: contact.phone,
+    href: contact.phoneHref,
+    hint: "Call us",
+  },
+  {
+    label: "Email",
+    value: contact.email,
+    href: contact.emailHref,
+    hint: "Write directly",
+  },
+  {
+    label: "Address",
+    value: contact.address,
+    href: "https://www.google.com/maps/search/Al+Buhakari+Compound+Hosangadi+Manjeshwar",
+    hint: "Visit our campus",
+  },
+];
 
 export default function ContactV2() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -53,7 +75,9 @@ export default function ContactV2() {
 
   return (
     <main className="v2-contact">
-      <section className="v2-contact__hero">
+      <Navbar />
+
+      <header className="v2-contact__hero">
         <img
           className="v2-contact__hero-image"
           src="/assets/about-imgs.jpg"
@@ -61,69 +85,70 @@ export default function ContactV2() {
         />
         <div className="v2-contact__hero-wash" />
 
-        <nav className="v2-contact__nav" aria-label="Contact page navigation">
-          <Link className="v2-contact__wordmark" to="/">
-            <BrandLogoV2 />
-          </Link>
-          <div>
-            <Link to="/about">About</Link>
-            <Link to="/admissions">Admissions</Link>
-          </div>
-        </nav>
-
         <motion.div className="v2-contact__hero-copy" {...reveal}>
-          <p>Contact Malhar</p>
-          <h1>Begin a <em>conversation.</em></h1>
-          <span>
+          <span className="v2-contact__eyebrow">Contact Malhar</span>
+          <h1 id="contact-hero-title">
+            Begin a <em>conversation.</em>
+          </h1>
+          <p>
             Reach the Malhar office for admissions, institution information,
             campus visits and general enquiries.
-          </span>
+          </p>
+
+          <div className="v2-contact__hero-actions">
+            <a className="v2-primary-action" href={contact.phoneHref}>
+              Call us
+            </a>
+            <Link className="v2-secondary-action" to="/admissions">
+              Admissions support
+            </Link>
+          </div>
         </motion.div>
-      </section>
+      </header>
 
-      <section className="v2-contact__details">
-        <motion.header {...reveal}>
-          <p>Reach us directly</p>
-          <h2>One place for every enquiry.</h2>
-        </motion.header>
+      <section className="v2-contact__methods" aria-labelledby="contact-methods-title">
+        <div className="v2-section-heading">
+          <span>Reach us directly</span>
+          <h2 id="contact-methods-title">One place for every enquiry.</h2>
+        </div>
 
-        <div className="v2-contact__detail-list">
-          <motion.a href={contact.phoneHref} {...reveal}>
-            <small>01 / Phone</small>
-            <strong>{contact.phone}</strong>
-            <span aria-hidden="true">↗</span>
-          </motion.a>
-          <motion.a href={contact.emailHref} {...reveal}>
-            <small>02 / Email</small>
-            <strong>{contact.email}</strong>
-            <span aria-hidden="true">↗</span>
-          </motion.a>
-          <motion.address {...reveal}>
-            <small>03 / Address</small>
-            <strong>{contact.address}</strong>
-          </motion.address>
+        <div className="v2-contact__method-grid">
+          {methods.map((method) => (
+            <motion.a
+              key={method.label}
+              href={method.href}
+              target={method.label === "Address" ? "_blank" : undefined}
+              rel={method.label === "Address" ? "noreferrer" : undefined}
+              className="v2-contact__method-card"
+              {...reveal}
+            >
+              <strong>{method.label}</strong>
+              <span>{method.value}</span>
+              <small>{method.hint}</small>
+            </motion.a>
+          ))}
         </div>
       </section>
 
-      <section className="v2-contact__message">
+      <section className="v2-contact__form-section" aria-labelledby="contact-form-title">
         <motion.div className="v2-contact__message-intro" {...reveal}>
-          <p>Send a message</p>
-          <h2>Tell us how we can help.</h2>
-          <span>
-            Complete the form and the Malhar team can respond using the contact
+          <span>Send a message</span>
+          <h2 id="contact-form-title">Tell us how we can help.</h2>
+          <p>
+            Complete the form below and the Malhar team will follow up using the
             details you provide.
-          </span>
+          </p>
         </motion.div>
 
-        <motion.form onSubmit={submit} {...reveal}>
+        <motion.form className="v2-contact__form" onSubmit={submit} {...reveal}>
           <label>
             <span>Your name</span>
             <input
-              required
-              autoComplete="name"
               name="name"
               value={form.name}
               onChange={updateField}
+              required
+              autoComplete="name"
               placeholder="Enter your full name"
             />
           </label>
@@ -132,24 +157,27 @@ export default function ContactV2() {
             <label>
               <span>Email address</span>
               <input
-                required
                 type="email"
-                autoComplete="email"
                 name="email"
                 value={form.email}
                 onChange={updateField}
+                required
+                autoComplete="email"
                 placeholder="name@example.com"
               />
             </label>
+
             <label>
-              <span>Phone <small>Optional</small></span>
+              <span>
+                Phone <small>Optional</small>
+              </span>
               <input
                 type="tel"
-                autoComplete="tel"
                 name="phone"
                 value={form.phone}
                 onChange={updateField}
-                placeholder="+91"
+                autoComplete="tel"
+                placeholder="+91 8891001205"
               />
             </label>
           </div>
@@ -157,24 +185,21 @@ export default function ContactV2() {
           <label>
             <span>Your message</span>
             <textarea
-              required
-              rows="5"
               name="message"
               value={form.message}
               onChange={updateField}
+              rows={6}
+              required
               placeholder="Write your enquiry here"
             />
           </label>
 
           <div className="v2-contact__form-footer">
             <button type="submit" disabled={submitting}>
-              {submitting ? "Sending…" : "Send message"} <span aria-hidden="true">→</span>
+              {submitting ? "Sending…" : "Send message"}
+              <span aria-hidden="true">→</span>
             </button>
-            <p
-              className={status.type ? `is-${status.type}` : ""}
-              role="status"
-              aria-live="polite"
-            >
+            <p className={status.type ? `is-${status.type}` : ""} role="status" aria-live="polite">
               {status.message}
             </p>
           </div>
@@ -183,7 +208,7 @@ export default function ContactV2() {
 
       <section className="v2-contact__closing">
         <motion.div {...reveal}>
-          <p>Visit the official website</p>
+          <span>Visit the official website</span>
           <h2>Stay connected with Malhar.</h2>
           <a href="https://malharonline.com/contact/" target="_blank" rel="noreferrer">
             Official contact page <span aria-hidden="true">↗</span>

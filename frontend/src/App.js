@@ -10,6 +10,8 @@ import AdmissionsV2 from "@/v2/pages/AdmissionsV2";
 import DonationV2 from "@/v2/pages/DonationV2";
 import ContactV2 from "@/v2/pages/ContactV2";
 import NewsV2 from "@/v2/pages/NewsV2";
+import MediaV2 from "@/v2/pages/MediaV2";
+import VenturesV2 from "@/v2/pages/VenturesV2";
 import InstitutionV2 from "@/v2/pages/InstitutionV2";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -51,6 +53,8 @@ function App() {
         <Route path="/" element={<HomeV2 />} />
         <Route path="/about" element={<AboutV2 />} />
         <Route path="/news" element={<NewsV2 />} />
+        <Route path="/media" element={<MediaV2 />} />
+        <Route path="/ventures" element={<VenturesV2 />} />
         <Route path="/contact" element={<ContactV2 />} />
         <Route path="/donation" element={<DonationV2 />} />
         <Route path="/admissions" element={<AdmissionsV2 />} />

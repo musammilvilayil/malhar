@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link, Navigate, useParams } from "react-router-dom";
-import BrandLogoV2 from "../components/BrandLogoV2";
+import Navbar from "../components/Navbar";
+import "../v2.css";
 import { siteData } from "../../data/malharData";
 import "./InstitutionV2.css";
 
@@ -23,17 +24,10 @@ export default function InstitutionV2() {
 
   return (
     <main className="v2-institution-detail">
+      <Navbar />
       <section className="v2-institution-detail__hero">
         <img src={institution.image} alt={institution.name} />
         <div className="v2-institution-detail__wash" aria-hidden="true" />
-
-        <nav className="v2-institution-detail__nav" aria-label="Institution page navigation">
-          <Link to="/" aria-label="Malhar home"><BrandLogoV2 /></Link>
-          <div>
-            <Link to="/admissions">Admissions</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-        </nav>
 
         <motion.div className="v2-institution-detail__hero-copy" {...reveal}>
           <p>Malhar · Institution</p>

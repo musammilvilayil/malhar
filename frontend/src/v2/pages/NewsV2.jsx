@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import BrandLogoV2 from "../components/BrandLogoV2";
+import Navbar from "../components/Navbar";
+import "../v2.css";
 import "./NewsV2.css";
 
 const reveal = {
@@ -13,6 +14,7 @@ const reveal = {
 export default function NewsV2() {
   return (
     <main className="v2-news">
+      <Navbar />
       <section className="v2-news__hero">
         <img
           className="v2-news__hero-image"
@@ -20,16 +22,6 @@ export default function NewsV2() {
           alt="A gathering at Malhar"
         />
         <div className="v2-news__hero-wash" />
-
-        <nav className="v2-news__nav" aria-label="News page navigation">
-          <Link className="v2-news__wordmark" to="/">
-            <BrandLogoV2 />
-          </Link>
-          <div>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-        </nav>
 
         <motion.div className="v2-news__hero-copy" {...reveal}>
           <p>News & announcements</p>

@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import BrandLogoV2 from "../components/BrandLogoV2";
+import Navbar from "../components/Navbar";
 import { INSTITUTIONS } from "../../data";
 import "../v2.css";
 import "./AboutV2.css";
@@ -34,6 +34,7 @@ export default function AboutV2() {
 
   return (
     <main className="v2-about">
+      <Navbar />
       <section className="v2-about__hero" aria-labelledby="v2-about-title">
         <img
           src="/assets/about-imgs.jpg"
@@ -41,16 +42,6 @@ export default function AboutV2() {
           className="v2-about__hero-image"
         />
         <div className="v2-about__hero-wash" aria-hidden="true" />
-
-        <nav className="v2-about__nav" aria-label="About page navigation">
-          <Link to="/" className="v2-about__wordmark">
-            <BrandLogoV2 />
-          </Link>
-          <div>
-            <Link to="/admissions">Admissions</Link>
-            <Link to="/contact">Contact</Link>
-          </div>
-        </nav>
 
         <motion.div
           className="v2-about__hero-copy"

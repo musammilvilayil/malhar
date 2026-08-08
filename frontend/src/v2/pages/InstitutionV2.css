@@ -34,31 +34,11 @@
     linear-gradient(90deg, rgba(3,11,8,.78), transparent 72%);
 }
 
-.v2-institution-detail__nav,
 .v2-institution-detail__hero-copy,
 .v2-institution-detail__story,
 .v2-institution-detail__contact {
   width: min(100% - 48px, 1320px);
   margin-inline: auto;
-}
-
-.v2-institution-detail__nav {
-  position: relative;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 28px;
-}
-
-.v2-institution-detail__nav a { color: var(--institution-paper); text-decoration: none; }
-.v2-institution-detail__nav > div { display: flex; gap: 1.5rem; }
-.v2-institution-detail__nav > div a {
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(216,173,88,.48);
-  font-size: 9px;
-  letter-spacing: .17em;
-  text-transform: uppercase;
 }
 
 .v2-institution-detail__hero-copy {
