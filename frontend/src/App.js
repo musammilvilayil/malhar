@@ -12,11 +12,12 @@ import ClickSpark from "@/components/reactbits/ClickSpark";
 import FadeContent from "@/components/reactbits/FadeContent";
 import HomeV2 from "@/v2/HomeV2";
 import AboutV2 from "@/v2/pages/AboutV2";
+import AdmissionsV2 from "@/v2/pages/AdmissionsV2";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
 import {
   InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
-  AdmissionPage, InstructorPage, InstitutionPage,
+  InstructorPage, InstitutionPage,
 } from "@/pages/Pages";
 import Admin from "@/pages/Admin";
 
@@ -78,7 +79,8 @@ function App() {
         <Route path="/news" element={<LegacySite><NewsPage /></LegacySite>} />
         <Route path="/contact" element={<LegacySite><ContactPage /></LegacySite>} />
         <Route path="/donate-us" element={<LegacySite><DonatePage /></LegacySite>} />
-        <Route path="/admission" element={<LegacySite><AdmissionPage /></LegacySite>} />
+        <Route path="/admission" element={<AdmissionsV2 />} />
+        <Route path="/admissions" element={<AdmissionsV2 />} />
         <Route path="/institution/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
         <Route path="/instructor/:slug" element={<LegacySite><InstructorPage /></LegacySite>} />
         <Route path="/admin" element={<Admin />} />
