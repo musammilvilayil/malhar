@@ -13,7 +13,7 @@ import FadeContent from "@/components/reactbits/FadeContent";
 import HomeV2 from "@/v2/HomeV2";
 import AboutV2 from "@/v2/pages/AboutV2";
 import AdmissionsV2 from "@/v2/pages/AdmissionsV2";
-import DonatePage from "@/pages/Donate";
+import DonationV2 from "@/v2/pages/DonationV2";
 import ContactPage from "@/pages/Contact";
 import {
   InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
@@ -78,7 +78,8 @@ function App() {
         <Route path="/gallery" element={<LegacySite><GalleryPage /></LegacySite>} />
         <Route path="/news" element={<LegacySite><NewsPage /></LegacySite>} />
         <Route path="/contact" element={<LegacySite><ContactPage /></LegacySite>} />
-        <Route path="/donate-us" element={<LegacySite><DonatePage /></LegacySite>} />
+        <Route path="/donate-us" element={<DonationV2 />} />
+        <Route path="/donation" element={<DonationV2 />} />
         <Route path="/admission" element={<AdmissionsV2 />} />
         <Route path="/admissions" element={<AdmissionsV2 />} />
         <Route path="/institution/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
