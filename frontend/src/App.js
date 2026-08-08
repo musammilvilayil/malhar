@@ -11,7 +11,6 @@ import DonationV2 from "@/v2/pages/DonationV2";
 import ContactV2 from "@/v2/pages/ContactV2";
 import NewsV2 from "@/v2/pages/NewsV2";
 import InstitutionV2 from "@/v2/pages/InstitutionV2";
-import Admin from "@/pages/Admin";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,21 +50,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeV2 />} />
         <Route path="/about" element={<AboutV2 />} />
-        <Route path="/about-us" element={<Navigate to="/about" replace />} />
-        <Route path="/our-institutions" element={<Navigate to="/admissions" replace />} />
-        <Route path="/our-ventures" element={<Navigate to="/" replace />} />
-        <Route path="/media" element={<Navigate to="/" replace />} />
-        <Route path="/gallery" element={<Navigate to="/" replace />} />
         <Route path="/news" element={<NewsV2 />} />
         <Route path="/contact" element={<ContactV2 />} />
-        <Route path="/donate-us" element={<Navigate to="/donation" replace />} />
         <Route path="/donation" element={<DonationV2 />} />
-        <Route path="/admission" element={<Navigate to="/admissions" replace />} />
         <Route path="/admissions" element={<AdmissionsV2 />} />
         <Route path="/institutions/:slug" element={<InstitutionV2 />} />
-        <Route path="/institution/:slug" element={<InstitutionV2 />} />
-        <Route path="/instructor/:slug" element={<Navigate to="/about" replace />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

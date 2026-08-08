@@ -167,7 +167,7 @@ export default function AboutV2() {
           ))}
         </ol>
 
-        <Link to="/our-institutions" className="v2-about__text-link">
+        <Link to="/admissions" className="v2-about__text-link">
           Explore all institutions <span aria-hidden="true">↗</span>
         </Link>
       </section>

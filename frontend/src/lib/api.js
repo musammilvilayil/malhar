@@ -18,13 +18,3 @@ export const API = normalizedConfiguredUrl
 
 export const BACKEND_URL = API.endsWith("/api") ? API.slice(0, -4) : API;
 export const api = axios.create({ baseURL: API, timeout: 15000 });
-
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("malhar_admin_token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
-});
-
-export const getToken = () => localStorage.getItem("malhar_admin_token");
-export const setToken = (t) => localStorage.setItem("malhar_admin_token", t);
-export const clearToken = () => localStorage.removeItem("malhar_admin_token");
