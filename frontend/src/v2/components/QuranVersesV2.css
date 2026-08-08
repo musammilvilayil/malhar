@@ -1,0 +1,310 @@
+.v2-quran {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(36, 105, 79, 0.22), transparent 34%),
+    linear-gradient(180deg, #07100d 0%, #0a1712 42%, #07100d 100%);
+  color: var(--v2-paper);
+  border-top: 1px solid rgba(242, 234, 215, 0.08);
+}
+
+.v2-quran__halo {
+  position: absolute;
+  z-index: 0;
+  width: min(76vw, 1100px);
+  aspect-ratio: 1;
+  right: -22vw;
+  top: 4%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(217, 173, 86, 0.12) 0%, rgba(46, 122, 91, 0.08) 34%, transparent 68%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.v2-quran__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.13;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.11) 0 0.55px, transparent 0.75px),
+    radial-gradient(circle at 75% 70%, rgba(255,255,255,.08) 0 0.5px, transparent 0.7px);
+  background-size: 8px 8px, 11px 11px;
+}
+
+.v2-quran__chapter-mark {
+  position: absolute;
+  z-index: 0;
+  right: clamp(-1rem, 2vw, 2rem);
+  top: 4vh;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(10rem, 26vw, 26rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 234, 215, 0.05);
+  user-select: none;
+  pointer-events: none;
+}
+
+.v2-quran__inner {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 48px, 1320px);
+  margin: 0 auto;
+  padding: clamp(7rem, 11vw, 11rem) 0 clamp(7rem, 10vw, 10rem);
+}
+
+.v2-quran__header {
+  max-width: 1080px;
+  margin-bottom: clamp(5rem, 10vw, 9rem);
+}
+
+.v2-quran__chapter-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 215, 0.52);
+}
+
+.v2-quran__chapter-label span:first-child {
+  color: var(--v2-gold);
+}
+
+.v2-quran__chapter-label i {
+  width: 42px;
+  height: 1px;
+  background: rgba(217, 173, 86, 0.55);
+}
+
+.v2-quran__intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: end;
+}
+
+.v2-quran__intro-grid h2 {
+  margin: 0;
+  max-width: 820px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4.1rem, 8.2vw, 8.7rem);
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.v2-quran__intro-grid h2 em {
+  display: block;
+  color: var(--v2-gold);
+  font-weight: 400;
+}
+
+.v2-quran__intro-grid > p {
+  margin: 0 0 8px;
+  max-width: 430px;
+  font-size: clamp(0.94rem, 1.2vw, 1.08rem);
+  line-height: 1.8;
+  color: rgba(242, 234, 215, 0.58);
+}
+
+.v2-quran__verses {
+  border-top: 1px solid rgba(242, 234, 215, 0.13);
+}
+
+.v2-quran__verse {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  min-height: clamp(520px, 72vh, 760px);
+  padding: clamp(4.5rem, 8vw, 8rem) 0;
+  border-bottom: 1px solid rgba(242, 234, 215, 0.13);
+  align-items: center;
+}
+
+.v2-quran__verse-index {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px 0;
+  color: rgba(242, 234, 215, 0.42);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.v2-quran__verse-index i {
+  width: 1px;
+  min-height: 120px;
+  flex: 0 1 35%;
+  background: linear-gradient(180deg, rgba(217, 173, 86, 0.62), transparent);
+}
+
+.v2-quran__verse-body {
+  min-width: 0;
+}
+
+.v2-quran__arabic {
+  margin: 0;
+  max-width: 1080px;
+  font-family: "Amiri", "Noto Naskh Arabic", serif;
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
+  line-height: 1.55;
+  font-weight: 400;
+  color: #f5eddb;
+  text-align: right;
+  text-wrap: balance;
+  text-shadow: 0 12px 46px rgba(0, 0, 0, 0.18);
+}
+
+.v2-quran__translation-row {
+  display: grid;
+  grid-template-columns: minmax(0, 680px) auto;
+  gap: 3rem;
+  align-items: end;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-top: 24px;
+  border-top: 1px solid rgba(217, 173, 86, 0.22);
+}
+
+.v2-quran__translation {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 2.6vw, 2.7rem);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: rgba(242, 234, 215, 0.82);
+}
+
+.v2-quran__reference {
+  margin: 0;
+  justify-self: end;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+  white-space: nowrap;
+}
+
+.v2-quran__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 28px;
+  font-size: 9px;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 215, 0.34);
+}
+
+@media (max-width: 900px) {
+  .v2-quran__inner {
+    width: min(100% - 32px, 100%);
+  }
+
+  .v2-quran__intro-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .v2-quran__intro-grid > p {
+    max-width: 620px;
+  }
+
+  .v2-quran__verse {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .v2-quran__translation-row {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .v2-quran__reference {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .v2-quran__inner {
+    padding: 6rem 0 6.5rem;
+  }
+
+  .v2-quran__chapter-mark {
+    top: 2.5rem;
+    right: -0.25rem;
+    font-size: 42vw;
+  }
+
+  .v2-quran__header {
+    margin-bottom: 4.5rem;
+  }
+
+  .v2-quran__chapter-label {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .v2-quran__intro-grid h2 {
+    font-size: clamp(3.6rem, 17vw, 5.5rem);
+    line-height: 0.9;
+  }
+
+  .v2-quran__verse {
+    display: block;
+    min-height: 0;
+    padding: 4.5rem 0 5rem;
+  }
+
+  .v2-quran__verse-index {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-bottom: 2rem;
+  }
+
+  .v2-quran__verse-index i {
+    width: 54px;
+    height: 1px;
+    min-height: 0;
+    background: linear-gradient(90deg, rgba(217, 173, 86, 0.62), transparent);
+  }
+
+  .v2-quran__arabic {
+    font-size: clamp(2.75rem, 12vw, 4.4rem);
+    line-height: 1.62;
+  }
+
+  .v2-quran__translation-row {
+    margin-top: 2.2rem;
+    padding-top: 18px;
+  }
+
+  .v2-quran__translation {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .v2-quran__footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-quran__halo,
+  .v2-quran__header,
+  .v2-quran__verse {
+    transform: none !important;
+  }
+}
