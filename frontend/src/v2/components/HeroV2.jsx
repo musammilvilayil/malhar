@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function HeroV2() {
@@ -30,9 +30,6 @@ export default function HeroV2() {
 
         <div className="v2-hero__meta">
           <span>Manjeshwar · Kasaragod · Kerala</span>
-          <Link to="/our-institutions" className="v2-text-link">
-            Explore <ArrowUpRight size={14} />
-          </Link>
         </div>
       </header>
 

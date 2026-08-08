@@ -21,7 +21,7 @@ export const INSTITUTIONS = [
     slug: "she-garden",
     name: "Malhar She Garden",
     desc: "Women's education combining Sharee'a and Da'wa studies with academic learning.",
-    image: null,
+    image: "/assets/girls highschooll.jpg",
   },
   {
     slug: "sharia",
