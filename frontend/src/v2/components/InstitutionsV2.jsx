@@ -122,7 +122,7 @@ export default function InstitutionsV2() {
       aria-labelledby="v2-institutions-title"
     >
       <header className="v2-institutions__chapter">
-        <p><span>Chapter 03</span><i />Institutions Journey</p>
+        <p><span>Institutions Journey</span><i /></p>
         <h2 id="v2-institutions-title">Seven paths.<em>One purpose.</em></h2>
         <span className="v2-institutions__hint">Scroll to explore</span>
       </header>
