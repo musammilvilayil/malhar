@@ -14,7 +14,7 @@ import HomeV2 from "@/v2/HomeV2";
 import AboutV2 from "@/v2/pages/AboutV2";
 import AdmissionsV2 from "@/v2/pages/AdmissionsV2";
 import DonationV2 from "@/v2/pages/DonationV2";
-import ContactPage from "@/pages/Contact";
+import ContactV2 from "@/v2/pages/ContactV2";
 import {
   InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
   InstructorPage, InstitutionPage,
@@ -77,7 +77,7 @@ function App() {
         <Route path="/media" element={<LegacySite><MediaPage /></LegacySite>} />
         <Route path="/gallery" element={<LegacySite><GalleryPage /></LegacySite>} />
         <Route path="/news" element={<LegacySite><NewsPage /></LegacySite>} />
-        <Route path="/contact" element={<LegacySite><ContactPage /></LegacySite>} />
+        <Route path="/contact" element={<ContactV2 />} />
         <Route path="/donate-us" element={<DonationV2 />} />
         <Route path="/donation" element={<DonationV2 />} />
         <Route path="/admission" element={<AdmissionsV2 />} />
