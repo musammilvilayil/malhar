@@ -434,3 +434,21 @@
 @media (prefers-reduced-motion: reduce) {
   .v2-hero__media { animation: none; }
 }
+
+
+/* Soft section hand-offs keep the V2 story on one continuous canvas. */
+.v2-hero::after {
+  content: "";
+  position: absolute;
+  z-index: 7;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: clamp(90px, 16vh, 170px);
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6,17,13,0), #06110d 94%);
+}
+
+.v2-shell > section {
+  margin-top: -1px;
+}
