@@ -607,3 +607,17 @@
     bottom: 12%;
   }
 }
+
+
+/* Desktop founder chapter occupies exactly one visual viewport. */
+@media (min-width: 761px) {
+  .v2-founder {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .v2-founder__frame {
+    height: 100svh;
+    min-height: 100svh;
+  }
+}
