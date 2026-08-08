@@ -157,7 +157,7 @@ function InstitutionsStory() {
                   <p className="font-serif text-gold text-2xl">{String(i + 1).padStart(2, "0")}</p>
                   <h3 className="mt-4 font-serif text-3xl leading-tight">{it.name}</h3>
                   <p className="mt-4 text-cream/65 leading-7 font-light max-w-md">{it.description}</p>
-                  <Link to={`/institution/${it.slug}`} className="mt-6 inline-flex items-center gap-2 text-gold group">Explore institution <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform" /></Link>
+                  <Link to={`/institutions/${it.slug}`} className="mt-6 inline-flex items-center gap-2 text-gold group">Explore institution <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform" /></Link>
                 </div>
               </motion.article>
             ))}
@@ -173,7 +173,7 @@ function InstitutionsStory() {
                 <p className="text-xs tracking-[.22em] text-gold">{String(i + 1).padStart(2, "0")}</p>
                 <h3 className="mt-2 font-serif text-3xl leading-tight">{it.name}</h3>
                 <p className="mt-3 text-sm leading-6 text-cream/72">{it.description}</p>
-                <Link to={`/institution/${it.slug}`} className="mt-5 inline-flex items-center gap-2 text-gold">Explore <ArrowUpRight size={15} /></Link>
+                <Link to={`/institutions/${it.slug}`} className="mt-5 inline-flex items-center gap-2 text-gold">Explore <ArrowUpRight size={15} /></Link>
               </div>
             </motion.article>
           ))}

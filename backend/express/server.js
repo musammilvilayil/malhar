@@ -459,7 +459,7 @@ const INSTITUTIONS = [
     slug: 'she-garden',
     name: 'Malhar She Garden',
     desc: 'Providing high-quality undergraduate and graduate education for women — promoting research, scholarship and creativity through a spiritual platform.',
-    image: '/assets/web-p.png',
+    image: '',
   },
   {
     slug: 'sharia',
@@ -480,10 +480,10 @@ const INSTITUTIONS = [
     image: '/assets/english-school.png',
   },
   {
-    slug: 'buds-school',
-    name: 'She Garden Buds School',
-    desc: 'ZeeQue Preschool — state-of-the-art early childhood care for ages 3 to 6 across three stages (LZQ, MZQ, UZQ), nurturing creativity, collaboration and joyful learning.',
-    image: '/assets/zq-3.png',
+    slug: 'commerce',
+    name: 'Malhar College of Commerce',
+    desc: "Commerce and business education within Malhar's learning environment.",
+    image: '/assets/19-1.jpg',
   },
 ];
 

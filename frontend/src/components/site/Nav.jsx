@@ -45,7 +45,7 @@ export const Nav = () => {
   const navSurfaceClass = useOverlayNav
     ? "bg-transparent"
     : "bg-cream/95 backdrop-blur-xl border-b border-charcoal/10 shadow-[0_1px_0_rgba(26,26,26,0.04)]";
-  const donateActive = pathname.startsWith("/donate");
+  const donateActive = pathname.startsWith("/donation");
   const donateClass = donateActive
     ? "border-gold bg-gold text-emerald"
     : useOverlayNav
@@ -96,7 +96,7 @@ export const Nav = () => {
           <div className="relative z-[110] flex items-center gap-3">
             <Magnet padding={35} magnetStrength={4} wrapperClassName="hidden sm:inline-block">
               <Link
-                to="/donate-us"
+                to="/donation"
                 className={`inline-flex items-center text-sm px-5 py-2.5 border transition-all duration-300 ${donateClass}`}
                 data-testid="nav-donate"
                 aria-current={donateActive ? "page" : undefined}
@@ -105,7 +105,7 @@ export const Nav = () => {
               </Link>
             </Magnet>
             <Magnet padding={35} magnetStrength={4} wrapperClassName="hidden sm:inline-block">
-              <Link to="/admission" className="inline-flex text-sm px-5 py-2.5 bg-emerald text-cream hover:bg-emerald-light transition-colors" data-testid="nav-admission">
+              <Link to="/admissions" className="inline-flex text-sm px-5 py-2.5 bg-emerald text-cream hover:bg-emerald-light transition-colors" data-testid="nav-admission">
                 Admission
               </Link>
             </Magnet>
@@ -154,8 +154,8 @@ export const Nav = () => {
             </nav>
 
             <div className="mt-auto flex flex-col gap-3 pt-10">
-              <Link to="/admission" onClick={() => setOpen(false)} className="px-5 py-3 bg-gold text-emerald text-center font-medium" data-testid="mobile-admission">Apply for Admission</Link>
-              <Link to="/donate-us" onClick={() => setOpen(false)} className={`px-5 py-3 border text-center ${donateActive ? "border-gold bg-gold text-emerald" : "border-gold text-gold"}`} data-testid="mobile-donate">Donate</Link>
+              <Link to="/admissions" onClick={() => setOpen(false)} className="px-5 py-3 bg-gold text-emerald text-center font-medium" data-testid="mobile-admission">Apply for Admission</Link>
+              <Link to="/donation" onClick={() => setOpen(false)} className={`px-5 py-3 border text-center ${donateActive ? "border-gold bg-gold text-emerald" : "border-gold text-gold"}`} data-testid="mobile-donate">Donate</Link>
             </div>
           </motion.div>
         )}

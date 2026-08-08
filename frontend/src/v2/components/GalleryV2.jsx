@@ -7,13 +7,7 @@ export default function GalleryV2() {
 
   return (
     <section id="visual-journal" className="v2-gallery" aria-labelledby="v2-gallery-title">
-      <header className="v2-gallery__header">
-        <p>Visual journal</p>
-        <h2 id="v2-gallery-title">Moments,<em>uncropped.</em></h2>
-        <span>
-          A collection presented in each photograph’s natural proportion.
-        </span>
-      </header>
+      <h2 id="v2-gallery-title" className="v2-gallery__sr-only">Visual journal</h2>
 
       <div className="v2-gallery__masonry">
         {GALLERY_IMAGES.map((item, index) => (

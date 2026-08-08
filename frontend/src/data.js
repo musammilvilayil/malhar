@@ -1,7 +1,7 @@
 import { Facebook, Instagram, Youtube } from "lucide-react";
 
 export const INSTITUTION_ORDER = [
-  "quran-studies", "model-academy", "she-garden", "sharia", "miid", "english-medium", "buds-school",
+  "quran-studies", "model-academy", "she-garden", "sharia", "miid", "english-medium", "commerce",
 ];
 
 export const INSTITUTIONS = [
@@ -21,8 +21,7 @@ export const INSTITUTIONS = [
     slug: "she-garden",
     name: "Malhar She Garden",
     desc: "Women's education combining Sharee'a and Da'wa studies with academic learning.",
-    image: "/assets/web-sh.png",
-    imageReference: "https://in.pinterest.com/pin/18929260940768729/",
+    image: null,
   },
   {
     slug: "sharia",
@@ -43,10 +42,10 @@ export const INSTITUTIONS = [
     image: "/assets/english-school.png",
   },
   {
-    slug: "buds-school",
-    name: "She Garden Buds School",
-    desc: "ZeeQue preschool learning for ages 3–6 across LZQ, MZQ and UZQ stages.",
-    image: "/assets/zq-3.png",
+    slug: "commerce",
+    name: "Malhar College of Commerce",
+    desc: "Commerce and business education within Malhar's learning environment.",
+    image: "/assets/19-1.jpg",
   },
 ];
 
@@ -62,10 +61,10 @@ export const CONTACT = {
 };
 
 export const NAV_LINKS = [
-  { label: "About", to: "/about-us" },
-  { label: "Institutions", to: "/our-institutions" },
-  { label: "Media", to: "/media" },
-  { label: "Gallery", to: "/gallery" },
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Admissions", to: "/admissions" },
+  { label: "Donation", to: "/donation" },
   { label: "News", to: "/news" },
   { label: "Contact", to: "/contact" },
 ];
@@ -99,6 +98,34 @@ export const GALLERY_IMAGES = [
   { src: "/assets/7-2.jpg", caption: "Campus life", cols: 2, rows: 1 },
   { src: "/assets/Posoat-Thangal.jpg", caption: "Founder Sheikh Sayyid Umarul Farooq Al Bukhari", cols: 1, rows: 1 },
   { src: "/assets/Hassan-Kunhi.jpg", caption: "Faculty leadership", cols: 1, rows: 1 },
+];
+
+export const KEY_PERSONALITIES = [
+  {
+    slug: "marhoom-qasi-sayyid-muhammad-umarul-farook-al-bukhari",
+    name: "Marhoom Qasi Sayyid Muhammad Umarul Farook Al Bukhari",
+    knownAs: "Posoat Thangal",
+    role: "Founder",
+    image: "/assets/Posoat-Thangal-360x370.jpg",
+  },
+  {
+    slug: "sayyid-abdu-rahman-shaheer-al-bukhari",
+    name: "Sayyid Abdu Rahman Shaheer Al Bukhari",
+    role: "Trust Member",
+    image: "/assets/abdu rahman.webp",
+  },
+  {
+    slug: "sayyid-jalaluddeen-sa-adi-al-bukhari",
+    name: "Sayyid Jalaluddeen Sa-adi Al Bukhari",
+    role: "Trust Member",
+    image: "/assets/jalaludheensha.webp",
+  },
+  {
+    slug: "adv-hassan-kunhi-b",
+    name: "Adv Hassan Kunhi B",
+    role: "Advocate / Trustee",
+    image: "/assets/Hassan-Kunhi-360x370.jpg",
+  },
 ];
 
 export const MANIFESTO = [

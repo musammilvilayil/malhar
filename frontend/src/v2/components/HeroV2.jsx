@@ -36,8 +36,6 @@ export default function HeroV2() {
         </div>
       </header>
 
-      <div className="v2-hero__year" aria-hidden="true">2000</div>
-
       <div className="v2-hero__content">
         <div className="v2-hero__eyebrow">
           <span className="v2-hero__eyebrow-line" />

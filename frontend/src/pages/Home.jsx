@@ -184,7 +184,7 @@ const InstitutionsJourney = () => {
                 <p className="text-[10px] uppercase tracking-[0.24em] text-gold">{String(i + 1).padStart(2, "0")}</p>
                 <h3 className="mt-4 font-serif text-3xl md:text-4xl leading-tight">{inst.name}</h3>
                 <p className="mt-5 text-base md:text-lg leading-relaxed text-cream/65 font-light">{inst.description || inst.desc}</p>
-                <Link to={`/institution/${inst.slug}`} className="mt-7 inline-flex items-center gap-2 text-gold font-medium link-underline w-fit">Explore institution <ArrowUpRight size={16} /></Link>
+                <Link to={`/institutions/${inst.slug}`} className="mt-7 inline-flex items-center gap-2 text-gold font-medium link-underline w-fit">Explore institution <ArrowUpRight size={16} /></Link>
               </motion.article>
             ))}
           </div>

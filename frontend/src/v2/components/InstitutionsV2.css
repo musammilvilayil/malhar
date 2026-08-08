@@ -94,6 +94,13 @@
   filter: saturate(.86) contrast(1.06) brightness(.78);
 }
 
+.v2-institutions__panel.is-text-only,
+.v2-institutions__mobile-panel.is-text-only {
+  background:
+    radial-gradient(circle at 76% 28%, rgba(217,173,86,.18), transparent 30%),
+    linear-gradient(145deg, #123c2d, #07100d 72%);
+}
+
 .v2-institutions__wash {
   position: absolute;
   inset: 0;
@@ -165,6 +172,21 @@
   font-size: clamp(.95rem, 1.25vw, 1.15rem);
   line-height: 1.7;
   color: rgba(242, 234, 215, .72);
+}
+
+.v2-institutions__explore {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  margin-top: 1.2rem;
+  padding-bottom: .35rem;
+  border-bottom: 1px solid rgba(217,173,86,.58);
+  color: var(--v2-paper);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-decoration: none;
+  text-transform: uppercase;
+  pointer-events: auto;
 }
 
 .v2-institutions__mobile { display: none; }

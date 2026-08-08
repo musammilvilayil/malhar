@@ -1,0 +1,156 @@
+.v2-personalities {
+  position: relative;
+  padding: clamp(6rem, 10vw, 10rem) 0;
+  overflow: hidden;
+  background: #142019;
+  color: #f0e6d3;
+}
+
+.v2-personalities::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 150px;
+  background: linear-gradient(180deg, #f0e6d3, rgba(240, 230, 211, 0));
+  opacity: .16;
+  pointer-events: none;
+}
+
+.v2-personalities__inner {
+  width: min(100% - 48px, 1320px);
+  margin: 0 auto;
+}
+
+.v2-personalities__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .42fr);
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+.v2-personalities__header > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #c7a45a;
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+
+.v2-personalities__header h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.8rem, 7.5vw, 8rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+.v2-personalities__header h2 em {
+  display: block;
+  color: #c7a45a;
+  font-weight: 400;
+}
+
+.v2-personalities__header > span {
+  max-width: 370px;
+  color: rgba(240, 230, 211, .62);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.v2-personalities__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.7rem);
+}
+
+.v2-personalities__portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #26352c;
+}
+
+.v2-personalities__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 56%, rgba(8, 16, 12, .52));
+  pointer-events: none;
+}
+
+.v2-personalities__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: saturate(.82) contrast(1.03);
+  transition: transform .8s cubic-bezier(.22, 1, .36, 1), filter .5s ease;
+}
+
+.v2-personalities__person:hover img {
+  transform: scale(1.035);
+  filter: saturate(1) contrast(1.02);
+}
+
+.v2-personalities__portrait > span {
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  bottom: 12px;
+  color: rgba(240, 230, 211, .82);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+}
+
+.v2-personalities__copy {
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(240, 230, 211, .18);
+}
+
+.v2-personalities__copy p {
+  margin: 0 0 .65rem;
+  color: #c7a45a;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.v2-personalities__copy h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.25rem, 1.7vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.v2-personalities__copy > span {
+  display: block;
+  margin-top: .65rem;
+  color: rgba(240, 230, 211, .58);
+  font-size: .82rem;
+}
+
+@media (max-width: 900px) {
+  .v2-personalities__inner { width: min(100% - 32px, 760px); }
+  .v2-personalities__header { grid-template-columns: 1fr; }
+  .v2-personalities__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 3rem; }
+}
+
+@media (max-width: 560px) {
+  .v2-personalities { padding: 5rem 0; }
+  .v2-personalities__inner { width: calc(100% - 24px); }
+  .v2-personalities__header { gap: 1.25rem; margin-bottom: 3rem; }
+  .v2-personalities__header h2 { font-size: clamp(3.2rem, 14vw, 4.8rem); }
+  .v2-personalities__header > span { font-size: .88rem; line-height: 1.6; }
+  .v2-personalities__grid { gap: 2.5rem .75rem; }
+  .v2-personalities__copy { padding-top: .85rem; }
+  .v2-personalities__copy h3 { font-size: 1.05rem; }
+  .v2-personalities__copy p { font-size: 7px; letter-spacing: .14em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-personalities__portrait img { transition: none; transform: none !important; }
+}

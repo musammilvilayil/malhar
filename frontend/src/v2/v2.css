@@ -123,22 +123,6 @@
   padding-bottom: 4px;
 }
 
-.v2-hero__year {
-  position: absolute;
-  z-index: 3;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -53%);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(10rem, 29vw, 31rem);
-  line-height: 0.76;
-  letter-spacing: -0.08em;
-  font-weight: 700;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(242, 234, 215, 0.19);
-  white-space: nowrap;
-  user-select: none;
-}
-
 .v2-hero__content {
   position: relative;
   z-index: 8;
@@ -367,12 +351,6 @@
     display: none;
   }
 
-  .v2-hero__year {
-    top: 44%;
-    font-size: clamp(8rem, 47vw, 13rem);
-    -webkit-text-stroke-color: rgba(242, 234, 215, 0.15);
-  }
-
   .v2-hero__title {
     font-size: clamp(3.25rem, 15vw, 5.3rem);
     line-height: 0.9;
@@ -414,7 +392,6 @@
 @media (max-width: 600px) {
   .v2-hero__grain { display: none; }
   .v2-hero__content { padding: 8vh 0 4.5vh; }
-  .v2-hero__year { font-size: clamp(7rem, 42vw, 11rem); }
   .v2-hero__title { font-size: clamp(2.8rem, 12.5vw, 4.5rem); line-height: .92; }
   .v2-hero__eyebrow { margin-bottom: 12px; font-size: 9px; }
   .v2-hero__footer-copy > p { font-size: .88rem; line-height: 1.6; }

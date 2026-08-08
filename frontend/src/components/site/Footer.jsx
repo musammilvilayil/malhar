@@ -37,7 +37,6 @@ export const Footer = () => (
             {NAV_LINKS.map((l) => (
               <li key={l.to}><Link to={l.to} className="link-underline hover:text-gold">{l.label}</Link></li>
             ))}
-            <li><Link to="/admission" className="link-underline hover:text-gold">Admission</Link></li>
           </ul>
         </SpotlightCard>
 
