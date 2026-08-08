@@ -10,7 +10,7 @@ import AdaptiveAtmosphere from "@/components/site/AdaptiveAtmosphere";
 import SiteTour from "@/components/site/SiteTour";
 import ClickSpark from "@/components/reactbits/ClickSpark";
 import FadeContent from "@/components/reactbits/FadeContent";
-import Home from "@/pages/HomeCinematic";
+import HomeV2 from "@/v2/HomeV2";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
 import {
@@ -48,7 +48,7 @@ function ScrollToTop() {
   return null;
 }
 
-const Site = ({ children }) => (
+const LegacySite = ({ children }) => (
   <ClickSpark sparkColor="#D4AF37" sparkCount={6} sparkRadius={18} sparkSize={8}>
     <AdaptiveAtmosphere />
     <Nav />
@@ -67,18 +67,18 @@ function App() {
       <ScrollToTop />
       <Toaster position="top-center" richColors />
       <Routes>
-        <Route path="/" element={<Site><Home /></Site>} />
-        <Route path="/about-us" element={<Site><AboutPage /></Site>} />
-        <Route path="/our-institutions" element={<Site><InstitutionsPage /></Site>} />
-        <Route path="/our-ventures" element={<Site><VenturesPage /></Site>} />
-        <Route path="/media" element={<Site><MediaPage /></Site>} />
-        <Route path="/gallery" element={<Site><GalleryPage /></Site>} />
-        <Route path="/news" element={<Site><NewsPage /></Site>} />
-        <Route path="/contact" element={<Site><ContactPage /></Site>} />
-        <Route path="/donate-us" element={<Site><DonatePage /></Site>} />
-        <Route path="/admission" element={<Site><AdmissionPage /></Site>} />
-        <Route path="/institution/:slug" element={<Site><InstitutionPage /></Site>} />
-        <Route path="/instructor/:slug" element={<Site><InstructorPage /></Site>} />
+        <Route path="/" element={<HomeV2 />} />
+        <Route path="/about-us" element={<LegacySite><AboutPage /></LegacySite>} />
+        <Route path="/our-institutions" element={<LegacySite><InstitutionsPage /></LegacySite>} />
+        <Route path="/our-ventures" element={<LegacySite><VenturesPage /></LegacySite>} />
+        <Route path="/media" element={<LegacySite><MediaPage /></LegacySite>} />
+        <Route path="/gallery" element={<LegacySite><GalleryPage /></LegacySite>} />
+        <Route path="/news" element={<LegacySite><NewsPage /></LegacySite>} />
+        <Route path="/contact" element={<LegacySite><ContactPage /></LegacySite>} />
+        <Route path="/donate-us" element={<LegacySite><DonatePage /></LegacySite>} />
+        <Route path="/admission" element={<LegacySite><AdmissionPage /></LegacySite>} />
+        <Route path="/institution/:slug" element={<LegacySite><InstitutionPage /></LegacySite>} />
+        <Route path="/instructor/:slug" element={<LegacySite><InstructorPage /></LegacySite>} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
