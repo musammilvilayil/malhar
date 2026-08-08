@@ -7,6 +7,8 @@ import { Toaster } from "sonner";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import AdaptiveAtmosphere from "@/components/site/AdaptiveAtmosphere";
+import ClickSpark from "@/components/reactbits/ClickSpark";
+import FadeContent from "@/components/reactbits/FadeContent";
 import Home from "@/pages/HomeCinematic";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
@@ -48,12 +50,14 @@ function ScrollToTop() {
 }
 
 const Site = ({ children }) => (
-  <>
+  <ClickSpark sparkColor="#D4AF37" sparkCount={6} sparkRadius={18} sparkSize={8}>
     <AdaptiveAtmosphere />
     <Nav />
-    <main className="relative">{children}</main>
+    <FadeContent blur duration={0.55} threshold={0.02}>
+      <main className="relative">{children}</main>
+    </FadeContent>
     <Footer />
-  </>
+  </ClickSpark>
 );
 
 function App() {
