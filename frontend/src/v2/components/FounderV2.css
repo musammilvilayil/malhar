@@ -591,3 +591,11 @@
     bottom: 18%;
   }
 }
+
+
+/* Restore the approved mobile founder copy position. */
+@media (max-width: 760px) {
+  .v2-founder__content {
+    bottom: 17%;
+  }
+}
