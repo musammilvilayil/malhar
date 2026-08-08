@@ -347,3 +347,62 @@
     color: rgba(255,250,240,.8);
   }
 }
+
+
+/* Mobile editorial split: unobstructed portrait above, story below. */
+@media (max-width: 760px) {
+  .v2-founder,
+  .v2-founder__frame {
+    min-height: 100svh;
+  }
+
+  .v2-founder__portrait {
+    inset: 1.25rem -3% auto auto;
+    width: 100%;
+    height: 56%;
+    object-fit: contain;
+    object-position: right top;
+    opacity: .86;
+    filter: saturate(.92) contrast(1.1) brightness(.86);
+  }
+
+  .v2-founder__backdrop-wash {
+    background:
+      radial-gradient(circle at 69% 22%, rgba(217,173,86,.09), transparent 37%),
+      linear-gradient(180deg, rgba(6,17,13,.16) 0%, rgba(6,17,13,.1) 38%, #06110d 63%, #06110d 100%);
+  }
+
+  .v2-founder__shade {
+    background:
+      linear-gradient(180deg, rgba(4,12,9,.08) 0%, rgba(4,12,9,.04) 34%, rgba(4,12,9,.5) 52%, #04100c 67%, #04100c 100%);
+  }
+
+  .v2-founder__frame {
+    align-items: flex-end;
+    padding: 54svh 0 4rem;
+  }
+
+  .v2-founder__content {
+    padding-top: 0;
+  }
+
+  .v2-founder__identity h2 {
+    max-width: 12ch;
+    font-size: clamp(2.15rem, 9.2vw, 3.5rem);
+    line-height: .94;
+  }
+
+  .v2-founder__quote {
+    max-width: 100%;
+    margin-top: 1.15rem;
+  }
+
+  .v2-founder__timeline {
+    margin-top: 1rem;
+  }
+}
+
+@keyframes v2-founder-mobile-opacity-in {
+  from { opacity: 0; }
+  to { opacity: .86; }
+}
