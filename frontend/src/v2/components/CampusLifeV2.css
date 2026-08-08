@@ -458,3 +458,13 @@
     mask-image: linear-gradient(90deg, transparent 0%, #000 2%, #000 98%, transparent 100%);
   }
 }
+
+
+/* Tight transition into the light gallery without an empty intermission. */
+@media (max-width: 900px) {
+  .v2-campus { padding-bottom: 3.5rem; }
+}
+@media (max-width: 520px) {
+  .v2-campus { padding-top: 3.25rem; padding-bottom: 2.4rem; }
+  .v2-campus__footer { padding-top: .75rem; }
+}
