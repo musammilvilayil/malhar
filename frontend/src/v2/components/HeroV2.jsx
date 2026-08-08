@@ -68,7 +68,7 @@ export default function HeroV2() {
       </div>
 
       <aside className="v2-hero__rail" aria-label="Malhar location">
-        <span>12°N</span>
+        <span>KERALA</span>
         <span className="v2-hero__rail-line" />
         <span>MANJESHWAR</span>
       </aside>
