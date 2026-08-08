@@ -406,3 +406,34 @@
   from { opacity: 0; }
   to { opacity: .86; }
 }
+
+
+/* Final mobile fit: keep the portrait dominant and all essential copy above the fold. */
+@media (max-width: 760px) {
+  .v2-founder,
+  .v2-founder__frame {
+    min-height: 88svh;
+  }
+
+  .v2-founder__portrait {
+    inset: -2.25rem -3% auto auto;
+    height: 61%;
+  }
+
+  .v2-founder__frame {
+    padding: 49svh 0 3rem;
+  }
+
+  .v2-founder__quote,
+  .v2-founder__timeline {
+    display: none;
+  }
+
+  .v2-founder__identity > p {
+    margin-bottom: 10px;
+  }
+
+  .v2-founder__identity h2 {
+    font-size: clamp(2.05rem, 8.9vw, 3.35rem);
+  }
+}
