@@ -15,7 +15,7 @@ import AboutV2 from "@/v2/pages/AboutV2";
 import DonatePage from "@/pages/Donate";
 import ContactPage from "@/pages/Contact";
 import {
-  AboutPage, InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
+  InstitutionsPage, VenturesPage, MediaPage, GalleryPage, NewsPage,
   AdmissionPage, InstructorPage, InstitutionPage,
 } from "@/pages/Pages";
 import Admin from "@/pages/Admin";
