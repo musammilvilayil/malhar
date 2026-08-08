@@ -167,8 +167,15 @@
   .v2-campus__intro h2 { font-size: clamp(3.8rem, 15vw, 6.6rem); }
   .v2-campus__intro { margin-bottom: 4.5rem; }
 
-  .v2-campus__editorial { display: block; }
-  .v2-campus__card { margin: 0 0 2rem; }
+  .v2-campus__editorial {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .v2-campus__card {
+    grid-column: 1;
+    margin: 0;
+  }
   .v2-campus__media img { min-height: 0; }
 }
 
