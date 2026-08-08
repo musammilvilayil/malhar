@@ -317,3 +317,21 @@
     letter-spacing: .14em;
   }
 }
+
+
+.v2-campus__intro::before { content: none; }
+
+@media (max-width: 900px) {
+  .v2-campus { padding: 4.5rem 0; }
+  .v2-campus__intro { min-height: 520px; margin-bottom: 2.75rem; padding: 3rem 0; }
+  .v2-campus__intro h2 { font-size: clamp(3rem, 12.5vw, 5.2rem); line-height: .91; }
+  .v2-campus__intro-copy { max-width: 36rem; padding-top: .85rem; padding-bottom: .85rem; }
+  .v2-campus__intro-copy > p { font-size: .94rem; line-height: 1.68; }
+  .v2-campus__intro-footer { margin-top: 2rem; }
+  .v2-campus__media figcaption span { font-size: .8rem; line-height: 1.45; }
+}
+
+@media (max-width: 520px) {
+  .v2-campus__intro { min-height: 480px; padding: 2.5rem 0; }
+  .v2-campus__intro h2 { font-size: clamp(2.8rem, 12.5vw, 4.2rem); }
+}
