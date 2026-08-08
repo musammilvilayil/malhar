@@ -1,0 +1,408 @@
+.v2-founder {
+  position: relative;
+  min-height: 175svh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(217, 173, 86, 0.08), transparent 32%),
+    linear-gradient(180deg, #07100d 0%, #0b1712 52%, #efe4cf 52.1%, #efe4cf 100%);
+  color: var(--v2-paper);
+  isolation: isolate;
+}
+
+.v2-founder__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(255,255,255,.1) 0 0.55px, transparent 0.75px),
+    radial-gradient(circle at 78% 66%, rgba(255,255,255,.08) 0 0.55px, transparent 0.75px);
+  background-size: 8px 8px, 11px 11px;
+}
+
+.v2-founder__chapter {
+  position: absolute;
+  z-index: 0;
+  right: -0.04em;
+  top: 7vh;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(12rem, 31vw, 31rem);
+  line-height: 0.72;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 234, 215, 0.07);
+  user-select: none;
+}
+
+.v2-founder__layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(56px, 8vw, 140px);
+  width: min(100% - 64px, 1380px);
+  margin: 0 auto;
+  padding: 15vh 0 17vh;
+}
+
+.v2-founder__visual-column {
+  min-width: 0;
+}
+
+.v2-founder__sticky {
+  position: sticky;
+  top: 10vh;
+}
+
+.v2-founder__portrait-wrap {
+  position: relative;
+  width: min(100%, 560px);
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #0d1a14;
+  box-shadow: 0 42px 120px rgba(0, 0, 0, 0.28);
+}
+
+.v2-founder__portrait-wrap::before,
+.v2-founder__portrait-wrap::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  width: 76px;
+  height: 76px;
+  pointer-events: none;
+}
+
+.v2-founder__portrait-wrap::before {
+  left: 18px;
+  top: 18px;
+  border-left: 1px solid rgba(217, 173, 86, 0.78);
+  border-top: 1px solid rgba(217, 173, 86, 0.78);
+}
+
+.v2-founder__portrait-wrap::after {
+  right: 18px;
+  bottom: 18px;
+  border-right: 1px solid rgba(217, 173, 86, 0.42);
+  border-bottom: 1px solid rgba(217, 173, 86, 0.42);
+}
+
+.v2-founder__portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  filter: sepia(0.08) saturate(0.82) contrast(1.08) brightness(0.88);
+  transform-origin: 50% 50%;
+}
+
+.v2-founder__portrait-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 19, 15, 0.03) 38%, rgba(8, 19, 15, 0.88) 100%),
+    linear-gradient(110deg, rgba(217, 173, 86, 0.12), transparent 38%);
+}
+
+.v2-founder__portrait-caption {
+  position: absolute;
+  z-index: 4;
+  left: 28px;
+  right: 28px;
+  bottom: 26px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid rgba(242, 234, 215, 0.22);
+  padding-top: 16px;
+}
+
+.v2-founder__portrait-caption span {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 215, 0.5);
+}
+
+.v2-founder__portrait-caption strong {
+  max-width: 220px;
+  text-align: right;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.2vw, 2rem);
+  font-weight: 400;
+  color: #f4ead9;
+}
+
+.v2-founder__timeline {
+  display: grid;
+  grid-template-columns: auto minmax(40px, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 560px);
+  margin-top: 24px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 215, 0.46);
+}
+
+.v2-founder__timeline-line {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(217,173,86,.82), rgba(242,234,215,.16));
+}
+
+.v2-founder__story-column {
+  padding-top: 20vh;
+}
+
+.v2-founder__intro {
+  padding-bottom: 14vh;
+}
+
+.v2-founder__eyebrow,
+.v2-founder__identity-label,
+.v2-founder__statement-kicker {
+  margin: 0 0 20px;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.v2-founder__intro h2 {
+  max-width: 760px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4.2rem, 8vw, 8.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  font-weight: 400;
+}
+
+.v2-founder__intro h2 span {
+  display: block;
+  margin-top: 0.08em;
+  color: var(--v2-gold);
+  font-style: italic;
+}
+
+.v2-founder__identity,
+.v2-founder__statement,
+.v2-founder__mission,
+.v2-founder__body-copy {
+  max-width: 720px;
+  border-top: 1px solid rgba(242, 234, 215, 0.15);
+  padding: 58px 0 72px;
+}
+
+.v2-founder__identity h3 {
+  max-width: 680px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.6rem, 5vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+
+.v2-founder__known-as {
+  margin: 18px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 215, 0.5);
+}
+
+.v2-founder__brand-name {
+  margin: 0 0 24px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.15rem, 4.8vw, 5rem);
+  line-height: 1;
+  color: var(--v2-gold);
+}
+
+.v2-founder__statement > p:last-child,
+.v2-founder__body-copy p {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.9;
+  color: rgba(242, 234, 215, 0.67);
+}
+
+.v2-founder__mission {
+  position: relative;
+  margin: 0;
+  padding-left: clamp(62px, 7vw, 98px);
+}
+
+.v2-founder__mission-mark {
+  position: absolute;
+  left: 0;
+  top: 34px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(5rem, 9vw, 9rem);
+  line-height: 1;
+  color: var(--v2-gold);
+  opacity: 0.8;
+}
+
+.v2-founder__mission p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 5.2vw, 5.3rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+
+.v2-founder__mission cite {
+  display: block;
+  margin-top: 24px;
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242, 234, 215, 0.42);
+}
+
+.v2-founder__body-copy {
+  display: grid;
+  gap: 28px;
+  padding-bottom: 22vh;
+}
+
+.v2-founder__closing-rule {
+  display: grid;
+  grid-template-columns: auto minmax(60px, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  max-width: 720px;
+  color: #6f6351;
+  font-size: 9px;
+  letter-spacing: 0.21em;
+  text-transform: uppercase;
+}
+
+.v2-founder__closing-rule span:nth-child(2) {
+  height: 1px;
+  background: rgba(111, 99, 81, 0.35);
+}
+
+@media (max-width: 980px) {
+  .v2-founder {
+    min-height: auto;
+    background: linear-gradient(180deg, #07100d 0%, #0b1712 100%);
+  }
+
+  .v2-founder__layout {
+    grid-template-columns: 1fr;
+    gap: 74px;
+    width: min(100% - 36px, 820px);
+    padding: 12vh 0 14vh;
+  }
+
+  .v2-founder__sticky {
+    position: relative;
+    top: auto;
+  }
+
+  .v2-founder__portrait-wrap,
+  .v2-founder__timeline {
+    width: 100%;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .v2-founder__portrait-wrap {
+    aspect-ratio: 16 / 17;
+  }
+
+  .v2-founder__story-column {
+    padding-top: 0;
+  }
+
+  .v2-founder__intro {
+    padding-bottom: 70px;
+  }
+
+  .v2-founder__body-copy {
+    padding-bottom: 84px;
+  }
+
+  .v2-founder__closing-rule {
+    color: rgba(242, 234, 215, 0.38);
+  }
+
+  .v2-founder__closing-rule span:nth-child(2) {
+    background: rgba(242, 234, 215, 0.18);
+  }
+}
+
+@media (max-width: 600px) {
+  .v2-founder__chapter {
+    top: 8vh;
+    right: -0.08em;
+    font-size: 46vw;
+  }
+
+  .v2-founder__layout {
+    width: calc(100% - 28px);
+    gap: 58px;
+    padding-top: 9vh;
+  }
+
+  .v2-founder__portrait-wrap {
+    aspect-ratio: 4 / 5;
+  }
+
+  .v2-founder__portrait-caption {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .v2-founder__portrait-caption {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .v2-founder__portrait-caption strong {
+    text-align: left;
+  }
+
+  .v2-founder__intro h2 {
+    font-size: clamp(3.7rem, 17vw, 5.6rem);
+  }
+
+  .v2-founder__identity,
+  .v2-founder__statement,
+  .v2-founder__mission,
+  .v2-founder__body-copy {
+    padding-top: 44px;
+    padding-bottom: 54px;
+  }
+
+  .v2-founder__mission {
+    padding-left: 0;
+    padding-top: 84px;
+  }
+
+  .v2-founder__mission-mark {
+    top: 18px;
+  }
+
+  .v2-founder__body-copy {
+    gap: 22px;
+    padding-bottom: 70px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-founder__portrait {
+    transform: none !important;
+  }
+}
