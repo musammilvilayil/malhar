@@ -52,8 +52,6 @@ export default function FounderV2() {
       />
       <div className="v2-founder__shade" aria-hidden="true" />
       <div className="v2-founder__grain" aria-hidden="true" />
-      <div className="v2-founder__chapter-mark" aria-hidden="true">01</div>
-
       <div className="v2-founder__frame">
         <motion.header
           className="v2-founder__chapter"
@@ -62,7 +60,7 @@ export default function FounderV2() {
           viewport={{ once: true }}
           transition={{ duration: 0.75 }}
         >
-          <p>Chapter 01</p><span>The Vision</span>
+          <p>The Vision</p>
         </motion.header>
 
         <div className="v2-founder__content">
