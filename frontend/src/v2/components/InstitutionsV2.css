@@ -325,3 +325,99 @@
 @media (max-width: 480px) {
   .v2-institutions__mobile { height: 76svh; min-height: 540px; }
 }
+
+
+@media (max-width: 900px) {
+  .v2-institutions__mobile-panel {
+    animation: v2-institutions-fade .9s ease both;
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__image {
+    animation: v2-institutions-image-in 1.05s ease both;
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__panel-content {
+    top: 50%;
+    bottom: auto;
+    display: block;
+    padding-top: 1rem;
+    text-align: center;
+    transform: translateY(-43%);
+    animation: v2-institutions-copy-in .8s ease .12s both;
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__number {
+    margin: 0 0 1rem;
+  }
+
+  .v2-institutions__mobile-panel .v2-institutions__panel-content h3,
+  .v2-institutions__mobile-panel .v2-institutions__description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .v2-institutions__autoplay-note {
+    position: absolute;
+    z-index: 9;
+    right: 1rem;
+    bottom: 4.6rem;
+    left: 1rem;
+    margin: 0;
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(242,234,215,.58);
+  }
+
+  .v2-institutions__dots {
+    bottom: 1.6rem;
+  }
+
+  .v2-institutions__progress {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    overflow: hidden;
+    background: rgba(242,234,215,.18);
+  }
+
+  .v2-institutions__progress span {
+    display: block;
+    width: var(--slide-progress);
+    height: 100%;
+    transform-origin: left;
+    background: var(--v2-gold);
+    animation: v2-institutions-progress 4s linear both;
+  }
+
+  .v2-institutions__progress span.is-paused {
+    animation: none;
+  }
+}
+
+@keyframes v2-institutions-image-in {
+  from { opacity: .18; transform: scale(1.055); }
+  to { opacity: 1; transform: scale(1.02); }
+}
+
+@keyframes v2-institutions-copy-in {
+  from { opacity: 0; transform: translateY(calc(-43% + 18px)); }
+  to { opacity: 1; transform: translateY(-43%); }
+}
+
+@keyframes v2-institutions-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-institutions__mobile-panel .v2-institutions__image,
+  .v2-institutions__mobile-panel .v2-institutions__panel-content,
+  .v2-institutions__progress span {
+    animation: none;
+  }
+}
