@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const GLYPHS = ["ا", "ل", "م", "ن", "و", "ر", "ع", "ه"];
 
@@ -9,6 +10,7 @@ const seeded = (i, salt = 1) => {
 };
 
 export default function AdaptiveAtmosphere() {
+  const { pathname } = useLocation();
   const reduceMotion = useReducedMotion();
   const [compact, setCompact] = useState(true);
   const [saveData, setSaveData] = useState(false);
@@ -24,7 +26,7 @@ export default function AdaptiveAtmosphere() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const count = reduceMotion || saveData ? 0 : compact ? 34 : 82;
+  const count = pathname === "/" && !reduceMotion && !saveData ? (compact ? 34 : 82) : 0;
   const particles = useMemo(() => Array.from({ length: count }, (_, i) => ({
     id: i,
     glyph: GLYPHS[i % GLYPHS.length],
@@ -72,7 +74,7 @@ export default function AdaptiveAtmosphere() {
   if (!count) return null;
 
   return (
-    <div ref={layerRef} className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
+    <div ref={layerRef} className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[100svh] overflow-hidden" aria-hidden="true">
       {particles.map((p) => (
         <span
           key={p.id}
@@ -83,7 +85,6 @@ export default function AdaptiveAtmosphere() {
             fontSize: `${p.size}px`,
             opacity: p.opacity,
             transform: `translate3d(calc(var(--atmo-x, 0) * ${p.depth * 18}px), calc(var(--atmo-y, 0) * ${p.depth * 14}px), 0)`,
-            transition: "opacity 300ms ease",
           }}
         >
           {p.glyph}
