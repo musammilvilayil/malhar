@@ -25,7 +25,7 @@ export default function FounderV2() {
     [0, 1],
     reduceMotion ? ["0%", "0%"] : ["2%", "-2%"]
   );
-  const reveal = reduceMotion ? false : { opacity: 0, y: 24 };
+  const reveal = reduceMotion ? false : { opacity: 0 };
 
   return (
     <section
@@ -58,7 +58,7 @@ export default function FounderV2() {
           <motion.div
             className="v2-founder__identity"
             initial={reveal}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
@@ -70,7 +70,7 @@ export default function FounderV2() {
           <motion.blockquote
             className="v2-founder__quote"
             initial={reveal}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
@@ -80,7 +80,7 @@ export default function FounderV2() {
           <motion.footer
             className="v2-founder__timeline"
             initial={reveal}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.18 }}
           >
