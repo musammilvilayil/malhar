@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { NAV_LINKS, CONTACT } from "../../data";
+import Magnet from "../reactbits/Magnet";
+import ShinyText from "../reactbits/ShinyText";
 
 export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -38,9 +40,6 @@ export const Nav = () => {
     return pathname.startsWith(to);
   };
 
-  // Only the homepage has a dark photographic hero underneath the initial nav.
-  // Interior pages start on light/cream surfaces, so they need a solid light header
-  // and dark links even before the user scrolls.
   const useOverlayNav = pathname === "/" && !scrolled;
   const linkColorClass = useOverlayNav ? "text-cream" : "text-charcoal/80";
   const navSurfaceClass = useOverlayNav
@@ -69,15 +68,17 @@ export const Nav = () => {
               </a>
             )}
           </div>
-          <span className="font-arabic text-sm text-gold">بسم الله الرحمن الرحيم</span>
+          <span className="font-arabic text-sm"><ShinyText text="بسم الله الرحمن الرحيم" color="#c5a059" shineColor="#fff1bf" speed={4.2} /></span>
         </div>
       </div>
 
       <div className={`transition-all duration-500 ${navSurfaceClass}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
-          <Link to="/" className="flex items-center relative z-10" data-testid="nav-logo">
-            <img src="/assets/logo.png" alt="Malhar logo" className="h-10 object-contain" />
-          </Link>
+          <Magnet padding={45} magnetStrength={5}>
+            <Link to="/" className="flex items-center relative z-10" data-testid="nav-logo">
+              <img src="/assets/logo.png" alt="Malhar logo" className="h-10 object-contain" />
+            </Link>
+          </Magnet>
 
           <nav className={`hidden lg:flex items-center gap-7 text-sm ${linkColorClass}`}>
             {safeLinks.map((l, index) => (
@@ -93,17 +94,21 @@ export const Nav = () => {
           </nav>
 
           <div className="relative z-[110] flex items-center gap-3">
-            <Link
-              to="/donate-us"
-              className={`hidden sm:inline-flex items-center text-sm px-5 py-2.5 border transition-all duration-300 ${donateClass}`}
-              data-testid="nav-donate"
-              aria-current={donateActive ? "page" : undefined}
-            >
-              <span>Donate</span>
-            </Link>
-            <Link to="/admission" className="hidden sm:inline-flex text-sm px-5 py-2.5 bg-emerald text-cream hover:bg-emerald-light transition-colors" data-testid="nav-admission">
-              Admission
-            </Link>
+            <Magnet padding={35} magnetStrength={4} wrapperClassName="hidden sm:inline-block">
+              <Link
+                to="/donate-us"
+                className={`inline-flex items-center text-sm px-5 py-2.5 border transition-all duration-300 ${donateClass}`}
+                data-testid="nav-donate"
+                aria-current={donateActive ? "page" : undefined}
+              >
+                <span>Donate</span>
+              </Link>
+            </Magnet>
+            <Magnet padding={35} magnetStrength={4} wrapperClassName="hidden sm:inline-block">
+              <Link to="/admission" className="inline-flex text-sm px-5 py-2.5 bg-emerald text-cream hover:bg-emerald-light transition-colors" data-testid="nav-admission">
+                Admission
+              </Link>
+            </Magnet>
             <button
               type="button"
               className="relative z-[120] inline-flex h-12 w-12 shrink-0 cursor-pointer touch-manipulation items-center justify-center rounded-xl bg-cream/95 text-charcoal shadow-sm ring-1 ring-charcoal/10 lg:hidden"
@@ -135,15 +140,16 @@ export const Nav = () => {
             aria-label="Mobile navigation"
           >
             <nav className="flex flex-col gap-5 text-2xl font-serif">
-              {safeLinks.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                  className={`py-2 ${isActiveLink(l.to) ? "text-gold" : "text-cream"}`}
-                >
-                  {l.label}
-                </Link>
+              {safeLinks.map((l, index) => (
+                <motion.div key={l.to} initial={{ opacity: 0, x: 22 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.045 }}>
+                  <Link
+                    to={l.to}
+                    onClick={() => setOpen(false)}
+                    className={`block py-2 ${isActiveLink(l.to) ? "text-gold" : "text-cream"}`}
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
 
