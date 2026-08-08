@@ -12,13 +12,7 @@ export const Footer = () => (
     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 pb-16 border-b border-cream/15">
         <div className="lg:col-span-5">
-          <div className="flex items-center gap-4">
-            <img src="/assets/footerlogo.png" alt="Malhar logo" className="h-12 object-contain" />
-            <div>
-              <span className="font-arabic text-2xl text-gold">مالهار</span>
-              <p className="text-sm text-cream/70 uppercase tracking-[0.22em]">Malhar Nooril Islami Tha'eleemi</p>
-            </div>
-          </div>
+          <img src="/assets/white-llogo.png" alt="Malhar — moulding the best" className="h-14 md:h-16 w-auto object-contain" />
           <p className="mt-4 text-cream/70 text-sm leading-relaxed max-w-sm font-light">
             An educational trust founded in 2000, blending Islamic tradition with modern learning for Kasaragod and beyond.
           </p>

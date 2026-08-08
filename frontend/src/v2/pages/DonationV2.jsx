@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "../components/BrandLogoV2";
 import "./DonationV2.css";
 
 const supportAreas = [
@@ -40,8 +41,7 @@ export default function DonationV2() {
 
         <nav className="v2-donation__nav" aria-label="Donation page navigation">
           <Link className="v2-donation__wordmark" to="/">
-            <span>M</span>
-            <strong>Malhar</strong>
+            <BrandLogoV2 />
           </Link>
           <div>
             <Link to="/about">About</Link>

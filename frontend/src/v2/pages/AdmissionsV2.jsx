@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
+import BrandLogoV2 from "../components/BrandLogoV2";
 import { CONTACT, INSTITUTIONS } from "../../data";
 import "../v2.css";
 import "./AdmissionsV2.css";
@@ -39,8 +40,7 @@ export default function AdmissionsV2() {
 
         <nav className="v2-admissions__nav" aria-label="Admissions page navigation">
           <Link to="/" className="v2-admissions__wordmark">
-            <span>M</span>
-            <strong>Malhar</strong>
+            <BrandLogoV2 />
           </Link>
           <div>
             <Link to="/about">About</Link>
