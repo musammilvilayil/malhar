@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { INSTITUTIONS } from "../../data";
@@ -8,9 +8,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const padNumber = (index) => String(index + 1).padStart(2, "0");
 
-function InstitutionPanel({ institution, index, mobile = false }) {
+function InstitutionPanel({ institution, index, mobile = false, active = false }) {
   return (
-    <article className={mobile ? "v2-institutions__mobile-panel" : "v2-institutions__panel"}>
+    <article
+      className={mobile ? `v2-institutions__mobile-panel${active ? " is-active" : ""}` : "v2-institutions__panel"}
+      aria-hidden={mobile && !active}
+    >
       <img
         src={institution.image}
         alt={institution.name}
@@ -39,6 +42,41 @@ function InstitutionPanel({ institution, index, mobile = false }) {
 export default function InstitutionsV2() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [mobileSlider, setMobileSlider] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+  const [timerKey, setTimerKey] = useState(0);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 900px)");
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncPreferences = () => {
+      setMobileSlider(mobileQuery.matches);
+      setReduceMotion(motionQuery.matches);
+    };
+
+    syncPreferences();
+    mobileQuery.addEventListener("change", syncPreferences);
+    motionQuery.addEventListener("change", syncPreferences);
+
+    return () => {
+      mobileQuery.removeEventListener("change", syncPreferences);
+      motionQuery.removeEventListener("change", syncPreferences);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mobileSlider || reduceMotion) return undefined;
+
+    const interval = window.setInterval(() => {
+      if (!document.hidden) {
+        setCurrentSlide((previous) => (previous + 1) % INSTITUTIONS.length);
+      }
+    }, 3000);
+
+    return () => window.clearInterval(interval);
+  }, [mobileSlider, reduceMotion, timerKey]);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -75,6 +113,11 @@ export default function InstitutionsV2() {
     return () => context.revert();
   }, []);
 
+  const selectSlide = (index) => {
+    setCurrentSlide(index);
+    setTimerKey((key) => key + 1);
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -96,15 +139,35 @@ export default function InstitutionsV2() {
         </div>
       </div>
 
-      <div className="v2-institutions__mobile" aria-label="Seven Malhar institutions">
+      <div
+        className="v2-institutions__mobile"
+        aria-label="Seven Malhar institutions — automatic slideshow"
+        aria-live="off"
+      >
         {INSTITUTIONS.map((institution, index) => (
           <InstitutionPanel
             key={institution.slug}
             institution={institution}
             index={index}
             mobile
+            active={index === currentSlide}
           />
         ))}
+
+        <div className="v2-institutions__dots" role="group" aria-label="Choose an institution">
+          {INSTITUTIONS.map((institution, index) => (
+            <button
+              key={institution.slug}
+              type="button"
+              className={index === currentSlide ? "is-active" : ""}
+              onClick={() => selectSlide(index)}
+              aria-label={`Show ${institution.name}`}
+              aria-current={index === currentSlide ? "true" : undefined}
+            >
+              <span />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
