@@ -7,18 +7,16 @@ import "./InstitutionsV2.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const padNumber = (index) => String(index + 1).padStart(2, "0");
+const mediaMatches = (query) => typeof window !== "undefined" && window.matchMedia(query).matches;
 
-function InstitutionPanel({ institution, index, mobile = false, active = false }) {
+function InstitutionPanel({ institution, index, mobile = false }) {
   return (
-    <article
-      className={mobile ? `v2-institutions__mobile-panel${active ? " is-active" : ""}` : "v2-institutions__panel"}
-      aria-hidden={mobile && !active}
-    >
+    <article className={mobile ? "v2-institutions__mobile-panel" : "v2-institutions__panel"}>
       <img
         src={institution.image}
         alt={institution.name}
         className="v2-institutions__image"
-        loading={index === 0 ? "eager" : "lazy"}
+        loading={index === 0 || mobile ? "eager" : "lazy"}
         decoding="async"
         referrerPolicy="no-referrer"
       />
@@ -43,9 +41,10 @@ export default function InstitutionsV2() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [mobileSlider, setMobileSlider] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const [mobileSlider, setMobileSlider] = useState(() => mediaMatches("(max-width: 900px)"));
+  const [reduceMotion, setReduceMotion] = useState(() => mediaMatches("(prefers-reduced-motion: reduce)"));
   const [timerKey, setTimerKey] = useState(0);
+  const compactLayout = mobileSlider || reduceMotion;
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 900px)");
@@ -81,42 +80,39 @@ export default function InstitutionsV2() {
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const track = trackRef.current;
-    if (!section || !track) return undefined;
+    if (compactLayout || !section || !track) return undefined;
 
     const context = gsap.context(() => {
-      ScrollTrigger.matchMedia({
-        "(min-width: 901px) and (prefers-reduced-motion: no-preference)": () => {
-          const horizontalDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
-
-          const tween = gsap.to(track, {
-            x: () => -horizontalDistance(),
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: () => `+=${horizontalDistance()}`,
-              pin: true,
-              scrub: 0.8,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          return () => {
-            tween.scrollTrigger?.kill();
-            tween.kill();
-          };
+      const horizontalDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      const tween = gsap.to(track, {
+        x: () => -horizontalDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${horizontalDistance()}`,
+          pin: true,
+          scrub: 0.8,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
+
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
     }, section);
 
     return () => context.revert();
-  }, []);
+  }, [compactLayout]);
 
   const selectSlide = (index) => {
     setCurrentSlide(index);
     setTimerKey((key) => key + 1);
   };
+
+  const activeInstitution = INSTITUTIONS[currentSlide];
 
   return (
     <section
@@ -131,44 +127,43 @@ export default function InstitutionsV2() {
         <span className="v2-institutions__hint">Scroll to explore</span>
       </header>
 
-      <div className="v2-institutions__desktop" aria-label="Seven Malhar institutions">
-        <div ref={trackRef} className="v2-institutions__track">
-          {INSTITUTIONS.map((institution, index) => (
-            <InstitutionPanel key={institution.slug} institution={institution} index={index} />
-          ))}
+      {!compactLayout ? (
+        <div className="v2-institutions__desktop" aria-label="Seven Malhar institutions">
+          <div ref={trackRef} className="v2-institutions__track">
+            {INSTITUTIONS.map((institution, index) => (
+              <InstitutionPanel key={institution.slug} institution={institution} index={index} />
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div
-        className="v2-institutions__mobile"
-        aria-label="Seven Malhar institutions — automatic slideshow"
-        aria-live="off"
-      >
-        {INSTITUTIONS.map((institution, index) => (
+      ) : (
+        <div
+          className="v2-institutions__mobile"
+          aria-label="Seven Malhar institutions — automatic slideshow"
+          aria-live="off"
+        >
           <InstitutionPanel
-            key={institution.slug}
-            institution={institution}
-            index={index}
+            key={activeInstitution.slug}
+            institution={activeInstitution}
+            index={currentSlide}
             mobile
-            active={index === currentSlide}
           />
-        ))}
 
-        <div className="v2-institutions__dots" role="group" aria-label="Choose an institution">
-          {INSTITUTIONS.map((institution, index) => (
-            <button
-              key={institution.slug}
-              type="button"
-              className={index === currentSlide ? "is-active" : ""}
-              onClick={() => selectSlide(index)}
-              aria-label={`Show ${institution.name}`}
-              aria-current={index === currentSlide ? "true" : undefined}
-            >
-              <span />
-            </button>
-          ))}
+          <div className="v2-institutions__dots" role="group" aria-label="Choose an institution">
+            {INSTITUTIONS.map((institution, index) => (
+              <button
+                key={institution.slug}
+                type="button"
+                className={index === currentSlide ? "is-active" : ""}
+                onClick={() => selectSlide(index)}
+                aria-label={`Show ${institution.name}`}
+                aria-current={index === currentSlide ? "true" : undefined}
+              >
+                <span />
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
