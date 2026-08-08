@@ -57,7 +57,7 @@ export default function CampusLifeV2() {
         <AccordionGalleryV2 items={moments} />
 
         <footer className="v2-campus__footer">
-          <span>Tap or focus a panel to explore</span>
+          <span>Swipe or tap a panel to explore</span>
           <span>Study · Friendship · Community</span>
         </footer>
       </div>

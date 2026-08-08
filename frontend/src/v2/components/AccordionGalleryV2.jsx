@@ -1,10 +1,56 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+const SWIPE_THRESHOLD = 42;
 
 export default function AccordionGalleryV2({ items }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStart = useRef(null);
+  const suppressClick = useRef(false);
+
+  const moveSlide = (direction) => {
+    setActiveIndex((current) => {
+      const next = current + direction;
+      return (next + items.length) % items.length;
+    });
+  };
+
+  const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+    suppressClick.current = false;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (!touchStart.current) return;
+
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStart.current.x;
+    const deltaY = touch.clientY - touchStart.current.y;
+    touchStart.current = null;
+
+    if (
+      Math.abs(deltaX) < SWIPE_THRESHOLD ||
+      Math.abs(deltaX) <= Math.abs(deltaY)
+    ) {
+      return;
+    }
+
+    suppressClick.current = true;
+    moveSlide(deltaX < 0 ? 1 : -1);
+
+    window.setTimeout(() => {
+      suppressClick.current = false;
+    }, 300);
+  };
 
   return (
-    <div className="v2-accordion" role="group" aria-label="Campus life gallery">
+    <div
+      className="v2-accordion"
+      role="group"
+      aria-label="Campus life gallery"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {items.map((item, index) => {
         const active = index === activeIndex;
 
@@ -13,7 +59,9 @@ export default function AccordionGalleryV2({ items }) {
             key={item.title}
             type="button"
             className={`v2-accordion__panel${active ? " is-active" : ""}`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {
+              if (!suppressClick.current) setActiveIndex(index);
+            }}
             onMouseEnter={() => setActiveIndex(index)}
             onFocus={() => setActiveIndex(index)}
             aria-pressed={active}
@@ -39,6 +87,10 @@ export default function AccordionGalleryV2({ items }) {
           </button>
         );
       })}
+
+      <span className="v2-accordion__status" aria-live="polite">
+        {items[activeIndex].title}, {activeIndex + 1} of {items.length}
+      </span>
     </div>
   );
 }
