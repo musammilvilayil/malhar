@@ -1,0 +1,115 @@
+.v2-gallery {
+  padding: clamp(6rem, 10vw, 10rem) 0;
+  background: #f0e6d3;
+  color: #142019;
+}
+
+.v2-gallery__header,
+.v2-gallery__masonry {
+  width: min(100% - 48px, 1320px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.v2-gallery__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .45fr);
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.v2-gallery__header > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: #8b6b2c;
+}
+
+.v2-gallery__header h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 8vw, 8.5rem);
+  line-height: .87;
+  letter-spacing: -.055em;
+  font-weight: 400;
+}
+
+.v2-gallery__header h2 em {
+  display: block;
+  color: #9b742c;
+  font-weight: 400;
+}
+
+.v2-gallery__header > span {
+  max-width: 360px;
+  padding-bottom: 8px;
+  font-size: clamp(.92rem, 1.2vw, 1.05rem);
+  line-height: 1.75;
+  color: rgba(20, 32, 25, .65);
+}
+
+.v2-gallery__masonry {
+  columns: 4;
+  column-gap: clamp(.8rem, 1.6vw, 1.4rem);
+}
+
+.v2-gallery__item {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.8rem);
+  break-inside: avoid;
+}
+
+.v2-gallery__item > div {
+  position: relative;
+  overflow: hidden;
+  background: #d8ccb6;
+}
+
+.v2-gallery__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform .75s cubic-bezier(.22, 1, .36, 1);
+}
+
+.v2-gallery__item > div > span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(7, 16, 13, .22));
+  pointer-events: none;
+}
+
+.v2-gallery__item:hover img { transform: scale(1.025); }
+
+.v2-gallery__item figcaption {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(20, 32, 25, .22);
+  font-size: 9px;
+  line-height: 1.5;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: rgba(20, 32, 25, .62);
+}
+
+@media (max-width: 900px) {
+  .v2-gallery__header,
+  .v2-gallery__masonry { width: min(100% - 32px, 760px); }
+  .v2-gallery__header { grid-template-columns: 1fr; }
+  .v2-gallery__masonry { columns: 3; }
+}
+
+@media (max-width: 560px) {
+  .v2-gallery__header,
+  .v2-gallery__masonry { width: calc(100% - 24px); }
+  .v2-gallery__masonry { columns: 2; }
+  .v2-gallery__header h2 { font-size: clamp(3.7rem, 16vw, 5.8rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-gallery__item img { transition: none; transform: none !important; }
+}
