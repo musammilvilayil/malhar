@@ -52,7 +52,7 @@
 }
 
 .v2-gallery__masonry {
-  columns: 3;
+  columns: 4;
   column-gap: clamp(.8rem, 1.6vw, 1.4rem);
 }
 
@@ -100,13 +100,13 @@
   .v2-gallery__header,
   .v2-gallery__masonry { width: min(100% - 32px, 760px); }
   .v2-gallery__header { grid-template-columns: 1fr; }
-  .v2-gallery__masonry { columns: 2; }
+  .v2-gallery__masonry { columns: 3; }
 }
 
 @media (max-width: 560px) {
   .v2-gallery__header,
   .v2-gallery__masonry { width: calc(100% - 24px); }
-  .v2-gallery__masonry { columns: 1; }
+  .v2-gallery__masonry { columns: 2; }
   .v2-gallery__header h2 { font-size: clamp(3.7rem, 16vw, 5.8rem); }
 }
 
