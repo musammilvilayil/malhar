@@ -111,10 +111,11 @@
   min-height: 320px;
   background: #08120d;
   border: 1px solid rgba(199, 164, 90, .42);
-  border-radius: 48% 48% 1.5rem 1.5rem;
+  border-radius: 0 0 1.4rem 1.4rem;
+  clip-path: polygon(50% 0, 86% 17%, 100% 40%, 100% 100%, 0 100%, 0 40%, 14% 17%);
   box-shadow: 0 30px 70px rgba(0, 0, 0, .38);
   isolation: isolate;
-  transition: border-radius .5s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease;
+  transition: box-shadow .5s ease;
 }
 
 .v2-personalities__card-media::before {
@@ -123,20 +124,21 @@
   inset: .75rem;
   z-index: 2;
   border: 1px solid rgba(240, 230, 211, .22);
-  border-radius: inherit;
+  border-radius: 0 0 .9rem .9rem;
+  clip-path: polygon(50% 0, 86% 17%, 100% 40%, 100% 100%, 0 100%, 0 40%, 14% 17%);
   pointer-events: none;
 }
 
 .v2-personalities__person:nth-child(2) .v2-personalities__card-media {
-  border-radius: 1.5rem 48% 1.5rem 48%;
+  clip-path: polygon(50% 0, 90% 22%, 100% 46%, 100% 100%, 0 100%, 0 46%, 10% 22%);
 }
 
 .v2-personalities__person:nth-child(3) .v2-personalities__card-media {
-  border-radius: 48% 1.5rem 48% 1.5rem;
+  clip-path: polygon(50% 0, 83% 15%, 100% 38%, 100% 100%, 0 100%, 0 38%, 17% 15%);
 }
 
 .v2-personalities__person:nth-child(4) .v2-personalities__card-media {
-  border-radius: 1.5rem 1.5rem 48% 48%;
+  clip-path: polygon(50% 0, 88% 19%, 100% 43%, 100% 100%, 0 100%, 0 43%, 12% 19%);
 }
 
 .v2-personalities__card-media img {
@@ -164,40 +166,50 @@
 
 .v2-personalities__card-copy {
   position: relative;
-  margin: -1.8rem .85rem 0;
-  padding: 1.55rem 1.35rem 1.6rem;
+  margin: .75rem .45rem 0;
+  padding: 1.2rem .45rem .5rem;
   display: flex;
   flex-direction: column;
   gap: .75rem;
   z-index: 3;
-  border-left: 1px solid rgba(199, 164, 90, .62);
-  border-radius: .25rem 1.6rem 1.6rem 1.6rem;
-  background: linear-gradient(135deg, rgba(7, 25, 16, .96), rgba(14, 48, 29, .9));
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(199, 164, 90, .52);
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.v2-personalities__card-copy::before {
+  content: "◆";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding: 0 .5rem;
+  color: #c7a45a;
+  background: #0d2d1c;
+  font-size: .55rem;
+  transform: translate(-50%, -55%);
 }
 
 .v2-personalities__card-copy p {
   margin: 0;
   color: #84d192;
-  font-size: .82rem;
-  letter-spacing: .25em;
+  font-size: .68rem;
+  letter-spacing: .2em;
   text-transform: uppercase;
 }
 
 .v2-personalities__card-copy h3 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.75rem, 2.3vw, 2.6rem);
-  line-height: 1.05;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.12;
   font-weight: 400;
   color: #fff;
 }
 
 .v2-personalities__card-copy > span {
   display: block;
-  margin-top: .85rem;
+  margin-top: .35rem;
   color: rgba(240, 230, 211, .72);
   font-size: .95rem;
 }
@@ -238,28 +250,70 @@
 }
 
 @media (max-width: 720px) {
+  .v2-personalities {
+    min-height: auto;
+    padding: 5.5rem 0 5rem;
+  }
+
   .v2-personalities__inner {
     width: calc(100% - 24px);
   }
 
   .v2-personalities__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.15rem .55rem;
+  }
+
+  .v2-personalities__person {
+    padding: .15rem;
   }
 
   .v2-personalities__card-media {
-    min-height: 360px;
-    border-radius: 46% 46% 1.35rem 1.35rem !important;
+    min-height: 0;
+    aspect-ratio: 4 / 5.35;
+    border-radius: 0 0 .85rem .85rem !important;
+    clip-path: polygon(50% 0, 87% 18%, 100% 41%, 100% 100%, 0 100%, 0 41%, 13% 18%) !important;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .34);
+  }
+
+  .v2-personalities__card-media::before {
+    inset: .4rem;
+    border-radius: 0 0 .55rem .55rem;
   }
 
   .v2-personalities__card-copy {
-    margin: -1.6rem .65rem 0;
-    padding: 1.35rem 1.15rem 1.45rem;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    margin: .55rem .12rem 0;
+    padding: .85rem .12rem 0;
+    gap: .38rem;
+  }
+
+  .v2-personalities__card-copy::before {
+    padding: 0 .32rem;
+    font-size: .42rem;
+  }
+
+  .v2-personalities__card-copy p {
+    font-size: .52rem;
+    line-height: 1.35;
+    letter-spacing: .13em;
+  }
+
+  .v2-personalities__card-copy h3 {
+    font-size: clamp(.9rem, 4vw, 1.08rem);
+    line-height: 1.16;
+  }
+
+  .v2-personalities__card-copy > span {
+    margin-top: .15rem;
+    font-size: .72rem;
   }
 
   .v2-personalities__header h2 {
     font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .v2-personalities__header {
+    margin-bottom: 3rem;
   }
 }
 
