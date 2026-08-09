@@ -120,7 +120,7 @@
   position: relative;
   aspect-ratio: 4 / 5.25;
   padding: 2px;
-  clip-path: polygon(50% 0, 57% 8%, 65% 13%, 76% 17%, 87% 28%, 94% 42%, 94% 100%, 6% 100%, 6% 42%, 13% 28%, 24% 17%, 35% 13%, 43% 8%);
+  clip-path: polygon(50% 0, 54% 5%, 60% 9%, 67% 12%, 76% 14%, 85% 21%, 92% 32%, 96% 44%, 96% 100%, 4% 100%, 4% 44%, 8% 32%, 15% 21%, 24% 14%, 33% 12%, 40% 9%, 46% 5%);
   background: linear-gradient(135deg, #f1d28b 0%, #9b7132 42%, #e1bc6a 72%, #72501f 100%);
   filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .28));
 }
@@ -141,15 +141,18 @@
   height: 100%;
   overflow: hidden;
   clip-path: inherit;
-  background: #092319;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(206, 169, 91, .08), transparent 34%),
+    #092319;
 }
 
 .v2-personalities__card-media img {
-  position: relative;
+  position: absolute;
+  inset: 5.5% 0 0;
   z-index: 1;
   display: block;
   width: 100%;
-  height: 100%;
+  height: 94.5%;
   object-fit: cover;
   object-position: center top;
   transition: transform .55s cubic-bezier(.22, 1, .36, 1);
@@ -188,9 +191,11 @@
 }
 
 .v2-personalities__role {
+  box-sizing: border-box;
   display: inline-flex;
+  width: max-content;
   min-height: 2rem;
-  max-width: 100%;
+  max-width: calc(100% - .4rem);
   margin: 0 auto 1rem;
   padding: .48rem .85rem;
   align-items: center;
@@ -300,13 +305,13 @@
   .v2-personalities__role {
     min-height: 1.55rem;
     margin-bottom: .72rem;
-    padding: .35rem .45rem;
+    padding: .35rem .42rem;
     gap: .28rem;
   }
 
   .v2-personalities__role p {
-    font-size: clamp(.42rem, 2.05vw, .55rem);
-    letter-spacing: .09em;
+    font-size: clamp(.4rem, 1.9vw, .52rem);
+    letter-spacing: .075em;
   }
 
   .v2-personalities__role span {
@@ -315,8 +320,18 @@
 
   .v2-personalities__card-copy h3 {
     max-width: 16ch;
-    font-size: clamp(.92rem, 4vw, 1.18rem);
+    font-size: clamp(.86rem, 3.75vw, 1.08rem);
     line-height: 1.12;
+  }
+
+  .v2-personalities__person:first-child .v2-personalities__card-copy h3 {
+    max-width: 18ch;
+    font-size: clamp(.8rem, 3.45vw, 1rem);
+  }
+
+  .v2-personalities__person:nth-child(4) .v2-personalities__role p {
+    font-size: clamp(.36rem, 1.72vw, .46rem);
+    letter-spacing: .045em;
   }
 
   .v2-personalities__card-copy > span {
