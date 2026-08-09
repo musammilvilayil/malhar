@@ -175,16 +175,16 @@
   gap: .55rem;
   z-index: 3;
   border: 1px solid rgba(222, 190, 117, .78);
-  border-radius: 50%;
+  border-radius: 0;
+  clip-path: polygon(18% 0, 82% 0, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0 82%, 0 18%);
   text-align: center;
   background:
     radial-gradient(circle at 35% 24%, rgba(132, 209, 146, .18), transparent 38%),
     linear-gradient(145deg, rgba(8, 34, 21, .98), rgba(5, 20, 13, .96));
   box-shadow:
-    0 20px 42px rgba(0, 0, 0, .38),
     inset 0 0 0 5px rgba(5, 24, 14, .88),
-    inset 0 0 0 6px rgba(199, 164, 90, .35),
-    0 0 28px rgba(199, 164, 90, .1);
+    inset 0 0 0 6px rgba(199, 164, 90, .42);
+  filter: drop-shadow(0 20px 20px rgba(0, 0, 0, .38)) drop-shadow(0 0 14px rgba(199, 164, 90, .1));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -289,9 +289,9 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     box-shadow:
-      0 12px 28px rgba(0, 0, 0, .38),
       inset 0 0 0 3px rgba(5, 24, 14, .9),
       inset 0 0 0 4px rgba(199, 164, 90, .38);
+    filter: drop-shadow(0 12px 14px rgba(0, 0, 0, .4));
   }
 
   .v2-personalities__card-copy p {
