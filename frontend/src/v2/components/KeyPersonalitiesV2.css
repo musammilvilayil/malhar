@@ -2,10 +2,10 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: clamp(5.5rem, 9vw, 9rem) 0 clamp(5rem, 8vw, 8rem);
-  color: #f5eddf;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(5rem, 8vw, 8rem);
+  color: #f6eee0;
   background:
-    radial-gradient(circle at 88% 8%, rgba(190, 151, 77, .09), transparent 27rem),
+    radial-gradient(circle at 88% 9%, rgba(196, 157, 78, .1), transparent 24rem),
     linear-gradient(180deg, #06140e 0%, #082419 48%, #061a12 100%);
 }
 
@@ -14,12 +14,12 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: .13;
+  opacity: .12;
   background-image:
-    linear-gradient(30deg, rgba(210, 177, 105, .18) 12%, transparent 12.5%, transparent 87%, rgba(210, 177, 105, .18) 87.5%),
-    linear-gradient(150deg, rgba(210, 177, 105, .18) 12%, transparent 12.5%, transparent 87%, rgba(210, 177, 105, .18) 87.5%);
+    linear-gradient(30deg, rgba(216, 180, 105, .22) 12%, transparent 12.5%, transparent 87%, rgba(216, 180, 105, .22) 87.5%),
+    linear-gradient(150deg, rgba(216, 180, 105, .22) 12%, transparent 12.5%, transparent 87%, rgba(216, 180, 105, .22) 87.5%);
   background-size: 42px 72px;
-  mask-image: linear-gradient(to bottom, black, transparent 72%);
+  mask-image: linear-gradient(to bottom, #000, transparent 78%);
   pointer-events: none;
 }
 
@@ -31,13 +31,13 @@
 }
 
 .v2-personalities__grain {
-  opacity: .07;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, .2) 0 1px, transparent 1px);
+  opacity: .055;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .22) 0 1px, transparent 1px);
   background-size: 18px 18px;
 }
 
 .v2-personalities__overlay {
-  background: linear-gradient(90deg, rgba(0, 0, 0, .12), transparent 35%, transparent 65%, rgba(0, 0, 0, .16));
+  background: linear-gradient(90deg, rgba(0, 0, 0, .14), transparent 35%, transparent 65%, rgba(0, 0, 0, .16));
 }
 
 .v2-personalities__inner {
@@ -48,7 +48,7 @@
 }
 
 .v2-personalities__header {
-  margin: 0 auto clamp(3.2rem, 6vw, 5.2rem);
+  margin: 0 auto clamp(3rem, 5vw, 4.7rem);
   text-align: center;
 }
 
@@ -57,12 +57,12 @@
   align-items: center;
   justify-content: center;
   gap: .85rem;
-  margin-bottom: 1.2rem;
-  color: #d1aa5d;
+  margin-bottom: 1.15rem;
+  color: #d3ad62;
 }
 
 .v2-personalities__ornament span {
-  width: clamp(2.8rem, 7vw, 5.5rem);
+  width: clamp(3rem, 7vw, 5.5rem);
   height: 1px;
   background: linear-gradient(90deg, transparent, currentColor);
 }
@@ -73,12 +73,12 @@
 
 .v2-personalities__ornament i {
   display: grid;
-  width: 2rem;
+  width: 1.9rem;
   aspect-ratio: 1;
   place-items: center;
   border: 1px solid currentColor;
   font-style: normal;
-  font-size: .72rem;
+  font-size: .7rem;
   transform: rotate(45deg);
 }
 
@@ -86,7 +86,7 @@
   margin: 0;
   color: #fffaf0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 5vw, 4.6rem);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: clamp(.04em, .5vw, .12em);
@@ -94,11 +94,10 @@
 }
 
 .v2-personalities__header > p {
-  margin: 1rem 0 0;
+  margin: .95rem 0 0;
   color: #d8b86f;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.95rem, 1.6vw, 1.25rem);
-  letter-spacing: .02em;
+  font-size: clamp(.95rem, 1.6vw, 1.22rem);
 }
 
 .v2-personalities__grid {
@@ -112,28 +111,26 @@
 }
 
 .v2-personalities__card {
-  min-width: 0;
-  text-align: center;
-}
-
-.v2-personalities__card-media {
-  --mihrab-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 520' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M18 520V195C18 125 66 72 137 57C165 51 187 31 200 8C213 31 235 51 263 57C334 72 382 125 382 195V520Z'/%3E%3C/svg%3E");
+  --mihrab-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 620' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M20 620V220C20 141 71 83 142 66C168 60 188 36 200 10C212 36 232 60 258 66C329 83 380 141 380 220V620Z'/%3E%3C/svg%3E");
   position: relative;
-  aspect-ratio: 4 / 5.25;
+  width: 100%;
+  aspect-ratio: 400 / 620;
+  overflow: hidden;
   padding: 2px;
   -webkit-mask: var(--mihrab-mask) center / 100% 100% no-repeat;
   mask: var(--mihrab-mask) center / 100% 100% no-repeat;
-  background: linear-gradient(135deg, #f1d28b 0%, #9b7132 42%, #e1bc6a 72%, #72501f 100%);
-  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .28));
+  background: linear-gradient(135deg, #f1d28b 0%, #9a6e2d 43%, #e2bd69 74%, #72501f 100%);
+  filter: drop-shadow(0 13px 18px rgba(0, 0, 0, .28));
+  transition: transform .45s cubic-bezier(.22, 1, .36, 1), filter .45s ease;
 }
 
-.v2-personalities__card-media::after {
+.v2-personalities__card::after {
   content: "";
   position: absolute;
-  inset: 6px;
-  z-index: 4;
+  inset: 7px;
+  z-index: 8;
   padding: 1px;
-  background: rgba(238, 204, 132, .72);
+  background: rgba(239, 203, 128, .68);
   -webkit-mask:
     var(--mihrab-mask) center / 100% 100% no-repeat,
     linear-gradient(#000 0 0) content-box;
@@ -145,23 +142,35 @@
   pointer-events: none;
 }
 
+.v2-personalities__person:hover .v2-personalities__card {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 17px 22px rgba(0, 0, 0, .32));
+}
+
+.v2-personalities__card-media {
+  position: absolute;
+  inset: 2px 2px auto;
+  height: 68%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(211, 174, 94, .1), transparent 35%),
+    #123326;
+}
+
 .v2-personalities__card-media-inner {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(206, 169, 91, .08), transparent 34%),
-    #092319;
 }
 
 .v2-personalities__card-media img {
   position: absolute;
-  inset: 5.5% 0 0;
+  inset: 3% 0 0;
   z-index: 1;
   display: block;
   width: 100%;
-  height: 94.5%;
+  height: 97%;
   object-fit: cover;
   object-position: center top;
   transition: transform .55s cubic-bezier(.22, 1, .36, 1);
@@ -171,7 +180,7 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  opacity: .11;
+  opacity: .1;
   background-image:
     linear-gradient(45deg, transparent 46%, #e4c477 47% 53%, transparent 54%),
     linear-gradient(-45deg, transparent 46%, #e4c477 47% 53%, transparent 54%);
@@ -184,84 +193,102 @@
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: linear-gradient(180deg, transparent 58%, rgba(2, 14, 9, .48) 100%);
+  background: linear-gradient(180deg, transparent 58%, rgba(3, 18, 12, .48) 100%);
   pointer-events: none;
 }
 
 .v2-personalities__person:hover .v2-personalities__card-media img {
-  transform: scale(1.025);
+  transform: scale(1.02);
 }
 
 .v2-personalities__card-copy {
-  position: relative;
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
   z-index: 5;
-  margin: -1rem auto 0;
-  padding: 0 .35rem;
+  height: 42%;
+  margin: 0;
+  padding: clamp(2.1rem, 3vw, 2.65rem) .8rem .8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-top: 1px solid rgba(221, 184, 104, .78);
+  border-radius: 42% 42% .8rem .8rem / 15% 15% .8rem .8rem;
+  background:
+    radial-gradient(circle at 50% 0, rgba(207, 168, 86, .1), transparent 42%),
+    linear-gradient(180deg, rgba(8, 39, 26, .99), rgba(5, 25, 17, 1));
+  box-shadow: inset 0 0 0 1px rgba(199, 158, 78, .27);
 }
 
 .v2-personalities__role {
   box-sizing: border-box;
-  display: inline-flex;
+  position: absolute;
+  top: -.85rem;
+  left: 50%;
   width: max-content;
-  min-height: 2rem;
-  max-width: calc(100% - .4rem);
-  margin: 0 auto 1rem;
-  padding: .48rem .85rem;
+  max-width: calc(100% - 1rem);
+  min-height: 1.95rem;
+  padding: .45rem .8rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: .48rem;
+  gap: .42rem;
   color: #dfc27e;
-  border: 1px solid rgba(214, 176, 95, .75);
+  border: 1px solid rgba(222, 184, 102, .86);
   clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
-  background: linear-gradient(180deg, #0d3525, #071d15);
-  box-shadow: inset 0 0 0 2px rgba(4, 18, 12, .9), inset 0 0 0 3px rgba(197, 155, 75, .25);
+  background: linear-gradient(180deg, #0c3826, #061c13);
+  box-shadow: inset 0 0 0 2px rgba(4, 18, 12, .92), inset 0 0 0 3px rgba(199, 155, 75, .32);
+  transform: translateX(-50%);
 }
 
 .v2-personalities__role p {
   margin: 0;
   color: #e8cc8a;
-  font-size: clamp(.56rem, .75vw, .68rem);
+  font-size: clamp(.54rem, .72vw, .66rem);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: .15em;
+  letter-spacing: .13em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .v2-personalities__role span {
-  font-size: .42rem;
+  font-size: .38rem;
 }
 
 .v2-personalities__card-copy h3 {
-  max-width: 19ch;
-  margin: 0 auto;
+  max-width: 17ch;
+  margin: 0;
   color: #fffaf0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.2rem, 1.75vw, 1.72rem);
+  font-size: clamp(1.08rem, 1.55vw, 1.52rem);
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.12;
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
 
 .v2-personalities__card-copy > span {
   display: block;
-  margin-top: .55rem;
-  color: #caa75f;
+  margin-top: .5rem;
+  color: #cdaa60;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.78rem, 1vw, .95rem);
+  font-size: clamp(.75rem, .9vw, .9rem);
 }
 
 @media (max-width: 1000px) {
   .v2-personalities__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.5rem 1.4rem;
+    gap: 1.25rem 1rem;
   }
 }
 
 @media (max-width: 720px) {
   .v2-personalities {
-    padding: 4.5rem 0 4.25rem;
+    padding: 4.25rem 0 4.5rem;
   }
 
   .v2-personalities__inner {
@@ -269,83 +296,90 @@
   }
 
   .v2-personalities__header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
   }
 
   .v2-personalities__header h2 {
-    font-size: clamp(1.72rem, 7.4vw, 2.35rem);
-    letter-spacing: .055em;
+    font-size: clamp(1.7rem, 7.25vw, 2.3rem);
+    letter-spacing: .052em;
   }
 
   .v2-personalities__header > p {
-    margin-top: .7rem;
-    font-size: clamp(.8rem, 3.6vw, 1rem);
+    margin-top: .68rem;
+    font-size: clamp(.8rem, 3.55vw, .98rem);
   }
 
   .v2-personalities__ornament {
-    margin-bottom: 1rem;
+    margin-bottom: .95rem;
   }
 
   .v2-personalities__ornament i {
-    width: 1.6rem;
-    font-size: .6rem;
+    width: 1.55rem;
+    font-size: .56rem;
   }
 
   .v2-personalities__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.15rem .7rem;
+    gap: .8rem .7rem;
+  }
+
+  .v2-personalities__card {
+    padding: 1.5px;
+    filter: drop-shadow(0 8px 11px rgba(0, 0, 0, .24));
+  }
+
+  .v2-personalities__card::after {
+    inset: 5px;
   }
 
   .v2-personalities__card-media {
-    aspect-ratio: 4 / 5.35;
-    padding: 1.5px;
-    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .24));
-  }
-
-  .v2-personalities__card-media::after {
-    inset: 4px;
+    inset: 1.5px 1.5px auto;
   }
 
   .v2-personalities__card-copy {
-    margin-top: -.75rem;
-    padding: 0 .1rem;
+    right: 1.5px;
+    bottom: 1.5px;
+    left: 1.5px;
+    padding: 1.75rem .38rem .5rem;
+    border-radius: 42% 42% .55rem .55rem / 13% 13% .55rem .55rem;
   }
 
   .v2-personalities__role {
-    min-height: 1.55rem;
-    margin-bottom: .72rem;
-    padding: .35rem .42rem;
-    gap: .28rem;
+    top: -.66rem;
+    max-width: calc(100% - .55rem);
+    min-height: 1.45rem;
+    padding: .32rem .4rem;
+    gap: .24rem;
   }
 
   .v2-personalities__role p {
-    font-size: clamp(.4rem, 1.9vw, .52rem);
-    letter-spacing: .075em;
+    font-size: clamp(.39rem, 1.82vw, .49rem);
+    letter-spacing: .065em;
   }
 
   .v2-personalities__role span {
-    font-size: .3rem;
+    font-size: .27rem;
+  }
+
+  .v2-personalities__person:nth-child(4) .v2-personalities__role p {
+    font-size: clamp(.34rem, 1.58vw, .43rem);
+    letter-spacing: .035em;
   }
 
   .v2-personalities__card-copy h3 {
     max-width: 16ch;
-    font-size: clamp(.86rem, 3.75vw, 1.08rem);
-    line-height: 1.12;
+    font-size: clamp(.78rem, 3.55vw, 1rem);
+    line-height: 1.1;
   }
 
   .v2-personalities__person:first-child .v2-personalities__card-copy h3 {
-    max-width: 18ch;
-    font-size: clamp(.8rem, 3.45vw, 1rem);
-  }
-
-  .v2-personalities__person:nth-child(4) .v2-personalities__role p {
-    font-size: clamp(.36rem, 1.72vw, .46rem);
-    letter-spacing: .045em;
+    max-width: 17ch;
+    font-size: clamp(.68rem, 3.12vw, .88rem);
   }
 
   .v2-personalities__card-copy > span {
-    margin-top: .38rem;
-    font-size: clamp(.67rem, 3vw, .82rem);
+    margin-top: .3rem;
+    font-size: clamp(.6rem, 2.7vw, .76rem);
   }
 }
 
@@ -364,6 +398,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .v2-personalities__card,
   .v2-personalities__card-media img {
     transition: none !important;
   }
