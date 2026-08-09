@@ -117,10 +117,12 @@
 }
 
 .v2-personalities__card-media {
+  --mihrab-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 520' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M18 520V195C18 125 66 72 137 57C165 51 187 31 200 8C213 31 235 51 263 57C334 72 382 125 382 195V520Z'/%3E%3C/svg%3E");
   position: relative;
   aspect-ratio: 4 / 5.25;
   padding: 2px;
-  clip-path: polygon(50% 0, 54% 5%, 60% 9%, 67% 12%, 76% 14%, 85% 21%, 92% 32%, 96% 44%, 96% 100%, 4% 100%, 4% 44%, 8% 32%, 15% 21%, 24% 14%, 33% 12%, 40% 9%, 46% 5%);
+  -webkit-mask: var(--mihrab-mask) center / 100% 100% no-repeat;
+  mask: var(--mihrab-mask) center / 100% 100% no-repeat;
   background: linear-gradient(135deg, #f1d28b 0%, #9b7132 42%, #e1bc6a 72%, #72501f 100%);
   filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .28));
 }
@@ -130,8 +132,16 @@
   position: absolute;
   inset: 6px;
   z-index: 4;
-  clip-path: inherit;
-  box-shadow: inset 0 0 0 1px rgba(238, 204, 132, .68);
+  padding: 1px;
+  background: rgba(238, 204, 132, .72);
+  -webkit-mask:
+    var(--mihrab-mask) center / 100% 100% no-repeat,
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask-composite: xor;
+  mask:
+    var(--mihrab-mask) center / 100% 100% no-repeat,
+    linear-gradient(#000 0 0) content-box;
+  mask-composite: exclude;
   pointer-events: none;
 }
 
@@ -140,7 +150,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  clip-path: inherit;
   background:
     radial-gradient(circle at 50% 18%, rgba(206, 169, 91, .08), transparent 34%),
     #092319;
