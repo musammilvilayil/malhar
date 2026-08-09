@@ -32,7 +32,14 @@ export default function KeyPersonalitiesV2() {
             >
               <div className="v2-personalities__card">
                 <div className="v2-personalities__card-media">
-                  <img src={person.image} alt={person.name} loading="lazy" decoding="async" />
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    width="360"
+                    height="370"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div className="v2-personalities__card-overlay" />
                 </div>
 
