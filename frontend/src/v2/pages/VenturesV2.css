@@ -2,6 +2,10 @@
   --ink: var(--v2-ink);
   --paper: var(--v2-paper);
   --gold: var(--v2-gold);
+  --ventures-space-1: clamp(.75rem, 1.2vw, 1rem);
+  --ventures-space-2: clamp(1rem, 2vw, 1.5rem);
+  --ventures-space-3: clamp(1.5rem, 3vw, 2rem);
+  --ventures-space-4: clamp(2.5rem, 6vw, 4rem);
   background: var(--ink);
   color: var(--paper);
   min-height: 100svh;
@@ -13,35 +17,37 @@
   position: relative; min-height: 44svh; display: grid; place-items: center start;
   padding: clamp(3rem,6vw,5rem) 24px; isolation: isolate;
 }
-.v2-ventures__hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index:1; filter: saturate(.88) brightness(.64); }
+.v2-ventures__hero-bg { position: absolute; inset: -24px 0 0; width: 100%; height: calc(100% + 48px); object-fit: cover; object-position: center; z-index:1; filter: saturate(.88) brightness(.64); transform: translateZ(0); }
 .v2-ventures__hero-wash { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,11,8,.6), rgba(3,11,8,.04)); z-index:2 }
 .v2-ventures__letterbox-top, .v2-ventures__letterbox-bottom { position: absolute; left:0; right:0; height: 6vh; background: rgba(3,6,4,0.92); z-index: 8; pointer-events: none }
 .v2-ventures__letterbox-top { top: 0 } .v2-ventures__letterbox-bottom { bottom: 0 }
 .v2-ventures__hero-copy { position: relative; z-index: 10; max-width: 980px; }
 .v2-ventures__hero-copy p { color: var(--gold); font-size: 10px; letter-spacing: .22em; text-transform: uppercase }
-.v2-ventures__hero-copy h1 { margin: .4rem 0 1rem; font-family: Georgia, serif; font-size: clamp(2.4rem,6.8vw,4.6rem); line-height: .92 }
+.v2-ventures__hero-copy h1 { margin: .4rem 0 1rem; font-family: Georgia, serif; font-size: clamp(2.25rem,6.8vw,4.6rem); line-height: .94; text-wrap: balance }
 .v2-ventures__hero-copy span { color: rgba(242,234,215,.86); max-width: 60ch }
 
-.v2-ventures__list { padding: clamp(2rem,6vw,4rem) 24px; z-index: 10; }
-.v2-ventures__grid-shell { max-width: 1320px; margin: 0 auto; display: grid; gap: 2.4rem; grid-template-columns: repeat(2, 1fr); }
+.v2-ventures__list { padding: var(--ventures-space-4) clamp(1rem, 4vw, 2rem); z-index: 10; }
+.v2-ventures__grid-shell { max-width: 1320px; margin: 0 auto; display: grid; gap: var(--ventures-space-3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .v2-ventures__category { background: transparent; }
-.v2-ventures__category header { display:flex; align-items:center; gap: .8rem; margin-bottom: 1rem }
+.v2-ventures__category header { display:flex; align-items:center; flex-wrap: wrap; gap: .75rem; margin-bottom: var(--ventures-space-1) }
 .v2-ventures__cat-icon { width: 20px; height: 20px; color: var(--gold); }
 .v2-ventures__category h2 { margin: 0; font-size: 1.05rem; color: var(--gold); }
-.v2-ventures__cat-desc { margin: 0 0 1rem 0; color: rgba(242,234,215,.7); font-size: .95rem }
+.v2-ventures__cat-desc { flex-basis: 100%; margin: 0; color: rgba(242,234,215,.7); font-size: clamp(.85rem, 1.5vw, .95rem); line-height: 1.55 }
 
-.v2-ventures__cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-.v2-ventures__card { display:flex; gap: .9rem; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding: .6rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 28px 90px rgba(0,0,0,0.6); align-items:center }
-.v2-ventures__card-media { width: 90px; height: 64px; border-radius: 8px; overflow:hidden; flex-shrink:0; transform: translateZ(0); }
-.v2-ventures__card-media img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .6s cubic-bezier(.2,.9,.28,1) }
+.v2-ventures__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ventures-space-1); }
+.v2-ventures__card { display:flex; gap: .9rem; min-width: 0; background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.012)); padding: .7rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 60px rgba(0,0,0,0.42); align-items:center; transform: translateZ(0); transition: transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s cubic-bezier(.4,0,.2,1) }
+.v2-ventures__card-media { width: 90px; aspect-ratio: 3 / 2; border-radius: 8px; overflow:hidden; flex-shrink:0; transform: translateZ(0); background: rgba(255,255,255,.045); }
+.v2-ventures__card-media img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .45s cubic-bezier(.4,0,.2,1) }
 .v2-ventures__card-body { display:flex; flex-direction:column; gap: .5rem }
-.v2-ventures__card-body strong { font-size: .98rem }
-.v2-ventures__learn { color: var(--gold); font-weight:700; text-decoration:none; font-size: .85rem }
+.v2-ventures__card-body strong { font-size: clamp(.85rem, 1.5vw, .98rem); line-height: 1.35; overflow-wrap: anywhere }
+.v2-ventures__learn { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; color: var(--gold); font-weight:700; text-decoration:none; font-size: .85rem }
 
-.v2-ventures__card:hover { transform: translateY(-6px); transition: transform .28s cubic-bezier(.2,.9,.28,1); box-shadow: 0 38px 120px rgba(102,126,234,0.12) }
+.v2-ventures__card:hover { box-shadow: 0 28px 80px rgba(0,0,0,.5) }
 
-/* subtle parallax on scroll: keep performative */
-.v2-ventures__hero-bg, .v2-ventures__card-media img { will-change: transform }
+@media (hover: hover) and (pointer: fine) {
+  .v2-ventures__card:hover,
+  .v2-ventures__card:hover img { will-change: transform; }
+}
 
 @media (max-width: 980px) {
   .v2-ventures__grid-shell { grid-template-columns: 1fr }
@@ -50,10 +56,15 @@
 
 @media (max-width: 560px) {
   .v2-ventures__cards { grid-template-columns: 1fr }
-  .v2-ventures__card { padding: .8rem }
-  .v2-ventures__card-media { width: 110px; height: 70px }
+  .v2-ventures__hero { min-height: 40svh; padding: 3.5rem 1rem 2.5rem; }
+  .v2-ventures__letterbox-top,
+  .v2-ventures__letterbox-bottom { height: 3.5vh; }
+  .v2-ventures__card { padding: .65rem; transition-duration: .25s; }
+  .v2-ventures__card-media { width: clamp(88px, 27vw, 108px); }
+  .v2-ventures__card-media img { transition-duration: .25s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .v2-ventures__card { transition: none !important; }
+  .v2-ventures__card,
+  .v2-ventures__card-media img { transition: none !important; }
 }

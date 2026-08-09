@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Home, MapPin, BookOpen, Cpu, Archive } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../v2.css";
 import "./VenturesV2.css";
@@ -69,9 +70,20 @@ function findInstitutionSlug(name) {
 
 export default function VenturesV2() {
   const reduceMotion = useReducedMotion();
+  const [compactMotion, setCompactMotion] = useState(false);
   const heroRef = useRef(null);
+  const motionDisabled = reduceMotion || compactMotion;
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start end", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -22]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, motionDisabled ? 0 : -22]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    const updateMotionPreference = () => setCompactMotion(query.matches);
+
+    updateMotionPreference();
+    query.addEventListener?.("change", updateMotionPreference);
+    return () => query.removeEventListener?.("change", updateMotionPreference);
+  }, []);
 
   const getImageForVenture = (v) => {
     // prefer institutional images
@@ -93,16 +105,27 @@ export default function VenturesV2() {
       <Navbar />
 
       <section className="v2-ventures__hero" ref={heroRef}>
-        <motion.img src="/assets/web-slide-1-2048x909.webp" className="v2-ventures__hero-bg" style={{ y: heroY }} alt="Malhar campus" aria-hidden="true" />
+        <motion.img
+          src="/assets/web-slide-1-2048x909.webp"
+          className="v2-ventures__hero-bg"
+          style={{ y: heroY }}
+          alt=""
+          aria-hidden="true"
+          width="2048"
+          height="909"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
         <div className="v2-ventures__hero-wash" />
         <div className="v2-ventures__letterbox-top" aria-hidden="true" />
         <div className="v2-ventures__letterbox-bottom" aria-hidden="true" />
         <motion.div
           className="v2-ventures__hero-copy"
-          initial={reduceMotion ? false : "hidden"}
+          initial={motionDisabled ? false : "hidden"}
           animate="visible"
           variants={reveal}
-          transition={{ duration: 0.75 }}
+          transition={{ duration: motionDisabled ? 0 : 0.55, ease: [0.4, 0, 0.2, 1] }}
         >
           <p>Our ventures</p>
           <h1>Malhar's <em>community of initiatives.</em></h1>
@@ -124,23 +147,31 @@ export default function VenturesV2() {
                 {ventures.filter((v) => v.category === cat.key).map((v, idx) => {
                   const img = getImageForVenture(v);
                   const slug = findInstitutionSlug(v.name);
-                  const href = slug ? `/institution/${slug}` : "/admissions";
+                  const href = slug ? `/institutions/${slug}` : "/admissions";
                   return (
                     <motion.article
                       key={v.name}
                       className="v2-ventures__card"
-                      initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.996 }}
-                      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                      initial={motionDisabled ? false : { opacity: 0, y: 18, scale: 0.996 }}
+                      whileInView={motionDisabled ? undefined : { opacity: 1, y: 0, scale: 1 }}
                       viewport={{ once: true, amount: 0.16 }}
-                      transition={{ duration: 0.58, delay: Math.min(idx * 0.03, 0.3) }}
-                      whileHover={reduceMotion ? undefined : { y: -6, scale: 1.01 }}
+                      transition={{ duration: 0.46, delay: Math.min(idx * 0.025, 0.2), ease: [0.4, 0, 0.2, 1] }}
+                      whileHover={motionDisabled ? undefined : { y: -5, scale: 1.008 }}
                     >
                       <div className="v2-ventures__card-media">
-                        <motion.img src={img} alt={v.name} loading="lazy" style={{ willChange: 'transform' }} whileHover={reduceMotion ? undefined : { scale: 1.06 }} />
+                        <motion.img
+                          src={img}
+                          alt={v.name}
+                          width="360"
+                          height="240"
+                          loading="lazy"
+                          decoding="async"
+                          whileHover={motionDisabled ? undefined : { scale: 1.045 }}
+                        />
                       </div>
                       <div className="v2-ventures__card-body">
                         <strong>{v.name}</strong>
-                        <a className="v2-ventures__learn" href={href}>Learn more</a>
+                        <Link className="v2-ventures__learn" to={href}>Learn more</Link>
                       </div>
                     </motion.article>
                   );
