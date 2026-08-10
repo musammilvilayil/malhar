@@ -111,7 +111,7 @@
 }
 
 .v2-personalities__card {
-  --mihrab-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 620' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M20 620V220C20 141 71 83 142 66C168 60 188 36 200 10C212 36 232 60 258 66C329 83 380 141 380 220V620Z'/%3E%3C/svg%3E");
+  --mihrab-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 620' preserveAspectRatio='none'%3E%3Cpath fill='%23000' d='M36 620C26 620 18 612 18 602V302C18 292 13 285 6 285V242C6 233 12 227 20 227C21 196 38 176 62 168C61 140 79 119 106 114C105 88 124 69 154 63C174 58 190 34 200 10C210 34 226 58 246 63C276 69 295 88 294 114C321 119 339 140 338 168C362 176 379 196 380 227C388 227 394 233 394 242V285C387 285 382 292 382 302V602C382 612 374 620 364 620Z'/%3E%3C/svg%3E");
   position: relative;
   width: 100%;
   aspect-ratio: 400 / 620;
@@ -223,6 +223,29 @@
   box-shadow: inset 0 0 0 1px rgba(199, 158, 78, .27);
 }
 
+.v2-personalities__card-copy::before,
+.v2-personalities__card-copy::after {
+  content: "";
+  position: absolute;
+  bottom: .72rem;
+  pointer-events: none;
+}
+
+.v2-personalities__card-copy::before {
+  left: 24%;
+  width: 52%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(213, 175, 95, .76) 22%, rgba(213, 175, 95, .76) 78%, transparent);
+}
+
+.v2-personalities__card-copy::after {
+  left: 50%;
+  width: .32rem;
+  aspect-ratio: 1;
+  background: #d4ad60;
+  transform: translate(-50%, 45%) rotate(45deg);
+}
+
 .v2-personalities__role {
   box-sizing: border-box;
   position: absolute;
@@ -269,6 +292,10 @@
   line-height: 1.12;
   text-wrap: balance;
   overflow-wrap: anywhere;
+}
+
+.v2-personalities__card-copy h3 span {
+  display: block;
 }
 
 .v2-personalities__card-copy > span {
@@ -324,7 +351,7 @@
   }
 
   .v2-personalities__card {
-    padding: 1.5px;
+    padding: 1px;
     filter: drop-shadow(0 8px 11px rgba(0, 0, 0, .24));
   }
 
@@ -340,8 +367,8 @@
     right: 1.5px;
     bottom: 1.5px;
     left: 1.5px;
-    padding: 1.75rem .38rem .5rem;
-    border-radius: 42% 42% .55rem .55rem / 13% 13% .55rem .55rem;
+    padding: 1.75rem .38rem 1rem;
+    border-radius: 42% 42% .9rem .9rem / 13% 13% .9rem .9rem;
   }
 
   .v2-personalities__role {
@@ -373,13 +400,18 @@
   }
 
   .v2-personalities__person:first-child .v2-personalities__card-copy h3 {
-    max-width: 17ch;
-    font-size: clamp(.68rem, 3.12vw, .88rem);
+    max-width: 15ch;
+    font-size: clamp(.66rem, 3vw, .84rem);
   }
 
   .v2-personalities__card-copy > span {
     margin-top: .3rem;
     font-size: clamp(.6rem, 2.7vw, .76rem);
+  }
+
+  .v2-personalities__card-copy::before,
+  .v2-personalities__card-copy::after {
+    bottom: .48rem;
   }
 }
 
