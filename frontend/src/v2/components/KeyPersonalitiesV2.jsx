@@ -2,6 +2,25 @@ import { motion, useReducedMotion } from "framer-motion";
 import { KEY_PERSONALITIES } from "../../data";
 import "./KeyPersonalitiesV2.css";
 
+const PERSONALITY_NAME_LINES = {
+  "marhoom-qasi-sayyid-muhammad-umarul-farook-al-bukhari": [
+    "Marhoom Qasi",
+    "Sayyid Muhammad",
+    "Umarul Farook",
+    "Al Bukhari",
+  ],
+  "sayyid-abdu-rahman-shaheer-al-bukhari": [
+    "Sayyid Abdu",
+    "Rahman Shaheer",
+    "Al Bukhari",
+  ],
+  "sayyid-jalaluddeen-sa-adi-al-bukhari": [
+    "Sayyid Jalaluddeen",
+    "Sa-adi Al Bukhari",
+  ],
+  "adv-hassan-kunhi-b": ["Adv Hassan", "Kunhi B"],
+};
+
 export default function KeyPersonalitiesV2() {
   const reduceMotion = useReducedMotion();
 
@@ -54,7 +73,11 @@ export default function KeyPersonalitiesV2() {
                     <p>{person.role}</p>
                     <span aria-hidden="true">◆</span>
                   </div>
-                  <h3>{person.name}</h3>
+                  <h3 aria-label={person.name}>
+                    {(PERSONALITY_NAME_LINES[person.slug] || [person.name]).map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </h3>
                   {person.knownAs && <span>{person.knownAs}</span>}
                 </div>
               </div>
