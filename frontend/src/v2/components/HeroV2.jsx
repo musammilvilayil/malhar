@@ -1,6 +1,5 @@
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import BrandLogoV2 from "./BrandLogoV2";
 
 export default function HeroV2() {
   const scrollNext = () => {
@@ -18,15 +17,12 @@ export default function HeroV2() {
 
       <div className="v2-hero__wash" />
       <div className="v2-hero__grain" aria-hidden="true" />
-
-      <header className="v2-hero__topline">
-        {/* Logo is shown in the navbar; remove duplicate from hero header */}
-      </header>
+      <div className="v3-hero__wordmark" aria-hidden="true">MALHAR</div>
 
       <div className="v2-hero__content">
         <div className="v2-hero__eyebrow">
           <span className="v2-hero__eyebrow-line" />
-          <span>Since 2000</span>
+          <span>Since 2000 · Manjeshwar, Kerala</span>
         </div>
 
         <h1 id="v2-hero-title" className="v2-hero__title">
@@ -51,6 +47,17 @@ export default function HeroV2() {
           </div>
         </div>
       </div>
+
+      <aside className="v3-hero-card" aria-label="Malhar identity">
+        <div className="v3-hero-card__top">
+          <span>Educational Trust</span>
+          <span>EST. 2000</span>
+        </div>
+        <strong>Malhar</strong>
+        <p>Nooril Islami Tha&apos;aleemi</p>
+        <div className="v3-hero-card__line" />
+        <small>Manjeshwar · Kasaragod · Kerala</small>
+      </aside>
 
       <aside className="v2-hero__rail" aria-label="Malhar location">
         <span>KERALA</span>
