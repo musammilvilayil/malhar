@@ -1,0 +1,72 @@
+/* Final visual polish loaded after the immersive tour base styles. */
+
+@media (max-width: 900px) {
+  /* Keep the hero visually alive while the sticky stage releases into the next scene. */
+  .tour-hero {
+    background:
+      linear-gradient(180deg, rgba(2,8,5,.24), rgba(2,8,5,.42) 56%, #07100d 100%),
+      url("/assets/DSC_2363-1-1-1.jpg") 66% 49% / cover no-repeat;
+  }
+
+  /* Preserve architectural texture during the threshold hand-off instead of exposing a flat blank field. */
+  .tour-threshold {
+    background:
+      repeating-linear-gradient(90deg, rgba(239,215,158,.025) 0 1px, transparent 1px 13vw),
+      radial-gradient(circle at 50% 30%, rgba(217,173,86,.09), transparent 24rem),
+      linear-gradient(180deg, #07140f, #030906);
+  }
+
+  /* The fixed mobile navbar is ~76px tall; scene intros start below it. */
+  .tour-institutions {
+    padding-top: 104px;
+  }
+
+  .tour-courtyard {
+    padding-top: 108px;
+  }
+
+  .tour-office__inner {
+    padding-top: 110px;
+  }
+
+  .tour-impact-intro {
+    padding-top: 112px;
+  }
+
+  .tour-institutions__heading,
+  .tour-courtyard__copy,
+  .tour-office__heading,
+  .tour-impact-intro {
+    scroll-margin-top: 92px;
+  }
+
+  /* Slightly stronger text contrast on mobile without changing the desktop art direction. */
+  .tour-threshold__copy > p:last-child,
+  .tour-courtyard__copy > p:last-child,
+  .tour-office__heading > p:last-child {
+    color: rgba(255,249,234,.72);
+  }
+
+  .tour-institutions__heading > p:last-child,
+  .tour-impact-intro > p:last-child {
+    color: rgba(10,23,18,.7);
+  }
+}
+
+@media (max-width: 520px) {
+  .tour-institutions {
+    padding-top: 96px;
+  }
+
+  .tour-courtyard {
+    padding-top: 100px;
+  }
+
+  .tour-office__inner {
+    padding-top: 102px;
+  }
+
+  .tour-impact-intro {
+    padding-top: 104px;
+  }
+}
