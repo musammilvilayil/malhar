@@ -1,0 +1,456 @@
+/* Readability pass for the experimental Malhar V3 branch.
+   Imported last on purpose: typography and contrast must win over older visual overrides. */
+
+:root {
+  --v3-readable-cream: #fff8e9;
+  --v3-readable-cream-soft: #e9dfc9;
+  --v3-readable-gold: #f0d79e;
+  --v3-readable-gold-light: #f6dfaa;
+  --v3-readable-gold-on-paper: #7a5214;
+  --v3-readable-ink: #0b1712;
+  --v3-readable-ink-soft: #354039;
+}
+
+/* Never let decorative opacity make essential copy unreadable. */
+.v3-shell p,
+.v3-shell a,
+.v3-shell button,
+.v3-shell small,
+.v3-shell span {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Navigation */
+.v3-shell .v2-navbar__link,
+.v3-shell .v2-navbar__mobile-link {
+  color: var(--v3-readable-cream);
+  opacity: .92;
+}
+
+.v3-shell .v2-navbar__link:hover,
+.v3-shell .v2-navbar__link--active,
+.v3-shell .v2-navbar__mobile-link:hover,
+.v3-shell .v2-navbar__mobile-link.v2-navbar__link--active {
+  color: var(--v3-readable-gold-light);
+  opacity: 1;
+}
+
+/* Hero copy sits on photography: keep the image cinematic, but protect the text. */
+.v3-shell .v2-hero__wash {
+  background:
+    linear-gradient(180deg, rgba(3,8,6,.22) 0%, rgba(3,8,6,.30) 30%, rgba(3,8,6,.76) 66%, #07100d 96%),
+    linear-gradient(90deg, rgba(3,8,6,.94) 0%, rgba(3,8,6,.74) 42%, rgba(3,8,6,.25) 72%, rgba(3,8,6,.10) 100%);
+}
+
+.v3-shell .v2-hero__eyebrow {
+  color: var(--v3-readable-gold-light);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-hero__title {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-hero__footer-copy > p {
+  color: rgba(255,248,233,.90);
+  font-size: clamp(.95rem, 1.2vw, 1.08rem);
+}
+
+.v3-shell .v2-secondary-action {
+  color: #fffaf0;
+  border-color: rgba(255,248,233,.34);
+  background: rgba(3,8,6,.62);
+}
+
+/* Manifesto is on paper: use a darker gold for small type. */
+.v3-manifesto__meta {
+  color: var(--v3-readable-ink-soft);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-manifesto h2 {
+  color: var(--v3-readable-ink);
+}
+
+.v3-manifesto h2 em,
+.v3-manifesto__pillars span {
+  color: var(--v3-readable-gold-on-paper);
+}
+
+.v3-manifesto__pillars h3 {
+  color: var(--v3-readable-ink);
+}
+
+.v3-manifesto__pillars p {
+  color: #354039;
+  font-size: clamp(.95rem, 1.15vw, 1.05rem);
+}
+
+/* Founder */
+.v3-shell .v2-founder__identity > p {
+  color: var(--v3-readable-gold-light);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-founder__identity h2 {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-founder__identity strong {
+  color: var(--v3-readable-gold-light);
+}
+
+.v3-shell .v2-founder__quote p {
+  color: #fff8e9;
+}
+
+.v3-shell .v2-founder__timeline {
+  color: rgba(255,248,233,.82);
+  font-size: 10px;
+}
+
+/* Institutions: paper heading + high-contrast photo cards. */
+.v3-shell .v2-institutions__chapter > p,
+.v3-shell .v2-institutions__hint {
+  color: #354039 !important;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-institutions__chapter > p span,
+.v3-shell .v2-institutions__chapter h2 em {
+  color: var(--v3-readable-gold-on-paper) !important;
+}
+
+.v3-shell .v2-institutions__wash {
+  background:
+    linear-gradient(180deg, rgba(4,12,9,.34) 0%, rgba(4,12,9,.12) 34%, rgba(4,12,9,.78) 68%, rgba(4,12,9,.96) 100%),
+    linear-gradient(90deg, rgba(4,12,9,.68), rgba(4,12,9,.12) 72%);
+}
+
+.v3-shell .v2-institutions__position {
+  color: var(--v3-readable-gold-light);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-institutions__panel-content h3 {
+  color: #fffaf0;
+  text-shadow: 0 4px 24px rgba(0,0,0,.42);
+}
+
+.v3-shell .v2-institutions__description {
+  color: rgba(255,248,233,.90);
+  font-size: clamp(.96rem, 1.18vw, 1.08rem);
+}
+
+.v3-shell .v2-institutions__explore {
+  color: #fffaf0;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-institutions__autoplay-note {
+  color: rgba(255,248,233,.78);
+  font-size: 10px;
+}
+
+/* Campus */
+.v3-shell .v2-campus__eyebrow,
+.v3-shell .v2-campus__intro-copy > span {
+  color: var(--v3-readable-gold-light);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-campus__heading-grid h2 {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-campus__heading-grid h2 em {
+  color: var(--v3-readable-gold-light);
+}
+
+.v3-shell .v2-campus__intro-copy p {
+  color: rgba(255,248,233,.88);
+  font-size: clamp(.95rem, 1.15vw, 1.06rem);
+}
+
+.v3-shell .v2-accordion__wash {
+  background:
+    linear-gradient(180deg, rgba(4,12,9,.12), rgba(4,12,9,.20) 42%, rgba(4,12,9,.94)),
+    linear-gradient(90deg, rgba(4,12,9,.42), transparent 72%);
+}
+
+.v3-shell .v2-accordion__index {
+  color: var(--v3-readable-gold-light);
+}
+
+.v3-shell .v2-accordion__caption strong {
+  color: #fffaf0;
+  text-shadow: 0 3px 18px rgba(0,0,0,.5);
+}
+
+.v3-shell .v2-accordion__caption small {
+  color: rgba(255,248,233,.90);
+  font-size: clamp(.84rem, 1vw, .96rem);
+}
+
+.v3-shell .v2-campus__footer {
+  color: rgba(255,248,233,.72);
+  font-size: 9px;
+}
+
+/* Personalities */
+.v3-shell .v2-personalities__header h2 {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-personalities__header > p {
+  color: var(--v3-readable-gold-light);
+}
+
+.v3-shell .v2-personalities__role p {
+  color: #f9dea2;
+  font-size: clamp(.62rem, .76vw, .72rem);
+  line-height: 1.2;
+}
+
+.v3-shell .v2-personalities__card-copy h3 {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-personalities__card-copy > span {
+  color: #e5c575;
+}
+
+/* Stats are on a light paper chapter in V3. */
+.v3-shell .v2-stats,
+.v3-shell .v2-stats__header,
+.v3-shell .v2-stats__header h2,
+.v3-shell .v2-stats__item {
+  color: var(--v3-readable-ink);
+}
+
+.v3-shell .v2-stats__header > p,
+.v3-shell .v2-stats__header h2 em,
+.v3-shell .v2-stats__item strong {
+  color: var(--v3-readable-gold-on-paper);
+}
+
+.v3-shell .v2-stats__header > p,
+.v3-shell .v2-stats__header > span {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-stats__header > span {
+  color: #354039;
+}
+
+.v3-shell .v2-stats__item p {
+  color: #354039;
+  font-size: clamp(.82rem, 1vw, .95rem);
+  letter-spacing: .08em;
+}
+
+.v3-shell .v2-stats__item i {
+  color: #745019;
+}
+
+/* The V3 ending became dark, while the old component was designed for paper.
+   Explicitly reset every inherited paper color here. */
+.v3-shell .v2-home-end {
+  color: var(--v3-readable-cream);
+}
+
+.v3-shell .v2-home-end > p {
+  color: var(--v3-readable-gold-light);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-home-end h2 {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-home-end__actions a {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-home-end__actions small {
+  color: var(--v3-readable-gold-light);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.v3-shell .v2-home-end__actions strong {
+  color: #fffaf0;
+}
+
+.v3-shell .v2-home-end__actions a > span {
+  color: var(--v3-readable-gold-light);
+}
+
+/* Footer */
+.v3-shell .v2-footer__brand p {
+  color: rgba(241,231,210,.78);
+}
+
+.v3-shell .v2-footer nav a,
+.v3-shell .v2-footer address a,
+.v3-shell .v2-footer__base a {
+  color: rgba(255,248,233,.86);
+}
+
+.v3-shell .v2-footer__base {
+  color: rgba(255,248,233,.72);
+  font-size: 10px;
+}
+
+@media (max-width: 900px) {
+  /* Mobile text should not rely on 7–8px metadata. */
+  .v3-shell .v2-navbar__mobile-link {
+    font-size: .82rem;
+    line-height: 1.25;
+  }
+
+  .v3-shell .v2-hero__eyebrow,
+  .v3-manifesto__meta,
+  .v3-shell .v2-founder__identity > p,
+  .v3-shell .v2-founder__timeline,
+  .v3-shell .v2-institutions__chapter > p,
+  .v3-shell .v2-institutions__position,
+  .v3-shell .v2-institutions__autoplay-note,
+  .v3-shell .v2-campus__eyebrow,
+  .v3-shell .v2-campus__intro-copy > span,
+  .v3-shell .v2-stats__header > p,
+  .v3-shell .v2-stats__header > span,
+  .v3-shell .v2-home-end > p,
+  .v3-shell .v2-home-end__actions small,
+  .v3-shell .v2-footer__base {
+    font-size: 10px !important;
+    line-height: 1.4;
+    letter-spacing: .12em;
+  }
+
+  .v3-shell .v2-hero__footer-copy > p,
+  .v3-manifesto__pillars p,
+  .v3-shell .v2-institutions__description,
+  .v3-shell .v2-campus__intro-copy p {
+    font-size: .94rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .v3-shell .v2-accordion__caption small {
+    font-size: .88rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .v3-shell .v2-campus__footer {
+    font-size: 9px !important;
+    line-height: 1.45;
+    letter-spacing: .10em;
+  }
+
+  .v3-shell .v2-stats__item p {
+    color: #354039 !important;
+    font-size: .82rem !important;
+    line-height: 1.45;
+    letter-spacing: .055em;
+  }
+
+  .v3-shell .v2-footer__brand p,
+  .v3-shell .v2-footer nav a,
+  .v3-shell .v2-footer address a {
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 520px) {
+  .v3-shell .v2-hero__title {
+    max-width: 9ch;
+    line-height: .94;
+  }
+
+  .v3-shell .v2-primary-action,
+  .v3-shell .v2-secondary-action {
+    font-size: .78rem;
+  }
+
+  .v3-shell .v2-institutions__mobile-panel h3 {
+    font-size: clamp(2rem, 8.8vw, 3.1rem);
+    line-height: 1;
+  }
+
+  .v3-shell .v2-institutions__mobile-panel .v2-institutions__description {
+    color: rgba(255,248,233,.92) !important;
+    font-size: .9rem !important;
+  }
+
+  .v3-shell .v2-personalities__role p {
+    font-size: .58rem !important;
+    line-height: 1.15 !important;
+    letter-spacing: .045em !important;
+  }
+
+  .v3-shell .v2-personalities__card-copy h3,
+  .v3-shell .v2-personalities__person:first-child .v2-personalities__card-copy h3 {
+    font-size: clamp(.88rem, 3.65vw, 1.08rem) !important;
+    line-height: 1.16;
+  }
+
+  .v3-shell .v2-personalities__card-copy > span {
+    font-size: .72rem !important;
+  }
+
+  .v3-shell .v2-stats__header > span {
+    font-size: 10px !important;
+  }
+
+  .v3-shell .v2-stats__item p {
+    font-size: .78rem !important;
+  }
+}
+
+/* On narrow phones, one leadership card per row is far more legible than tiny two-column text. */
+@media (max-width: 430px) {
+  .v3-shell .v2-personalities__grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  .v3-shell .v2-personalities__person {
+    width: min(100%, 360px);
+    margin-inline: auto;
+  }
+
+  .v3-shell .v2-personalities__role p {
+    font-size: .68rem !important;
+    letter-spacing: .07em !important;
+  }
+
+  .v3-shell .v2-personalities__card-copy h3,
+  .v3-shell .v2-personalities__person:first-child .v2-personalities__card-copy h3 {
+    font-size: clamp(1.15rem, 5.4vw, 1.45rem) !important;
+  }
+
+  .v3-shell .v2-personalities__card-copy > span {
+    font-size: .82rem !important;
+  }
+
+  .v3-shell .v2-stats__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .v3-shell .v2-stats__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
