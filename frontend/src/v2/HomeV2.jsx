@@ -6,11 +6,14 @@ import CampusLifeV2 from "./components/CampusLifeV2";
 import KeyPersonalitiesV2 from "./components/KeyPersonalitiesV2";
 import StatsV2 from "./components/StatsV2";
 import HomeEndV2 from "./components/HomeEndV2";
+import AtmosphereV3 from "./components/AtmosphereV3";
 import "./v2.css";
+import "./redesign-v3.css";
 
 export default function HomeV2() {
   return (
-    <div className="v2-shell">
+    <div className="v2-shell v3-shell">
+      <AtmosphereV3 />
       <Navbar />
       <HeroV2 />
       <FounderV2 />
