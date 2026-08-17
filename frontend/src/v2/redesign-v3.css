@@ -1,0 +1,473 @@
+:root {
+  --v3-forest: #07100d;
+  --v3-forest-soft: #0b1712;
+  --v3-paper: #f4ecd9;
+  --v3-gold: #d9ad56;
+  --v3-gold-soft: #efd59a;
+  --v3-line: rgba(239, 213, 154, 0.2);
+  --v3-glass: rgba(7, 16, 13, 0.62);
+}
+
+::selection {
+  background: rgba(217, 173, 86, 0.32);
+  color: #fff8e8;
+}
+
+.v3-shell {
+  position: relative;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(217, 173, 86, 0.06), transparent 34rem),
+    var(--v3-forest);
+}
+
+.v3-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(circle at 15% 24%, rgba(217, 173, 86, 0.035), transparent 28rem),
+    radial-gradient(circle at 88% 67%, rgba(105, 148, 111, 0.035), transparent 30rem);
+}
+
+.v3-atmosphere {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+
+.v3-scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--v3-gold), var(--v3-gold-soft));
+  box-shadow: 0 0 16px rgba(217, 173, 86, 0.34);
+}
+
+.v3-cursor-aura {
+  position: fixed;
+  left: var(--v3-pointer-x, 50vw);
+  top: var(--v3-pointer-y, 45vh);
+  width: 34rem;
+  height: 34rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0.12;
+  filter: blur(14px);
+  background: radial-gradient(circle, rgba(217, 173, 86, 0.18) 0%, rgba(217, 173, 86, 0.05) 28%, transparent 68%);
+  transition: opacity 300ms ease;
+}
+
+.v3-edge-frame {
+  position: fixed;
+  top: 112px;
+  bottom: 26px;
+  width: 1px;
+  opacity: 0.26;
+  background: linear-gradient(180deg, transparent, rgba(217, 173, 86, 0.42) 16%, rgba(242, 234, 215, 0.11) 70%, transparent);
+}
+
+.v3-edge-frame--left { left: 18px; }
+.v3-edge-frame--right { right: 18px; }
+
+/* Navigation — keep the current information architecture, make it quieter and more premium. */
+.v3-shell .v2-navbar {
+  border-bottom: 1px solid rgba(242, 234, 215, 0.08);
+  background: rgba(5, 12, 9, 0.7);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.16);
+}
+
+@supports (backdrop-filter: blur(20px)) {
+  .v3-shell .v2-navbar {
+    backdrop-filter: blur(20px) saturate(1.08);
+  }
+}
+
+.v3-shell .v2-navbar__link {
+  position: relative;
+  opacity: 0.78;
+  transition: opacity 180ms ease, color 180ms ease;
+}
+
+.v3-shell .v2-navbar__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: center;
+  background: var(--v3-gold);
+  transition: transform 220ms ease;
+}
+
+.v3-shell .v2-navbar__link:hover,
+.v3-shell .v2-navbar__link--active {
+  opacity: 1;
+  color: var(--v3-paper);
+}
+
+.v3-shell .v2-navbar__link:hover::after,
+.v3-shell .v2-navbar__link--active::after {
+  transform: scaleX(1);
+}
+
+/* Hero — same image and message, with more editorial depth. */
+.v3-shell .v2-hero {
+  min-height: calc(100svh - 1px);
+  border-bottom: 1px solid rgba(239, 213, 154, 0.08);
+}
+
+.v3-shell .v2-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  width: min(56vw, 760px);
+  aspect-ratio: 1;
+  right: -18vw;
+  top: 8vh;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 173, 86, 0.11);
+  box-shadow:
+    0 0 0 70px rgba(217, 173, 86, 0.018),
+    0 0 0 140px rgba(217, 173, 86, 0.012);
+  pointer-events: none;
+}
+
+.v3-shell .v2-hero__media {
+  filter: saturate(0.76) contrast(1.05) brightness(0.69);
+  transform: scale(1.025);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .8s ease;
+}
+
+.v3-shell .v2-hero:hover .v2-hero__media {
+  transform: scale(1.04);
+}
+
+.v3-shell .v2-hero__wash {
+  background:
+    linear-gradient(180deg, rgba(4, 10, 8, 0.12) 0%, rgba(4, 10, 8, 0.2) 30%, rgba(4, 10, 8, 0.78) 78%, #07100d 100%),
+    linear-gradient(92deg, rgba(4, 10, 8, 0.92) 0%, rgba(4, 10, 8, 0.58) 36%, rgba(4, 10, 8, 0.18) 66%, rgba(4, 10, 8, 0.08) 100%);
+}
+
+.v3-shell .v2-hero__content {
+  padding-bottom: clamp(44px, 7vh, 88px);
+}
+
+.v3-shell .v2-hero__eyebrow {
+  width: max-content;
+  padding: 7px 11px 7px 0;
+  letter-spacing: 0.28em;
+}
+
+.v3-shell .v2-hero__title {
+  max-width: 1050px;
+  text-shadow: 0 10px 50px rgba(0,0,0,0.34);
+}
+
+.v3-shell .v2-hero__title span {
+  background: linear-gradient(90deg, #d9ad56 0%, #f0d79e 48%, #d9ad56 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.v3-shell .v2-hero__footer-copy {
+  border-top-color: rgba(239, 213, 154, 0.2);
+}
+
+.v3-shell .v2-primary-action,
+.v3-shell .v2-secondary-action {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.v3-shell .v2-primary-action::before,
+.v3-shell .v2-secondary-action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transition: transform 520ms ease;
+}
+
+.v3-shell .v2-primary-action:hover::before,
+.v3-shell .v2-secondary-action:hover::before {
+  transform: translateX(120%) skewX(-18deg);
+}
+
+.v3-shell .v2-primary-action:hover {
+  box-shadow: 0 12px 30px rgba(217, 173, 86, 0.16);
+}
+
+.v3-shell .v2-hero__rail {
+  right: 30px;
+  opacity: 0.9;
+}
+
+/* Founder — preserve the full-screen portrait composition, refine its framing. */
+.v3-shell .v2-founder {
+  isolation: isolate;
+  border-bottom: 1px solid rgba(239, 213, 154, 0.08);
+}
+
+.v3-shell .v2-founder::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  z-index: 5;
+  border: 1px solid rgba(239, 213, 154, 0.11);
+  pointer-events: none;
+}
+
+.v3-shell .v2-founder__identity > p,
+.v3-shell .v2-founder__timeline,
+.v3-shell .v2-founder__quote {
+  text-shadow: 0 4px 24px rgba(0,0,0,.36);
+}
+
+.v3-shell .v2-founder__identity h2 {
+  text-wrap: balance;
+}
+
+/* Shared chapter language. */
+.v3-shell .v2-institutions,
+.v3-shell .v2-campus,
+.v3-shell .v2-personalities,
+.v3-shell .v2-stats,
+.v3-shell .v2-home-end {
+  position: relative;
+  isolation: isolate;
+}
+
+.v3-shell .v2-institutions::before,
+.v3-shell .v2-campus::before,
+.v3-shell .v2-personalities::before,
+.v3-shell .v2-stats::before,
+.v3-shell .v2-home-end::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(calc(100% - 48px), 1380px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(217,173,86,.24), transparent);
+  pointer-events: none;
+}
+
+/* Institutions — same horizontal journey, richer image cards and edge treatment. */
+.v3-shell .v2-institutions__chapter h2,
+.v3-shell .v2-campus__heading-grid h2,
+.v3-shell .v2-stats__header h2,
+.v3-shell .v2-home-end h2 {
+  text-wrap: balance;
+}
+
+.v3-shell .v2-institutions__panel,
+.v3-shell .v2-institutions__mobile-panel {
+  overflow: hidden;
+  border: 1px solid rgba(239, 213, 154, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.015), 0 24px 70px rgba(0,0,0,.18);
+}
+
+.v3-shell .v2-institutions__image {
+  transition: transform 900ms cubic-bezier(.2,.8,.2,1), filter 600ms ease;
+  filter: saturate(.86) contrast(1.02);
+}
+
+.v3-shell .v2-institutions__panel:hover .v2-institutions__image,
+.v3-shell .v2-institutions__mobile-panel:hover .v2-institutions__image {
+  transform: scale(1.035);
+  filter: saturate(.96) contrast(1.04);
+}
+
+.v3-shell .v2-institutions__explore {
+  width: max-content;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(217, 173, 86, .42);
+}
+
+/* Campus — reinforce the gallery as an editorial object, not a generic carousel. */
+.v3-shell .v2-campus__gallery-shell {
+  border-top: 1px solid rgba(239, 213, 154, 0.12);
+  border-bottom: 1px solid rgba(239, 213, 154, 0.12);
+  box-shadow: 0 30px 80px rgba(0,0,0,.12);
+}
+
+.v3-shell .v2-campus__intro-copy {
+  border-left: 1px solid rgba(217, 173, 86, 0.28);
+  padding-left: clamp(18px, 2vw, 32px);
+}
+
+/* Leadership cards — keep the approved mihrab silhouettes, add subtle depth only. */
+.v3-shell .v2-personalities__person {
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.16));
+}
+
+.v3-shell .v2-personalities__card {
+  transition: filter 300ms ease;
+}
+
+.v3-shell .v2-personalities__person:hover .v2-personalities__card {
+  filter: brightness(1.025);
+}
+
+.v3-shell .v2-personalities__ornament i {
+  color: var(--v3-gold-soft);
+  text-shadow: 0 0 24px rgba(217, 173, 86, .3);
+}
+
+/* Stats — make the numbers feel like a quiet institutional data wall. */
+.v3-shell .v2-stats__grid {
+  border-top: 1px solid rgba(239, 213, 154, 0.12);
+  border-bottom: 1px solid rgba(239, 213, 154, 0.12);
+}
+
+.v3-shell .v2-stats__item {
+  position: relative;
+  overflow: hidden;
+  transition: background 250ms ease, transform 250ms ease;
+}
+
+.v3-shell .v2-stats__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(217,173,86,.09), transparent 68%);
+  transition: opacity 250ms ease;
+}
+
+.v3-shell .v2-stats__item:hover {
+  transform: translateY(-3px);
+}
+
+.v3-shell .v2-stats__item:hover::before { opacity: 1; }
+
+/* Final CTA — more product-like interaction while keeping the existing wording. */
+.v3-shell .v2-home-end__actions a {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(239, 213, 154, 0.15);
+  transition: transform 260ms ease, border-color 260ms ease, background 260ms ease;
+}
+
+.v3-shell .v2-home-end__actions a::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -80px;
+  top: -100px;
+  border-radius: 50%;
+  background: rgba(217, 173, 86, 0.07);
+  transform: scale(.7);
+  transition: transform 300ms ease, background 300ms ease;
+}
+
+.v3-shell .v2-home-end__actions a:hover {
+  transform: translateY(-5px);
+  border-color: rgba(217, 173, 86, 0.38);
+  background: rgba(217, 173, 86, 0.035);
+}
+
+.v3-shell .v2-home-end__actions a:hover::after {
+  transform: scale(1.35);
+  background: rgba(217, 173, 86, 0.11);
+}
+
+.v3-shell .v2-footer {
+  border-top-color: rgba(239, 213, 154, 0.12);
+}
+
+@media (max-width: 900px) {
+  .v3-edge-frame,
+  .v3-cursor-aura {
+    display: none;
+  }
+
+  .v3-shell .v2-navbar {
+    background: rgba(5, 12, 9, 0.9);
+  }
+
+  .v3-shell .v2-hero::before {
+    width: 92vw;
+    right: -52vw;
+    top: 17vh;
+    opacity: 0.58;
+  }
+
+  .v3-shell .v2-founder::after {
+    inset: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .v3-shell .v2-hero__media {
+    transform: scale(1.015);
+  }
+
+  .v3-shell .v2-hero:hover .v2-hero__media {
+    transform: scale(1.015);
+  }
+
+  .v3-shell .v2-hero__content {
+    padding-bottom: 30px;
+  }
+
+  .v3-shell .v2-hero__eyebrow {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .v3-shell .v2-primary-action,
+  .v3-shell .v2-secondary-action {
+    border-radius: 12px;
+  }
+
+  .v3-shell .v2-founder::after {
+    inset: 9px;
+    border-color: rgba(239, 213, 154, 0.08);
+  }
+
+  .v3-shell .v2-institutions::before,
+  .v3-shell .v2-campus::before,
+  .v3-shell .v2-personalities::before,
+  .v3-shell .v2-stats::before,
+  .v3-shell .v2-home-end::before {
+    width: calc(100% - 28px);
+  }
+
+  .v3-shell .v2-campus__intro-copy {
+    padding-left: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v3-cursor-aura { display: none; }
+
+  .v3-shell .v2-hero__media,
+  .v3-shell .v2-primary-action,
+  .v3-shell .v2-secondary-action,
+  .v3-shell .v2-institutions__image,
+  .v3-shell .v2-stats__item,
+  .v3-shell .v2-home-end__actions a {
+    transition: none !important;
+  }
+
+  .v3-shell .v2-hero:hover .v2-hero__media,
+  .v3-shell .v2-institutions__panel:hover .v2-institutions__image,
+  .v3-shell .v2-home-end__actions a:hover,
+  .v3-shell .v2-stats__item:hover {
+    transform: none !important;
+  }
+}
