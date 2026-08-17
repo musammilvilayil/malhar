@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import HeroV2 from "./components/HeroV2";
+import V3Manifesto from "./components/V3Manifesto";
 import FounderV2 from "./components/FounderV2";
 import InstitutionsV2 from "./components/InstitutionsV2";
 import CampusLifeV2 from "./components/CampusLifeV2";
@@ -16,6 +17,7 @@ export default function HomeV2() {
       <AtmosphereV3 />
       <Navbar />
       <HeroV2 />
+      <V3Manifesto />
       <FounderV2 />
       <InstitutionsV2 />
       <CampusLifeV2 />
