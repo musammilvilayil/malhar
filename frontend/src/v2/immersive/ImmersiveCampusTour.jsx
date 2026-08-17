@@ -7,6 +7,7 @@ import { GALLERY_PREVIEW, INSTITUTIONS, KEY_PERSONALITIES } from "../../data";
 import StatsV2 from "../components/StatsV2";
 import HomeEndV2 from "../components/HomeEndV2";
 import "./ImmersiveCampusTour.css";
+import "./ImmersiveCampusTourPolish.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
