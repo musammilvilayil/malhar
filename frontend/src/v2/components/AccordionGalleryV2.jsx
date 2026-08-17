@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SWIPE_THRESHOLD = 42;
 
@@ -44,53 +45,88 @@ export default function AccordionGalleryV2({ items }) {
   };
 
   return (
-    <div
-      className="v2-accordion"
-      role="group"
-      aria-label="Campus life gallery"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      {items.map((item, index) => {
-        const active = index === activeIndex;
+    <>
+      <div
+        className="v2-accordion"
+        role="group"
+        aria-label="Campus life gallery"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {items.map((item, index) => {
+          const active = index === activeIndex;
 
-        return (
-          <button
-            key={item.title}
-            type="button"
-            className={`v2-accordion__panel${active ? " is-active" : ""}`}
-            onClick={() => {
-              if (!suppressClick.current) setActiveIndex(index);
-            }}
-            onMouseEnter={() => setActiveIndex(index)}
-            onFocus={() => setActiveIndex(index)}
-            aria-pressed={active}
-            aria-label={`View ${item.title}`}
-          >
-            <img
-              src={item.image}
-              alt=""
-              aria-hidden="true"
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding="async"
+          return (
+            <button
+              key={item.title}
+              type="button"
+              className={`v2-accordion__panel${active ? " is-active" : ""}`}
+              onClick={() => {
+                if (!suppressClick.current) setActiveIndex(index);
+              }}
+              onMouseEnter={() => setActiveIndex(index)}
+              onFocus={() => setActiveIndex(index)}
+              aria-pressed={active}
+              aria-label={`View ${item.title}`}
+            >
+              <img
+                src={item.image}
+                alt=""
+                aria-hidden="true"
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+              <span className="v2-accordion__wash" aria-hidden="true" />
+
+              <span className="v2-accordion__index" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span className="v2-accordion__caption">
+                <strong>{item.title}</strong>
+                <small>{item.subtitle}</small>
+              </span>
+            </button>
+          );
+        })}
+
+        <span className="v2-accordion__status" aria-live="polite">
+          {items[activeIndex].title}, {activeIndex + 1} of {items.length}
+        </span>
+      </div>
+
+      <div className="v2-accordion__mobile-controls" aria-label="Campus gallery controls">
+        <button
+          type="button"
+          className="v2-accordion__nav-button"
+          onClick={() => moveSlide(-1)}
+          aria-label="Previous campus image"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div className="v2-accordion__dots" role="group" aria-label="Choose campus image">
+          {items.map((item, index) => (
+            <button
+              key={item.title}
+              type="button"
+              className={`v2-accordion__dot${index === activeIndex ? " is-active" : ""}`}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Show ${item.title}`}
+              aria-current={index === activeIndex ? "true" : undefined}
             />
-            <span className="v2-accordion__wash" aria-hidden="true" />
+          ))}
+        </div>
 
-            <span className="v2-accordion__index" aria-hidden="true">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-
-            <span className="v2-accordion__caption">
-              <strong>{item.title}</strong>
-              <small>{item.subtitle}</small>
-            </span>
-          </button>
-        );
-      })}
-
-      <span className="v2-accordion__status" aria-live="polite">
-        {items[activeIndex].title}, {activeIndex + 1} of {items.length}
-      </span>
-    </div>
+        <button
+          type="button"
+          className="v2-accordion__nav-button"
+          onClick={() => moveSlide(1)}
+          aria-label="Next campus image"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+    </>
   );
 }
