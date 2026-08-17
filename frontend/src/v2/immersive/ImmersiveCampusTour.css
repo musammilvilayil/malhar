@@ -1,0 +1,1295 @@
+/* Malhar Immersive Campus Tour
+   Original 2.5D storytelling layer built from real Malhar assets.
+   Desktop and mobile share the same narrative, with different motion density. */
+
+.tour-root {
+  --tour-ink: #07100d;
+  --tour-deep: #0a1712;
+  --tour-green: #123b2d;
+  --tour-paper: #efe5cf;
+  --tour-paper-2: #f6efe0;
+  --tour-gold: #d7ad58;
+  --tour-gold-soft: #efd79e;
+  --tour-line: rgba(239, 215, 158, 0.22);
+  --tour-white: #fff9ea;
+  overflow: clip;
+  background: var(--tour-ink);
+  color: var(--tour-white);
+}
+
+.tour-root * {
+  box-sizing: border-box;
+}
+
+.tour-root em {
+  color: var(--tour-gold);
+  font-weight: 400;
+}
+
+.tour-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: var(--tour-gold-soft);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.tour-kicker span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(239, 215, 158, .44);
+  border-radius: 50%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.tour-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease, border-color .25s ease;
+}
+
+.tour-button--primary {
+  border: 1px solid rgba(239, 215, 158, .72);
+  background: rgba(217, 173, 86, .95);
+  color: #09140f;
+  box-shadow: 0 16px 45px rgba(0,0,0,.24);
+}
+
+.tour-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------
+   01. REAL CAMPUS HERO — zoom through the real photo
+   ---------------------------------------------------- */
+
+.tour-hero {
+  position: relative;
+  height: 250svh;
+  background: #050b08;
+}
+
+.tour-hero__stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.tour-hero__image,
+.tour-hero__wash,
+.tour-hero__grain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tour-hero__image {
+  z-index: 0;
+  object-fit: cover;
+  object-position: 58% 48%;
+  transform: scale(1.02);
+  transform-origin: 58% 52%;
+  will-change: transform;
+}
+
+.tour-hero__wash {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 57% 47%, transparent 0 13%, rgba(3, 9, 6, .08) 34%, rgba(3, 9, 6, .34) 68%, rgba(3, 9, 6, .78) 100%),
+    linear-gradient(90deg, rgba(2,8,5,.76), rgba(2,8,5,.18) 58%, rgba(2,8,5,.34)),
+    linear-gradient(180deg, rgba(2,8,5,.18), rgba(2,8,5,.03) 48%, rgba(2,8,5,.73) 100%);
+  pointer-events: none;
+}
+
+.tour-hero__grain {
+  z-index: 2;
+  opacity: .1;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.18) 0 .55px, transparent .8px),
+    radial-gradient(circle at 75% 70%, rgba(255,255,255,.1) 0 .5px, transparent .75px);
+  background-size: 8px 8px, 11px 11px;
+}
+
+.tour-hero__copy {
+  position: absolute;
+  z-index: 6;
+  left: max(28px, calc((100vw - 1380px) / 2));
+  bottom: clamp(48px, 9vh, 92px);
+  width: min(760px, calc(100% - 56px));
+  will-change: transform, opacity;
+}
+
+.tour-hero__copy h1 {
+  max-width: 8ch;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4.7rem, 8.8vw, 9.8rem);
+  font-weight: 400;
+  letter-spacing: -.06em;
+  line-height: .82;
+  text-wrap: balance;
+}
+
+.tour-hero__copy h1 em {
+  display: block;
+  font-style: italic;
+}
+
+.tour-hero__intro {
+  max-width: 590px;
+  margin: 24px 0 28px;
+  color: rgba(255,249,234,.78);
+  font-size: clamp(.95rem, 1.2vw, 1.08rem);
+  line-height: 1.72;
+}
+
+.tour-hero__portal {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 58%;
+  width: clamp(120px, 15vw, 250px);
+  height: clamp(190px, 25vw, 390px);
+  border: 1px solid rgba(239, 215, 158, .7);
+  border-bottom-color: rgba(239, 215, 158, .3);
+  border-radius: 50% 50% 6px 6px / 24% 24% 6px 6px;
+  box-shadow:
+    0 0 0 8px rgba(6,17,13,.22),
+    0 0 0 9px rgba(239,215,158,.13),
+    inset 0 0 55px rgba(239,215,158,.06),
+    0 25px 90px rgba(0,0,0,.26);
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tour-hero__portal::before,
+.tour-hero__portal::after {
+  content: "";
+  position: absolute;
+  background: rgba(239,215,158,.32);
+}
+
+.tour-hero__portal::before {
+  top: 15%;
+  bottom: 10%;
+  left: 50%;
+  width: 1px;
+}
+
+.tour-hero__portal::after {
+  right: 15%;
+  bottom: 14%;
+  left: 15%;
+  height: 1px;
+}
+
+.tour-hero__portal-label {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
+  color: rgba(255,249,234,.72);
+  font-size: 8px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.tour-hero__scroll {
+  position: absolute;
+  z-index: 7;
+  right: max(24px, calc((100vw - 1380px) / 2));
+  bottom: 42px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,249,234,.52);
+  font-size: 8px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.tour-hero__scroll i {
+  position: relative;
+  width: 64px;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255,249,234,.22);
+}
+
+.tour-hero__scroll i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--tour-gold);
+  transform: translateX(-100%);
+  animation: tour-line 2s ease-in-out infinite;
+}
+
+@keyframes tour-line {
+  0%, 15% { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(100%); }
+}
+
+/* ----------------------------------------------------
+   02. THRESHOLD — original CSS architecture
+   ---------------------------------------------------- */
+
+.tour-threshold {
+  position: relative;
+  height: 170svh;
+  background: #06110d;
+}
+
+.tour-threshold__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(217,173,86,.11), transparent 30rem),
+    linear-gradient(180deg, #07140f, #030906);
+}
+
+.tour-threshold__walls {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(72deg, rgba(239,229,206,.08) 0 1px, transparent 1px 23%, rgba(239,229,206,.06) 23% 23.2%, transparent 23.2% 100%),
+    linear-gradient(-72deg, rgba(239,229,206,.08) 0 1px, transparent 1px 23%, rgba(239,229,206,.06) 23% 23.2%, transparent 23.2% 100%);
+  background-size: 50% 100%, 50% 100%;
+  background-position: left, right;
+  background-repeat: no-repeat;
+  opacity: .72;
+}
+
+.tour-threshold__walls::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 29%;
+  background:
+    repeating-linear-gradient(90deg, rgba(239,215,158,.07) 0 1px, transparent 1px 12vw),
+    linear-gradient(180deg, rgba(217,173,86,.035), rgba(0,0,0,.42));
+  transform: perspective(500px) rotateX(58deg);
+  transform-origin: bottom;
+}
+
+.tour-threshold__arch {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 58%;
+  width: min(38vw, 580px);
+  aspect-ratio: .76;
+  overflow: hidden;
+  border: 1px solid rgba(239,215,158,.42);
+  border-radius: 50% 50% 2px 2px / 22% 22% 2px 2px;
+  box-shadow:
+    0 0 0 18px #0b1b14,
+    0 0 0 19px rgba(239,215,158,.18),
+    0 0 0 45px #07120e,
+    0 0 0 46px rgba(239,215,158,.07),
+    0 45px 130px rgba(0,0,0,.5);
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  will-change: transform;
+}
+
+.tour-threshold__arch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.78) contrast(1.08) brightness(.74);
+}
+
+.tour-threshold__light {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255,239,194,.12), transparent 50%),
+    radial-gradient(circle at 50% 24%, rgba(255,224,153,.3), transparent 28%);
+  mix-blend-mode: screen;
+}
+
+.tour-threshold__copy {
+  position: absolute;
+  z-index: 4;
+  left: max(28px, calc((100vw - 1380px) / 2));
+  top: 50%;
+  width: min(520px, 38vw);
+  transform: translateY(-50%);
+}
+
+.tour-threshold__copy h2,
+.tour-section-heading h2,
+.tour-courtyard__copy h2,
+.tour-office__heading h2,
+.tour-impact-intro h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .92;
+  text-wrap: balance;
+}
+
+.tour-threshold__copy h2 {
+  font-size: clamp(3.5rem, 5.7vw, 6.5rem);
+}
+
+.tour-threshold__copy > p:last-child {
+  max-width: 430px;
+  margin: 24px 0 0;
+  color: rgba(255,249,234,.62);
+  line-height: 1.72;
+}
+
+/* ----------------------------------------------------
+   03. SEVEN INSTITUTIONS — corridor / rooms
+   ---------------------------------------------------- */
+
+.tour-institutions {
+  position: relative;
+  min-height: 100svh;
+  background: #e8dcc1;
+  color: #0a1712;
+}
+
+.tour-institutions__stage {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(155,112,38,.12), transparent 42rem),
+    #e8dcc1;
+}
+
+.tour-institutions__heading {
+  position: absolute;
+  z-index: 20;
+  top: 34px;
+  left: max(28px, calc((100vw - 1380px) / 2));
+  width: min(620px, 45vw);
+  pointer-events: none;
+}
+
+.tour-institutions__heading .tour-kicker {
+  color: #7c571d;
+}
+
+.tour-institutions__heading .tour-kicker span {
+  border-color: rgba(91,61,15,.32);
+}
+
+.tour-institutions__heading h2 {
+  font-size: clamp(2.7rem, 4.7vw, 5.1rem);
+}
+
+.tour-institutions__heading h2 em {
+  color: #8c621e;
+}
+
+.tour-institutions__heading > p:last-child {
+  max-width: 520px;
+  margin: 16px 0 0;
+  color: rgba(10,23,18,.62);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+.tour-institutions__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: end;
+  gap: 28px;
+  width: max-content;
+  height: 100%;
+  padding: 245px 9vw 7vh 42vw;
+  will-change: transform;
+}
+
+.tour-room {
+  position: relative;
+  flex: 0 0 min(68vw, 980px);
+  width: min(68vw, 980px);
+  height: min(70svh, 680px);
+  overflow: hidden;
+  border: 1px solid rgba(91,61,15,.22);
+  border-radius: 28px 28px 8px 8px;
+  background: #0a1712;
+  box-shadow: 0 30px 90px rgba(61,46,17,.2);
+  isolation: isolate;
+}
+
+.tour-room::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 16px;
+  background: linear-gradient(90deg, #604314, #e4c47d 48%, #604314);
+}
+
+.tour-room__image,
+.tour-room__shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tour-room__image {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  filter: saturate(.86) contrast(1.04) brightness(.78);
+}
+
+.tour-room__shade {
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(4,12,9,.88) 0%, rgba(4,12,9,.48) 42%, rgba(4,12,9,.12) 76%),
+    linear-gradient(180deg, rgba(4,12,9,.12), rgba(4,12,9,.76) 100%);
+}
+
+.tour-room__frame {
+  position: absolute;
+  z-index: 3;
+  inset: 22px;
+  border: 1px solid rgba(239,215,158,.38);
+  border-radius: 20px 20px 4px 4px;
+  pointer-events: none;
+}
+
+.tour-room__frame::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  width: 36%;
+  height: 14%;
+  border: 1px solid rgba(239,215,158,.38);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 85% 85% 0 0;
+  transform: translate(-50%, -100%);
+  background: rgba(7,16,13,.24);
+}
+
+.tour-room__frame span {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-family: Georgia, serif;
+  font-size: clamp(4rem, 7vw, 7.5rem);
+  line-height: .8;
+  color: rgba(239,215,158,.2);
+}
+
+.tour-room__content {
+  position: absolute;
+  z-index: 4;
+  left: clamp(34px, 5vw, 70px);
+  bottom: clamp(34px, 5vw, 68px);
+  width: min(580px, 65%);
+  color: #fff8e9;
+}
+
+.tour-room__content > p:first-child {
+  margin: 0 0 12px;
+  color: #e8c982;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.tour-room__content h3 {
+  max-width: 11ch;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.8rem, 4.8vw, 5.6rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .91;
+}
+
+.tour-room__description {
+  max-width: 530px;
+  margin: 18px 0 0;
+  color: rgba(255,248,233,.72);
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+.tour-room__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(232,201,130,.7);
+  color: #fff8e9;
+  font-size: 9px;
+  letter-spacing: .13em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------
+   04. REAL CAMPUS MOMENTS / COURTYARD
+   ---------------------------------------------------- */
+
+.tour-courtyard {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(310px, .75fr) minmax(0, 1.25fr);
+  gap: clamp(50px, 7vw, 110px);
+  align-items: center;
+  min-height: 130svh;
+  padding: 12vh max(28px, calc((100vw - 1380px) / 2));
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 35%, rgba(217,173,86,.1), transparent 32rem),
+    #07110d;
+}
+
+.tour-courtyard__copy {
+  position: sticky;
+  top: 25vh;
+  align-self: start;
+  padding-top: 16vh;
+}
+
+.tour-courtyard__copy h2 {
+  font-size: clamp(3.4rem, 5.4vw, 6.4rem);
+}
+
+.tour-courtyard__copy > p:last-child {
+  max-width: 470px;
+  margin: 24px 0 0;
+  color: rgba(255,249,234,.62);
+  line-height: 1.72;
+}
+
+.tour-courtyard__gallery {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: 17vw;
+  gap: 12px;
+  min-height: 100svh;
+}
+
+.tour-courtyard__tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(239,215,158,.14);
+  border-radius: 18px;
+  background: #0b1b14;
+}
+
+.tour-courtyard__tile--1 { grid-column: 1 / 8; grid-row: 1 / 3; }
+.tour-courtyard__tile--2 { grid-column: 8 / 13; grid-row: 1 / 2; }
+.tour-courtyard__tile--3 { grid-column: 8 / 13; grid-row: 2 / 4; }
+.tour-courtyard__tile--4 { grid-column: 1 / 5; grid-row: 3 / 4; }
+.tour-courtyard__tile--5 { grid-column: 5 / 8; grid-row: 3 / 4; }
+
+.tour-courtyard__image {
+  width: 100%;
+  height: 116%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(1.05) brightness(.82);
+  transform: translateY(-8%);
+  will-change: transform;
+}
+
+.tour-courtyard__tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 52%, rgba(3,10,7,.7));
+  pointer-events: none;
+}
+
+.tour-courtyard figcaption {
+  position: absolute;
+  z-index: 3;
+  left: 16px;
+  bottom: 14px;
+  color: rgba(255,249,234,.74);
+  font-size: 8px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------
+   05. LEADERSHIP CHAMBER — CSS room + real portraits
+   ---------------------------------------------------- */
+
+.tour-office {
+  position: relative;
+  min-height: 120svh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(217,173,86,.13), transparent 32rem),
+    linear-gradient(180deg, #0d231a, #06110d 76%);
+}
+
+.tour-office__ceiling {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 22vh;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 12vw, rgba(239,215,158,.06) 12vw calc(12vw + 1px)),
+    linear-gradient(180deg, #050d0a, rgba(5,13,10,.22));
+  transform: perspective(650px) rotateX(-36deg);
+  transform-origin: top;
+}
+
+.tour-office__floor {
+  position: absolute;
+  z-index: 0;
+  right: -10%;
+  bottom: -12vh;
+  left: -10%;
+  height: 43vh;
+  background:
+    repeating-linear-gradient(90deg, rgba(239,215,158,.07) 0 1px, transparent 1px 10vw),
+    repeating-linear-gradient(0deg, rgba(239,215,158,.04) 0 1px, transparent 1px 6vw),
+    linear-gradient(180deg, #0a1b14, #030806);
+  transform: perspective(520px) rotateX(58deg);
+  transform-origin: bottom;
+}
+
+.tour-office__inner {
+  position: relative;
+  z-index: 2;
+  width: min(calc(100% - 56px), 1380px);
+  margin: 0 auto;
+  padding: 14vh 0 20vh;
+}
+
+.tour-office__heading {
+  max-width: 740px;
+  margin-bottom: clamp(60px, 8vw, 100px);
+}
+
+.tour-office__heading h2 {
+  font-size: clamp(3.7rem, 6.5vw, 7.2rem);
+}
+
+.tour-office__heading > p:last-child {
+  max-width: 520px;
+  margin: 22px 0 0;
+  color: rgba(255,249,234,.62);
+  line-height: 1.68;
+}
+
+.tour-office__gallery {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  perspective: 1200px;
+}
+
+.tour-office__frame {
+  position: relative;
+  min-width: 0;
+  padding: 16px 16px 22px;
+  border: 1px solid rgba(239,215,158,.36);
+  background:
+    linear-gradient(145deg, rgba(239,229,206,.08), rgba(2,8,5,.16)),
+    #0a1c15;
+  box-shadow:
+    0 26px 65px rgba(0,0,0,.28),
+    inset 0 0 0 5px rgba(4,14,10,.8),
+    inset 0 0 0 6px rgba(239,215,158,.12);
+  transform-origin: center bottom;
+}
+
+.tour-office__portrait-wrap {
+  position: relative;
+  aspect-ratio: .82;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 26%, rgba(217,173,86,.13), transparent 35%),
+    #123326;
+}
+
+.tour-office__portrait-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(239,215,158,.2);
+  pointer-events: none;
+}
+
+.tour-office__portrait-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: saturate(.88) contrast(1.04) brightness(.9);
+}
+
+.tour-office__frame > p {
+  margin: 20px 0 9px;
+  color: #d9b66c;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.tour-office__frame h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 1.7vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.tour-office__frame > span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255,249,234,.55);
+  font-family: Georgia, serif;
+  font-size: .9rem;
+  font-style: italic;
+}
+
+.tour-office__frame > i {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  color: rgba(239,215,158,.25);
+  font-family: Georgia, serif;
+  font-size: .8rem;
+  font-style: normal;
+}
+
+.tour-office__desk {
+  position: relative;
+  z-index: 1;
+  width: 62%;
+  height: 70px;
+  margin: 70px auto 0;
+  border: 1px solid rgba(239,215,158,.18);
+  border-radius: 8px 8px 22px 22px;
+  background: linear-gradient(180deg, #4b311b, #1c120a);
+  box-shadow: 0 35px 80px rgba(0,0,0,.35);
+  transform: perspective(900px) rotateX(58deg);
+}
+
+.tour-office__desk span {
+  position: absolute;
+  inset: 18px 40%;
+  border: 1px solid rgba(239,215,158,.28);
+}
+
+/* ----------------------------------------------------
+   06. IMPACT INTRO — calm readability reset
+   ---------------------------------------------------- */
+
+.tour-impact-intro {
+  padding: 16vh max(28px, calc((100vw - 1380px) / 2)) 7vh;
+  background: var(--tour-paper-2);
+  color: #0b1712;
+}
+
+.tour-impact-intro .tour-kicker {
+  color: #8f651e;
+}
+
+.tour-impact-intro .tour-kicker span {
+  border-color: rgba(80,52,12,.28);
+}
+
+.tour-impact-intro h2 {
+  max-width: 1100px;
+  font-size: clamp(3.4rem, 6vw, 7rem);
+}
+
+.tour-impact-intro h2 em {
+  color: #8f651e;
+}
+
+.tour-impact-intro > p:last-child {
+  max-width: 560px;
+  margin: 22px 0 0;
+  color: rgba(11,23,18,.58);
+  line-height: 1.65;
+}
+
+/* Seam into existing Stats/HomeEnd while keeping source-of-truth content. */
+.tour-root .v2-stats {
+  margin-top: -1px;
+}
+
+/* ----------------------------------------------------
+   TABLET / MOBILE — same story, lower motion density
+   ---------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .tour-root {
+    overflow: hidden;
+  }
+
+  .tour-kicker {
+    margin-bottom: 14px;
+    font-size: 8px;
+    letter-spacing: .16em;
+  }
+
+  .tour-kicker span {
+    width: 27px;
+    height: 27px;
+    font-size: 10px;
+  }
+
+  .tour-hero {
+    height: 190svh;
+  }
+
+  .tour-hero__image {
+    object-position: 66% 49%;
+    transform-origin: 66% 52%;
+  }
+
+  .tour-hero__wash {
+    background:
+      linear-gradient(180deg, rgba(2,8,5,.18) 0%, rgba(2,8,5,.08) 25%, rgba(2,8,5,.58) 58%, #07100d 100%),
+      linear-gradient(90deg, rgba(2,8,5,.62), rgba(2,8,5,.08));
+  }
+
+  .tour-hero__grain {
+    display: none;
+  }
+
+  .tour-hero__copy {
+    left: 16px;
+    right: 16px;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
+    width: auto;
+  }
+
+  .tour-hero__copy h1 {
+    max-width: 7.2ch;
+    font-size: clamp(3.5rem, 16vw, 6.2rem);
+    line-height: .85;
+  }
+
+  .tour-hero__intro {
+    max-width: 34rem;
+    margin: 18px 0 20px;
+    font-size: .92rem;
+    line-height: 1.58;
+  }
+
+  .tour-button {
+    width: 100%;
+    min-height: 52px;
+  }
+
+  .tour-hero__portal {
+    top: 44%;
+    left: 66%;
+    width: 112px;
+    height: 178px;
+  }
+
+  .tour-hero__scroll {
+    display: none;
+  }
+
+  .tour-threshold {
+    height: 140svh;
+  }
+
+  .tour-threshold__stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .tour-threshold__walls::after {
+    height: 24%;
+  }
+
+  .tour-threshold__arch {
+    top: 37%;
+    left: 50%;
+    width: min(66vw, 360px);
+    box-shadow:
+      0 0 0 10px #0b1b14,
+      0 0 0 11px rgba(239,215,158,.18),
+      0 0 0 26px #07120e,
+      0 0 0 27px rgba(239,215,158,.07),
+      0 28px 80px rgba(0,0,0,.5);
+  }
+
+  .tour-threshold__copy {
+    position: relative;
+    z-index: 4;
+    top: auto;
+    left: auto;
+    width: calc(100% - 28px);
+    margin: 0 auto;
+    padding: 0 0 7vh;
+    transform: none;
+  }
+
+  .tour-threshold__copy h2 {
+    font-size: clamp(2.8rem, 12.6vw, 4.5rem);
+  }
+
+  .tour-threshold__copy > p:last-child {
+    margin-top: 16px;
+    font-size: .9rem;
+    line-height: 1.6;
+  }
+
+  .tour-institutions {
+    padding: 58px 0 70px;
+  }
+
+  .tour-institutions__stage {
+    height: auto;
+    overflow: visible;
+    background: #e8dcc1;
+  }
+
+  .tour-institutions__heading {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: calc(100% - 28px);
+    margin: 0 auto 34px;
+    pointer-events: auto;
+  }
+
+  .tour-institutions__heading h2 {
+    max-width: 9ch;
+    font-size: clamp(2.8rem, 12vw, 4.3rem);
+  }
+
+  .tour-institutions__heading > p:last-child {
+    font-size: .88rem;
+  }
+
+  .tour-institutions__track {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: grid;
+    width: 100%;
+    height: auto;
+    padding: 0 10px;
+    gap: 18px;
+    transform: none !important;
+  }
+
+  .tour-room {
+    position: relative;
+    flex: none;
+    width: 100%;
+    height: min(76svh, 650px);
+    min-height: 540px;
+    border-radius: 22px 22px 8px 8px;
+  }
+
+  .tour-room__frame {
+    inset: 12px;
+    border-radius: 16px 16px 4px 4px;
+  }
+
+  .tour-room__frame span {
+    top: 14px;
+    right: 14px;
+    font-size: 4.2rem;
+  }
+
+  .tour-room__shade {
+    background:
+      linear-gradient(180deg, rgba(4,12,9,.12) 0%, rgba(4,12,9,.12) 36%, rgba(4,12,9,.88) 78%),
+      linear-gradient(90deg, rgba(4,12,9,.42), rgba(4,12,9,.03));
+  }
+
+  .tour-room__content {
+    left: 26px;
+    right: 26px;
+    bottom: 30px;
+    width: auto;
+  }
+
+  .tour-room__content h3 {
+    max-width: 11ch;
+    font-size: clamp(2.45rem, 10.8vw, 4.2rem);
+  }
+
+  .tour-room__description {
+    max-width: 34rem;
+    margin-top: 13px;
+    font-size: .88rem;
+    line-height: 1.5;
+  }
+
+  .tour-room__link {
+    margin-top: 16px;
+  }
+
+  .tour-courtyard {
+    display: block;
+    min-height: auto;
+    padding: 72px 12px 82px;
+  }
+
+  .tour-courtyard__copy {
+    position: relative;
+    top: auto;
+    padding: 0 2px;
+  }
+
+  .tour-courtyard__copy h2 {
+    max-width: 9ch;
+    font-size: clamp(2.9rem, 12.4vw, 4.5rem);
+  }
+
+  .tour-courtyard__copy > p:last-child {
+    margin-top: 17px;
+    font-size: .9rem;
+    line-height: 1.58;
+  }
+
+  .tour-courtyard__gallery {
+    display: flex;
+    gap: 10px;
+    min-height: 0;
+    margin-top: 34px;
+    overflow-x: auto;
+    padding: 0 0 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tour-courtyard__gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tour-courtyard__tile,
+  .tour-courtyard__tile--1,
+  .tour-courtyard__tile--2,
+  .tour-courtyard__tile--3,
+  .tour-courtyard__tile--4,
+  .tour-courtyard__tile--5 {
+    flex: 0 0 84vw;
+    width: 84vw;
+    height: 58svh;
+    min-height: 410px;
+    scroll-snap-align: center;
+  }
+
+  .tour-courtyard__image {
+    height: 100%;
+    transform: none !important;
+  }
+
+  .tour-office {
+    min-height: auto;
+  }
+
+  .tour-office__ceiling,
+  .tour-office__floor,
+  .tour-office__desk {
+    display: none;
+  }
+
+  .tour-office__inner {
+    width: calc(100% - 24px);
+    padding: 76px 0 86px;
+  }
+
+  .tour-office__heading {
+    margin-bottom: 34px;
+  }
+
+  .tour-office__heading h2 {
+    max-width: 9ch;
+    font-size: clamp(3rem, 12.7vw, 4.7rem);
+  }
+
+  .tour-office__heading > p:last-child {
+    margin-top: 17px;
+    font-size: .9rem;
+    line-height: 1.58;
+  }
+
+  .tour-office__gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .tour-office__frame {
+    padding: 8px 8px 18px;
+    box-shadow: 0 16px 38px rgba(0,0,0,.2), inset 0 0 0 3px rgba(4,14,10,.8), inset 0 0 0 4px rgba(239,215,158,.12);
+  }
+
+  .tour-office__frame > p {
+    margin: 13px 3px 7px;
+    font-size: 7px;
+    line-height: 1.2;
+    letter-spacing: .1em;
+  }
+
+  .tour-office__frame h3 {
+    margin: 0 3px;
+    font-size: clamp(.94rem, 4.2vw, 1.3rem);
+  }
+
+  .tour-office__frame > span {
+    margin: 6px 3px 0;
+    font-size: .78rem;
+  }
+
+  .tour-impact-intro {
+    padding: 78px 14px 44px;
+  }
+
+  .tour-impact-intro h2 {
+    max-width: 9ch;
+    font-size: clamp(2.9rem, 12.5vw, 4.5rem);
+  }
+
+  .tour-impact-intro > p:last-child {
+    margin-top: 16px;
+    font-size: .9rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .tour-hero__copy h1 {
+    font-size: clamp(3.2rem, 15.3vw, 4.8rem);
+  }
+
+  .tour-threshold__arch {
+    width: min(70vw, 320px);
+  }
+
+  .tour-room {
+    height: 72svh;
+    min-height: 520px;
+  }
+
+  .tour-room__content {
+    left: 22px;
+    right: 22px;
+    bottom: 26px;
+  }
+
+  .tour-room__content h3 {
+    font-size: clamp(2.25rem, 10.5vw, 3.5rem);
+  }
+
+  .tour-courtyard__tile,
+  .tour-courtyard__tile--1,
+  .tour-courtyard__tile--2,
+  .tour-courtyard__tile--3,
+  .tour-courtyard__tile--4,
+  .tour-courtyard__tile--5 {
+    flex-basis: 88vw;
+    width: 88vw;
+    height: 54svh;
+    min-height: 390px;
+  }
+}
+
+@media (max-width: 360px) {
+  .tour-office__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-office__frame h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tour-hero,
+  .tour-threshold {
+    height: auto;
+  }
+
+  .tour-hero__stage,
+  .tour-threshold__stage {
+    position: relative;
+    min-height: 100svh;
+  }
+
+  .tour-hero__image,
+  .tour-hero__copy,
+  .tour-hero__portal,
+  .tour-threshold__arch,
+  .tour-threshold__copy,
+  .tour-institutions__track,
+  .tour-courtyard__image,
+  .tour-office__frame {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .tour-hero__portal {
+    opacity: .5;
+  }
+
+  .tour-hero__scroll i::after {
+    animation: none;
+  }
+}
