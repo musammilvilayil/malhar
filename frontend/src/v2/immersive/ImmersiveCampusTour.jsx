@@ -177,7 +177,11 @@ export default function ImmersiveCampusTour() {
   };
 
   return (
-    <main ref={rootRef} className="tour-root">
+    <main
+      ref={rootRef}
+      className="tour-root"
+      style={{ "--tour-campus-bg": "url('/assets/DSC_2363-1-1-1.jpg')" }}
+    >
       <section ref={heroRef} className="tour-hero" aria-labelledby="tour-hero-title">
         <div className="tour-hero__stage">
           <img
