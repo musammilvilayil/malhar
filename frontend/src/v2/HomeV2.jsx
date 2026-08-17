@@ -10,6 +10,7 @@ import HomeEndV2 from "./components/HomeEndV2";
 import AtmosphereV3 from "./components/AtmosphereV3";
 import "./v2.css";
 import "./redesign-v3.css";
+import "./mobile-v3.css";
 
 export default function HomeV2() {
   return (
