@@ -1,24 +1,12 @@
 import Navbar from "./components/Navbar";
-import HeroV2 from "./components/HeroV2";
-import FounderV2 from "./components/FounderV2";
-import InstitutionsV2 from "./components/InstitutionsV2";
-import CampusLifeV2 from "./components/CampusLifeV2";
-import KeyPersonalitiesV2 from "./components/KeyPersonalitiesV2";
-import StatsV2 from "./components/StatsV2";
-import HomeEndV2 from "./components/HomeEndV2";
+import ImmersiveCampusTour from "./immersive/ImmersiveCampusTour";
 import "./v2.css";
 
 export default function HomeV2() {
   return (
     <div className="v2-shell">
       <Navbar />
-      <HeroV2 />
-      <FounderV2 />
-      <InstitutionsV2 />
-      <CampusLifeV2 />
-      <KeyPersonalitiesV2 />
-      <StatsV2 />
-      <HomeEndV2 />
+      <ImmersiveCampusTour />
     </div>
   );
 }
