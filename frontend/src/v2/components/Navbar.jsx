@@ -22,6 +22,23 @@ export default function Navbar() {
     setIsOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isOpen]);
+
   return (
     <nav className="v2-navbar" aria-label="Primary navigation">
       <div className="v2-navbar__inner">
@@ -46,6 +63,7 @@ export default function Navbar() {
           className="v2-navbar__toggle"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
+          aria-controls="malhar-mobile-navigation"
           onClick={() => setIsOpen((current) => !current)}
         >
           <svg className="v2-navbar__toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -66,10 +84,11 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.24 }}
+            id="malhar-mobile-navigation"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
             className="v2-navbar__mobile"
           >
             {navLinks.map((link) => (
